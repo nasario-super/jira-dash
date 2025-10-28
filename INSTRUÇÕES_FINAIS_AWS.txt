@@ -1,0 +1,122 @@
+================================================================================
+                  JIRA DASHBOARD - INSTRUÇÕES FINAIS AWS
+================================================================================
+
+✅ PROBLEMA CORRIGIDO:
+   - Faltava @tanstack/react-query
+   - Faltava vite-plugin-pwa
+
+✅ SOLUÇÃO APLICADA:
+   - Adicionado ao package.json
+   - Criados 5 guias de deploy
+   - Criado script automatizado
+
+================================================================================
+                        3 PASSOS PARA DEPLOY NA AWS
+================================================================================
+
+PASSO 1: Entrar na instância EC2
+───────────────────────────────
+ssh -i "sua-key.pem" ec2-user@seu-ip-da-aws
+
+cd /home/ssm-user/projetos
+
+
+PASSO 2: Clonar repositório
+───────────────────────────
+git clone https://github.com/seu-usuario/jira-dash.git
+cd jira-dash
+
+
+PASSO 3: Executar script de deploy
+──────────────────────────────────
+chmod +x install-and-deploy.sh
+./install-and-deploy.sh
+
+
+PRONTO! Abra: http://seu-ip-da-aws:3000
+
+================================================================================
+                             📚 DOCUMENTAÇÃO
+================================================================================
+
+README_AWS_DEPLOY.md          - Este arquivo (resumo completo)
+SETUP_AWS_RESUMIDO.md         - Versão rápida (3 passos)
+DEPLOY_AWS.md                 - Guia completo e detalhado
+DEPENDENCIAS_CORRIGIDAS.md    - Lista de dependências
+RESUMO_CORRECOES_AWS.md       - Resumo de correções
+install-and-deploy.sh         - Script automatizado
+
+================================================================================
+                         🔑 LOGIN & CREDENCIAIS
+================================================================================
+
+Email:      seu-email@example.com
+API Token:  Gerar em https://id.atlassian.com/manage-profile/security/api-tokens
+
+Como gerar API Token:
+1. Abra: https://id.atlassian.com/manage-profile/security/api-tokens
+2. Clique em "Create API token"
+3. Copie o token
+4. Cole na tela de login
+
+================================================================================
+                         📊 VERIFICAR APÓS DEPLOY
+================================================================================
+
+Ver status:    pm2 status
+Ver logs:      pm2 logs jira-dashboard
+Monitorar:     pm2 monit
+Reiniciar:     pm2 restart jira-dashboard
+
+================================================================================
+                        🚀 APLICAÇÃO ESTÁ PRONTA!
+================================================================================
+
+Status: ✅ PRONTO PARA PRODUÇÃO
+Data: 28 de Outubro de 2025
+
+Dependências: ✅ Todas corrigidas
+Build: ✅ Otimizado
+Deploy: ✅ Automatizado
+Docs: ✅ Completas
+
+================================================================================
+                            ❓ TROUBLESHOOTING
+================================================================================
+
+Se der erro "Cannot find package":
+> npm install
+
+Se build falhar:
+> rm -rf node_modules package-lock.json
+> npm install
+> npm run build
+
+Se PM2 não funcionar:
+> npm install -g pm2
+> pm2 startup
+> pm2 save
+
+Para ver detalhes do erro:
+> pm2 logs jira-dashboard
+
+================================================================================
+                        ✅ CHECKLIST FINAL
+================================================================================
+
+[ ] Node.js v18+ instalado
+[ ] npm v9+ instalado
+[ ] Git instalado
+[ ] Repositório clonado
+[ ] Script executado com sucesso
+[ ] Aplicação rodando em :3000
+[ ] Acesso via http://ip:3000 funcionando
+[ ] Login com credenciais Jira funcionando
+[ ] Seleção de projetos funcionando
+[ ] Dashboard exibindo dados
+
+================================================================================
+
+Obrigado por usar Jira Dashboard! 🎉
+
