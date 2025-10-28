@@ -16,18 +16,17 @@ class JiraApiService {
     if (credentials) {
       this.config = credentials;
     } else {
-      // Fallback para variáveis de ambiente
+      // Fallback para variáveis de ambiente (desenvolvimento)
       this.config = {
         domain: (import.meta as any).env.VITE_JIRA_DOMAIN || '',
         email: (import.meta as any).env.VITE_JIRA_EMAIL || '',
         apiToken: (import.meta as any).env.VITE_JIRA_API_TOKEN || '',
       };
-    }
-
-    if (!this.config.domain || !this.config.email || !this.config.apiToken) {
-      throw new Error(
-        'Jira configuration is missing. Please provide credentials or check your environment variables.'
-      );
+      
+      // ⚠️ Em produção, credenciais virão do login do usuário
+      if (!this.config.domain && !this.config.email && !this.config.apiToken) {
+        console.warn('⚠️ Jira credentials not provided. Please login to provide credentials.');
+      }
     }
 
     // ✅ USAR PROXY VITE QUE REPASSA CREDENCIAIS DO USUÁRIO
@@ -35,13 +34,18 @@ class JiraApiService {
 
     this.api = axios.create({
       baseURL,
-      headers: {
-        Authorization: `Basic ${btoa(
-          `${this.config.email}:${this.config.apiToken}`
-        )}`,
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
+      headers: this.config.domain && this.config.email && this.config.apiToken
+        ? {
+            Authorization: `Basic ${btoa(
+              `${this.config.email}:${this.config.apiToken}`
+            )}`,
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          }
+        : {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
     });
 
     // Request interceptor for logging

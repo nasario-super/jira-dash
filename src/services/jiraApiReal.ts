@@ -14,34 +14,45 @@ export class JiraApiRealService {
 
   constructor(config: JiraApiConfig) {
     this.config = config;
+    
+    // ⚠️ Em produção, credenciais virão do login do usuário
+    // Permitir inicialização mesmo sem credenciais
     if (!config.domain || !config.email || !config.apiToken) {
-      throw new Error(
-        'Jira configuration is missing. Please provide credentials or check your environment variables.'
-      );
+      console.warn('⚠️ Jira credentials not provided. Please login to provide credentials.');
     }
 
     // API v2
     this.api = axios.create({
       baseURL: `/api/jira/rest/api/2`,
-      headers: {
-        Authorization: `Basic ${btoa(
-          `${this.config.email}:${this.config.apiToken}`
-        )}`,
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
+      headers: config.domain && config.email && config.apiToken
+        ? {
+            Authorization: `Basic ${btoa(
+              `${config.email}:${config.apiToken}`
+            )}`,
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          }
+        : {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
     });
 
     // API v3
     this.apiV3 = axios.create({
       baseURL: `/api/jira/rest/api/3`,
-      headers: {
-        Authorization: `Basic ${btoa(
-          `${this.config.email}:${this.config.apiToken}`
-        )}`,
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
+      headers: config.domain && config.email && config.apiToken
+        ? {
+            Authorization: `Basic ${btoa(
+              `${config.email}:${config.apiToken}`
+            )}`,
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          }
+        : {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
     });
 
     // Request interceptor for logging
