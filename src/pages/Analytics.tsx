@@ -43,9 +43,48 @@ const AnomalyDetection = lazy(
 const Analytics: React.FC = () => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
-  const { trends, performance, predictions, insights, isLoading, error } =
-    useAnalytics();
+  const {
+    trends,
+    performance,
+    predictions,
+    insights,
+    isLoading,
+    error,
+    issues,
+    sprints,
+  } = useAnalytics();
   const { filters } = useJiraStore();
+
+  // ✅ Converter predictions do analyticsService para array de advancedAnalyticsService
+  const convertedPredictions =
+    predictions && predictions.forecast
+      ? [
+          {
+            metric: 'Próximo Sprint',
+            currentValue: performance?.velocity || 0,
+            predictedValue: predictions.forecast.nextSprint,
+            confidence: predictions.confidence,
+            timeframe: '1 sprint',
+            factors: predictions.factors,
+          },
+          {
+            metric: 'Próximo Mês',
+            currentValue: performance?.velocity || 0,
+            predictedValue: predictions.forecast.nextMonth,
+            confidence: predictions.confidence,
+            timeframe: '1 mês',
+            factors: predictions.factors,
+          },
+          {
+            metric: 'Próximo Trimestre',
+            currentValue: performance?.velocity || 0,
+            predictedValue: predictions.forecast.nextQuarter,
+            confidence: predictions.confidence,
+            timeframe: '3 meses',
+            factors: predictions.factors,
+          },
+        ]
+      : [];
 
   // Early return AFTER all hooks
   if (!isAuthenticated) {
@@ -305,7 +344,11 @@ const Analytics: React.FC = () => {
           {/* Predictive Analytics */}
           <div className="lg:col-span-1">
             <Suspense fallback={<LoadingSpinner />}>
-              <PredictiveAnalytics data={predictions} loading={isLoading} />
+              <PredictiveAnalytics
+                predictions={convertedPredictions}
+                loading={isLoading}
+                issues={issues}
+              />
             </Suspense>
           </div>
         </div>
@@ -333,6 +376,21 @@ const Analytics: React.FC = () => {
               }}
               onViewDetails={insight => {
                 console.log('View insight details:', insight);
+                alert(
+                  `Insight: ${insight.title}\n\nDescrição: ${
+                    insight.description
+                  }\n\nImpacto: ${insight.impact}\n\nRecomendação: ${
+                    insight.recommendation || 'Nenhuma'
+                  }${
+                    insight.metrics
+                      ? `\n\nMétricas: ${JSON.stringify(
+                          insight.metrics,
+                          null,
+                          2
+                        )}`
+                      : ''
+                  }`
+                );
               }}
             />
           </Suspense>
@@ -342,8 +400,8 @@ const Analytics: React.FC = () => {
         <div className="mb-8">
           <Suspense fallback={<LoadingSpinner />}>
             <AIInsightsPanel
-              issues={useAnalytics().issues || []}
-              sprints={useAnalytics().sprints || []}
+              issues={issues}
+              sprints={sprints}
               timeRange="month"
             />
           </Suspense>
@@ -353,8 +411,8 @@ const Analytics: React.FC = () => {
         <div className="mb-8">
           <Suspense fallback={<LoadingSpinner />}>
             <AnomalyDetection
-              issues={useAnalytics().issues || []}
-              sprints={useAnalytics().sprints || []}
+              issues={issues}
+              sprints={sprints}
               timeRange="month"
             />
           </Suspense>

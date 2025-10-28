@@ -9,6 +9,7 @@ import {
   fetchFilteredData,
 } from '../services/filterService';
 import { projectAccessService } from '../services/projectAccessService';
+import { useAuth } from '../stores/authStore';
 
 // Debounce utility
 function debounce<T extends (...args: any[]) => any>(
@@ -40,10 +41,21 @@ export function useJiraFilters() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // ✅ OBTER CREDENCIAIS DO USUÁRIO
+  const { credentials } = useAuth();
+
   // Carregar opções de filtros na montagem
   useEffect(() => {
     console.log('🔍 Loading filter options on mount...');
-    loadFilterOptions()
+
+    // ✅ VERIFICAR SE CREDENCIAIS ESTÃO DISPONÍVEIS
+    if (!credentials) {
+      console.warn('⚠️ No credentials available yet');
+      return;
+    }
+
+    // ✅ PASSAR CREDENCIAIS DO USUÁRIO
+    loadFilterOptions(credentials)
       .then(options => {
         console.log('✅ Filter options loaded successfully:', options);
         setFilterOptions(options);
@@ -54,7 +66,7 @@ export function useJiraFilters() {
         // Continuar mesmo se as opções falharem
         console.log('⚠️ Continuing without filter options...');
       });
-  }, []);
+  }, [credentials]);
 
   // Função debounced para buscar dados
   const debouncedFetch = useMemo(
@@ -83,7 +95,11 @@ export function useJiraFilters() {
         setError(null);
 
         try {
-          const rawResult = await fetchFilteredData(currentFilters);
+          // ✅ PASSAR CREDENCIAIS DO USUÁRIO
+          const rawResult = await fetchFilteredData(
+            currentFilters,
+            credentials!
+          );
           console.log('🔍 Raw data fetched:', {
             issues: rawResult.issues.length,
             total: rawResult.total,

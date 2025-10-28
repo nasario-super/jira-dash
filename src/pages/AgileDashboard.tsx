@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useAuth } from '../stores/authStore';
 import { useJiraFilters } from '../hooks/useJiraFilters';
 import Layout from '../components/common/Layout';
@@ -21,14 +21,20 @@ import {
   Users,
   BarChart3,
   Home,
+  Zap,
+  Target,
+  Clock,
+  CheckCircle2,
+  AlertCircle,
+  TrendingDown,
 } from 'lucide-react';
 
 const AgileDashboard: React.FC = () => {
   const { isAuthenticated, credentials } = useAuth();
   const { data, loading, error } = useJiraFilters();
-  const [activeTab, setActiveTab] = useState<'daily' | 'velocity' | 'alerts'>(
-    'daily'
-  );
+  const [activeTab, setActiveTab] = useState<
+    'overview' | 'daily' | 'velocity' | 'alerts'
+  >('overview');
 
   // Early return se não autenticado
   if (!isAuthenticated || !credentials) {
@@ -43,13 +49,107 @@ const AgileDashboard: React.FC = () => {
   }
 
   // Processar dados para os componentes
+  const issues = data?.issues || [];
+
+  // Calcular métricas de negócio
+  const metrics = useMemo(() => {
+    const total = issues.length;
+
+    // ✅ FUNÇÃO AUXILIAR: Detectar status com múltiplas estratégias
+    const isCompleted = (issue: any) => {
+      const status = issue.fields.status;
+      return (
+        // Estratégia 1: StatusCategory
+        status?.statusCategory?.name === 'Done' ||
+        status?.statusCategory?.key === 'done' ||
+        // Estratégia 2: Status.name (português)
+        status?.name === 'Concluído' ||
+        status?.name === 'Fechado' ||
+        status?.name === 'Resolvido' ||
+        // Estratégia 3: Status.name (inglês)
+        status?.name === 'Done' ||
+        // Estratégia 4: Status.id (Jira padrão usa 10000+)
+        status?.id === '10000' || // Comum em Jira
+        status?.id === '10001'
+      );
+    };
+
+    const isInProgress = (issue: any) => {
+      const status = issue.fields.status;
+      return (
+        status?.statusCategory?.name === 'In Progress' ||
+        status?.statusCategory?.key === 'indeterminate' ||
+        status?.name === 'Em Andamento' ||
+        status?.name === 'Em Progresso' ||
+        status?.name === 'In Progress' ||
+        status?.name === 'Em desenvolvimento'
+      );
+    };
+
+    const completed = issues.filter(isCompleted).length;
+    const inProgress = issues.filter(isInProgress).length;
+
+    const blocked = issues.filter(
+      i =>
+        i.fields.status.name?.toLowerCase().includes('blocked') ||
+        i.fields.status.name?.toLowerCase().includes('impediment') ||
+        i.fields.status.name?.toLowerCase().includes('bloqueado')
+    ).length;
+
+    const overdue = issues.filter(
+      i =>
+        i.fields.duedate &&
+        new Date(i.fields.duedate) < new Date() &&
+        !isCompleted(i) // Usar função auxiliar
+    ).length;
+
+    const completionRate = total > 0 ? (completed / total) * 100 : 0;
+    const health = overdue > total * 0.1 || blocked > 0 ? 'warning' : 'healthy';
+
+    // ✅ LOG DE DEBUG
+    if (issues.length > 0) {
+      console.log('📊 Métricas Agile:', {
+        total,
+        completed,
+        inProgress,
+        blocked,
+        overdue,
+        completionRate: Math.round(completionRate),
+        statusExemplos: issues.slice(0, 3).map(i => ({
+          key: i.key,
+          status: i.fields.status.name,
+          statusCategory: i.fields.status.statusCategory?.name,
+          isCompleted: isCompleted(i),
+          isInProgress: isInProgress(i),
+        })),
+      });
+    }
+
+    return {
+      total,
+      completed,
+      inProgress,
+      blocked,
+      overdue,
+      completionRate,
+      health,
+      trend:
+        completed > total * 0.6
+          ? 'up'
+          : completed > total * 0.3
+          ? 'stable'
+          : 'down',
+    };
+  }, [issues]);
+
   const processedData = {
-    issues: data?.issues || [],
-    users: [], // Será processado pelos componentes individuais
-    sprints: [], // Será processado pelos componentes individuais
+    issues,
+    users: [],
+    sprints: [],
   };
 
   const tabs = [
+    { id: 'overview', label: 'Visão Geral', icon: BarChart3, color: 'blue' },
     { id: 'daily', label: 'Daily Scrum', icon: Calendar, color: 'blue' },
     { id: 'velocity', label: 'Velocity', icon: TrendingUp, color: 'green' },
     { id: 'alerts', label: 'Alertas', icon: AlertTriangle, color: 'red' },
@@ -70,7 +170,8 @@ const AgileDashboard: React.FC = () => {
                 Agile Dashboard
               </h1>
               <p className="text-gray-600 mt-1">
-                Ferramentas avançadas para gestão ágil e Dailys
+                Ferramentas avançadas para gestão ágil, Dailys e métricas de
+                equipe
               </p>
             </div>
             <div className="flex items-center space-x-4">
@@ -81,12 +182,129 @@ const AgileDashboard: React.FC = () => {
                 <Home className="w-4 h-4 mr-2" />
                 Dashboard Principal
               </Button>
-              <Badge variant="outline" className="text-sm">
-                <Users className="w-4 h-4 mr-1" />
-                {processedData.issues.length} Issues
+              <Badge
+                variant="outline"
+                className={`text-sm ${
+                  metrics.health === 'warning'
+                    ? 'bg-red-50 text-red-700'
+                    : 'bg-green-50 text-green-700'
+                }`}
+              >
+                {metrics.health === 'warning' ? (
+                  <AlertCircle className="w-4 h-4 mr-1" />
+                ) : (
+                  <CheckCircle2 className="w-4 h-4 mr-1" />
+                )}
+                {metrics.health === 'warning' ? 'Atenção' : 'Saudável'}
               </Badge>
             </div>
           </div>
+        </div>
+
+        {/* Quick Metrics Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0 }}
+          >
+            <Card className="h-full hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-600">Total de Issues</p>
+                    <p className="text-3xl font-bold text-gray-900">
+                      {metrics.total}
+                    </p>
+                  </div>
+                  <BarChart3 className="w-12 h-12 text-blue-100" />
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+          >
+            <Card className="h-full hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-600">Concluídas</p>
+                    <p className="text-3xl font-bold text-green-600">
+                      {metrics.completed}
+                    </p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {Math.round(metrics.completionRate)}%
+                    </p>
+                  </div>
+                  <CheckCircle2 className="w-12 h-12 text-green-100" />
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <Card className="h-full hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-600">Em Progresso</p>
+                    <p className="text-3xl font-bold text-blue-600">
+                      {metrics.inProgress}
+                    </p>
+                  </div>
+                  <Zap className="w-12 h-12 text-blue-100" />
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <Card className="h-full hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-600">Bloqueadas</p>
+                    <p className="text-3xl font-bold text-red-600">
+                      {metrics.blocked}
+                    </p>
+                  </div>
+                  <AlertTriangle className="w-12 h-12 text-red-100" />
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <Card className="h-full hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm text-gray-600">Em Atraso</p>
+                    <p className="text-3xl font-bold text-orange-600">
+                      {metrics.overdue}
+                    </p>
+                  </div>
+                  <Clock className="w-12 h-12 text-orange-100" />
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
 
         {/* Error State */}
@@ -114,43 +332,36 @@ const AgileDashboard: React.FC = () => {
         {loading && (
           <div className="bg-white rounded-lg border-2 border-dashed border-gray-300 p-12 text-center">
             <div className="max-w-md mx-auto">
-              <div className="animate-spin rounded-full h-12 w-12 border-2 border-blue-500 border-t-transparent mx-auto mb-4"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                Carregando dados...
+                Carregando Agile Dashboard...
               </h3>
               <p className="text-gray-600">
-                Aguarde enquanto buscamos os dados do Jira.
+                Processando dados de issues e sprints
               </p>
             </div>
           </div>
         )}
 
-        {/* Content */}
-        {!loading && data && (
+        {/* Main Content */}
+        {!loading && (
           <>
-            {/* Tabs */}
-            <div className="mb-8">
-              <div className="border-b border-gray-200">
-                <nav className="-mb-px flex space-x-8">
-                  {tabs.map(tab => {
-                    const Icon = tab.icon;
-                    return (
-                      <button
-                        key={tab.id}
-                        onClick={() => setActiveTab(tab.id as any)}
-                        className={`py-2 px-1 border-b-2 font-medium text-sm flex items-center space-x-2 ${
-                          activeTab === tab.id
-                            ? `border-${tab.color}-500 text-${tab.color}-600`
-                            : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                        }`}
-                      >
-                        <Icon className="w-4 h-4" />
-                        <span>{tab.label}</span>
-                      </button>
-                    );
-                  })}
-                </nav>
-              </div>
+            {/* Tab Navigation */}
+            <div className="mb-6 bg-white rounded-lg border border-gray-200 p-2 flex gap-2">
+              {tabs.map(tab => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id as any)}
+                  className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
+                    activeTab === tab.id
+                      ? 'bg-blue-100 text-blue-700 font-medium'
+                      : 'text-gray-600 hover:bg-gray-100'
+                  }`}
+                >
+                  <tab.icon className="w-4 h-4" />
+                  <span>{tab.label}</span>
+                </button>
+              ))}
             </div>
 
             {/* Tab Content */}
@@ -160,6 +371,65 @@ const AgileDashboard: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3 }}
             >
+              {activeTab === 'overview' && (
+                <div className="space-y-6">
+                  {/* Health Status Card */}
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="flex items-center space-x-2">
+                        <Target className="w-5 h-5" />
+                        <span>Status de Saúde do Sprint</span>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-sm font-medium text-gray-700">
+                              Progresso Geral
+                            </span>
+                            <span className="text-sm font-bold text-gray-900">
+                              {Math.round(metrics.completionRate)}%
+                            </span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-3">
+                            <div
+                              className="bg-gradient-to-r from-green-500 to-green-600 h-3 rounded-full transition-all"
+                              style={{ width: `${metrics.completionRate}%` }}
+                            ></div>
+                          </div>
+                        </div>
+
+                        {metrics.overdue > 0 && (
+                          <div className="p-3 bg-orange-50 border border-orange-200 rounded-lg">
+                            <div className="flex items-center space-x-2 text-orange-700">
+                              <AlertCircle className="w-5 h-5" />
+                              <span>
+                                {metrics.overdue} issue
+                                {metrics.overdue !== 1 ? 's' : ''} em atraso
+                              </span>
+                            </div>
+                          </div>
+                        )}
+
+                        {metrics.blocked > 0 && (
+                          <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                            <div className="flex items-center space-x-2 text-red-700">
+                              <AlertTriangle className="w-5 h-5" />
+                              <span>
+                                {metrics.blocked} issue
+                                {metrics.blocked !== 1 ? 's' : ''} bloqueada
+                                {metrics.blocked !== 1 ? 's' : ''}
+                              </span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              )}
+
               {activeTab === 'daily' && (
                 <DailyScrumDashboard
                   issues={processedData.issues}

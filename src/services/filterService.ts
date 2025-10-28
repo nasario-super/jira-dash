@@ -4,37 +4,43 @@ import {
   FilteredData,
 } from '../types/filters.types';
 import { projectAccessService } from './projectAccessService';
+import { JiraApiConfig } from '../types/jira.types';
 
-const JIRA_DOMAIN = import.meta.env.VITE_JIRA_DOMAIN;
-const EMAIL = import.meta.env.VITE_JIRA_EMAIL;
-const API_TOKEN = import.meta.env.VITE_JIRA_API_TOKEN;
+// ✅ REMOVER CREDENCIAIS DO .env - SERÃO PASSADAS COMO PARÂMETRO
+// const JIRA_DOMAIN = import.meta.env.VITE_JIRA_DOMAIN;
+// const EMAIL = import.meta.env.VITE_JIRA_EMAIL;
+// const API_TOKEN = import.meta.env.VITE_JIRA_API_TOKEN;
 
-// Usar proxy do Vite para evitar problemas de CORS
-const JIRA_BASE_URL = '/api/jira';
-
-// Headers para autenticação
-const getHeaders = () => ({
-  Authorization: `Basic ${btoa(`${EMAIL}:${API_TOKEN}`)}`,
+/**
+ * ✅ Função helper para obter headers com credenciais do usuário
+ */
+const getHeaders = (credentials: JiraApiConfig) => ({
+  Authorization: `Basic ${btoa(
+    `${credentials.email}:${credentials.apiToken}`
+  )}`,
   'Content-Type': 'application/json',
   Accept: 'application/json',
 });
 
 /**
  * Carregar opções de filtros (Montagem do Componente)
+ * ✅ AGORA RECEBE credenciais do usuário como parâmetro
  */
-export async function loadFilterOptions(): Promise<FilterOptions> {
-  console.log('🔍 Loading filter options...');
-  console.log('📡 JIRA_DOMAIN:', JIRA_DOMAIN);
-  console.log('📡 JIRA_BASE_URL:', JIRA_BASE_URL);
-  console.log('📡 EMAIL:', EMAIL);
-  console.log('📡 API_TOKEN length:', API_TOKEN?.length);
+export async function loadFilterOptions(
+  credentials: JiraApiConfig
+): Promise<FilterOptions> {
+  console.log('🔍 Loading filter options with user credentials...');
+  console.log('📡 Domain:', credentials.domain);
+
+  // ✅ USAR PROXY VITE (que repassa credenciais do usuário)
+  const JIRA_BASE_URL = `/api/jira`;
 
   // Validar variáveis de ambiente
-  if (!JIRA_BASE_URL || !EMAIL || !API_TOKEN) {
+  if (!JIRA_BASE_URL || !credentials.email || !credentials.apiToken) {
     console.error('❌ Missing environment variables:', {
       JIRA_BASE_URL: !!JIRA_BASE_URL,
-      EMAIL: !!EMAIL,
-      API_TOKEN: !!API_TOKEN,
+      EMAIL: !!credentials.email,
+      API_TOKEN: !!credentials.apiToken,
     });
     throw new Error('Variáveis de ambiente não configuradas corretamente');
   }
@@ -45,18 +51,49 @@ export async function loadFilterOptions(): Promise<FilterOptions> {
     // Fazer chamadas paralelas para carregar todas as opções
     const [projectsRes, issueTypesRes, statusesRes, prioritiesRes, boardsRes] =
       await Promise.all([
-        fetch(`${JIRA_BASE_URL}/rest/api/3/project`, { headers: getHeaders() }),
-        fetch(`${JIRA_BASE_URL}/rest/api/3/issuetype`, {
-          headers: getHeaders(),
+        fetch(`${JIRA_BASE_URL}/rest/api/3/project`, {
+          headers: getHeaders(credentials),
         }),
-        fetch(`${JIRA_BASE_URL}/rest/api/3/status`, { headers: getHeaders() }),
+        fetch(`${JIRA_BASE_URL}/rest/api/3/issuetype`, {
+          headers: getHeaders(credentials),
+        }),
+        fetch(`${JIRA_BASE_URL}/rest/api/3/status`, {
+          headers: getHeaders(credentials),
+        }),
         fetch(`${JIRA_BASE_URL}/rest/api/3/priority`, {
-          headers: getHeaders(),
+          headers: getHeaders(credentials),
         }),
         fetch(`${JIRA_BASE_URL}/rest/agile/1.0/board`, {
-          headers: getHeaders(),
+          headers: getHeaders(credentials),
         }),
       ]);
+
+    // ✅ VALIDAR RESPOSTAS ANTES DE FAZER .json()
+    if (!projectsRes.ok) {
+      const text = await projectsRes.text();
+      console.error('❌ Projects API error:', projectsRes.status, text);
+      throw new Error(`Projects API failed: ${projectsRes.status}`);
+    }
+    if (!issueTypesRes.ok) {
+      const text = await issueTypesRes.text();
+      console.error('❌ Issue Types API error:', issueTypesRes.status, text);
+      throw new Error(`Issue Types API failed: ${issueTypesRes.status}`);
+    }
+    if (!statusesRes.ok) {
+      const text = await statusesRes.text();
+      console.error('❌ Statuses API error:', statusesRes.status, text);
+      throw new Error(`Statuses API failed: ${statusesRes.status}`);
+    }
+    if (!prioritiesRes.ok) {
+      const text = await prioritiesRes.text();
+      console.error('❌ Priorities API error:', prioritiesRes.status, text);
+      throw new Error(`Priorities API failed: ${prioritiesRes.status}`);
+    }
+    if (!boardsRes.ok) {
+      const text = await boardsRes.text();
+      console.error('❌ Boards API error:', boardsRes.status, text);
+      throw new Error(`Boards API failed: ${boardsRes.status}`);
+    }
 
     const [projects, issueTypes, statuses, priorities, boards] =
       await Promise.all([
@@ -75,7 +112,7 @@ export async function loadFilterOptions(): Promise<FilterOptions> {
       try {
         const sprintsRes = await fetch(
           `${JIRA_BASE_URL}/rest/agile/1.0/board/${firstBoardId}/sprint`,
-          { headers: getHeaders() }
+          { headers: getHeaders(credentials) }
         );
 
         if (!sprintsRes.ok) {
@@ -98,7 +135,7 @@ export async function loadFilterOptions(): Promise<FilterOptions> {
     try {
       const assigneesRes = await fetch(
         `${JIRA_BASE_URL}/rest/api/3/users/search?maxResults=100`,
-        { headers: getHeaders() }
+        { headers: getHeaders(credentials) }
       );
       const assigneesData = await assigneesRes.json();
       assignees = assigneesData || [];
@@ -170,7 +207,9 @@ function deduplicateById(issues: any[]): any[] {
  */
 async function fetchWithPaginationSafe(
   jql: string,
-  maxPages: number = 10
+  maxPages: number = 10,
+  jiraBaseUrl: string,
+  headers: ReturnType<typeof getHeaders>
 ): Promise<any[]> {
   let allIssues: any[] = [];
   let startAt = 0;
@@ -188,20 +227,13 @@ async function fetchWithPaginationSafe(
     try {
       pageCount++;
 
-      const url = new URL(
-        `${JIRA_BASE_URL}/rest/api/3/search/jql`,
-        window.location.origin
-      );
-      url.searchParams.append('jql', jql);
-      url.searchParams.append('maxResults', maxResults.toString());
-      url.searchParams.append('startAt', startAt.toString());
-      url.searchParams.append(
-        'fields',
-        'summary,status,issuetype,priority,assignee,created,updated,duedate,customfield_10016,project,sprint'
-      );
+      // ✅ CONSTRUIR URL CORRETAMENTE
+      const url = `${jiraBaseUrl}/rest/api/3/search/jql?jql=${encodeURIComponent(
+        jql
+      )}&maxResults=${maxResults}&startAt=${startAt}&fields=summary,status,issuetype,priority,assignee,created,updated,duedate,customfield_10016,project,sprint`;
 
-      const response = await fetch(url.toString(), {
-        headers: getHeaders(),
+      const response = await fetch(url, {
+        headers: headers,
       });
 
       if (!response.ok) {
@@ -281,7 +313,11 @@ function validateProjectsInData(
 /**
  * Buscar dados com fetch paralelo por projeto
  */
-async function fetchDataByProjects(projectKeys: string[]): Promise<any[]> {
+async function fetchDataByProjects(
+  projectKeys: string[],
+  jiraBaseUrl: string,
+  headers: ReturnType<typeof getHeaders>
+): Promise<any[]> {
   console.log(`🔍 Fetching ${projectKeys.length} projects IN PARALLEL`);
 
   // ⚡ BUSCA PARALELA: ao invés de sequencial
@@ -290,7 +326,12 @@ async function fetchDataByProjects(projectKeys: string[]): Promise<any[]> {
     console.log(`  ⏳ Starting: ${projectKey}`);
 
     try {
-      const issues = await fetchWithPaginationSafe(jql, 10); // 10 páginas = 1000 issues
+      const issues = await fetchWithPaginationSafe(
+        jql,
+        10,
+        jiraBaseUrl,
+        headers
+      ); // 10 páginas = 1000 issues
       console.log(`  ✅ ${projectKey}: ${issues.length} issues`);
       return issues;
     } catch (error: any) {
@@ -434,10 +475,14 @@ export function buildJQLFromFilters(filters: FilterState): string {
  * Carregar dados filtrados
  */
 export async function fetchFilteredData(
-  filters: FilterState
+  filters: FilterState,
+  credentials: JiraApiConfig
 ): Promise<FilteredData> {
-  // Validar variáveis de ambiente
-  if (!JIRA_BASE_URL || !EMAIL || !API_TOKEN) {
+  // ✅ USAR PROXY VITE (que repassa credenciais do usuário)
+  const JIRA_BASE_URL = `/api/jira`;
+
+  // Validar credenciais
+  if (!JIRA_BASE_URL || !credentials.email || !credentials.apiToken) {
     throw new Error('Variáveis de ambiente não configuradas corretamente');
   }
 
@@ -459,11 +504,20 @@ export async function fetchFilteredData(
     // ✅ SOLUÇÃO: Fetch paralelo por projeto
     if (selectedProjects.length > 1) {
       console.log('🟡 Multiple projects - using parallel fetch');
-      allIssues = await fetchDataByProjects(selectedProjects);
+      allIssues = await fetchDataByProjects(
+        selectedProjects,
+        JIRA_BASE_URL,
+        getHeaders(credentials)
+      );
     } else {
       console.log('🟢 Single project - using direct JQL');
       const jql = buildJQLFromFilters(filters);
-      allIssues = await fetchWithPaginationSafe(jql, 10);
+      allIssues = await fetchWithPaginationSafe(
+        jql,
+        10,
+        JIRA_BASE_URL,
+        getHeaders(credentials)
+      );
     }
 
     // ⚡ DEDUPLICAÇÃO RÁPIDA

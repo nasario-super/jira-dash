@@ -30,8 +30,11 @@ class JiraApiService {
       );
     }
 
+    // ✅ USAR PROXY VITE QUE REPASSA CREDENCIAIS DO USUÁRIO
+    const baseURL = `/api/jira/rest/api/2`;
+
     this.api = axios.create({
-      baseURL: `/api/jira/rest/api/2`,
+      baseURL,
       headers: {
         Authorization: `Basic ${btoa(
           `${this.config.email}:${this.config.apiToken}`
@@ -552,5 +555,13 @@ class JiraApiService {
 
 // Export singleton instance
 export const jiraApi = new JiraApiService();
+
+// ✅ FUNÇÃO PARA ATUALIZAR CREDENCIAIS APÓS LOGIN
+export function reinitializeJiraApi(credentials: JiraApiConfig) {
+  const newInstance = new JiraApiService(credentials);
+  Object.assign(jiraApi, newInstance);
+  console.log('✅ Jira API reinitialized with user credentials');
+}
+
 export { JiraApiService };
 export default jiraApi;

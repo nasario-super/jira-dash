@@ -22,21 +22,25 @@ import {
   CheckCircle,
 } from 'lucide-react';
 import { JiraIssue } from '../types/jira.types';
-import { useJiraData } from '../hooks/useJiraData';
+import { useJiraFilters } from '../hooks/useJiraFilters';
+import { projectAccessService } from '../services/projectAccessService';
 
 const AdvancedAnalyticsPage: React.FC = () => {
-  const { data, loading, refresh } = useJiraData();
+  // ✅ USAR JIRAFILTERS EM VEZ DE JIRADA TA PARA OBTER DADOS DOS PROJETOS SELECIONADOS
+  const { data: filterData, loading, error } = useJiraFilters();
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   // Extrair issues dos dados
-  const issues = data?.issues || [];
+  const issues = filterData?.issues || [];
 
   console.log('🔍 AdvancedAnalyticsPage - Debug:', {
-    data: data ? 'present' : 'null',
+    selectedProjects: projectAccessService.getUserProjects(),
+    filterData: filterData ? 'present' : 'null',
     issues: issues?.length || 0,
     loading,
+    error,
     issuesSample:
-      issues?.slice(0, 3).map(issue => ({
+      issues?.slice(0, 3).map((issue: any) => ({
         key: issue.key,
         status: issue.fields.status.name,
         type: issue.fields.issuetype.name,
@@ -46,9 +50,10 @@ const AdvancedAnalyticsPage: React.FC = () => {
   const handleRefresh = async () => {
     try {
       setIsRefreshing(true);
-      await refresh();
-    } catch (error) {
-      console.error('Erro ao atualizar dados:', error);
+      // Refresh é automático via useJiraFilters quando projetos mudam
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    } catch (err: any) {
+      console.error('Erro ao atualizar dados:', err);
     } finally {
       setIsRefreshing(false);
     }

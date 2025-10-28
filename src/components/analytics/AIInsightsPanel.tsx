@@ -396,7 +396,16 @@ const AIInsightsPanel: React.FC<AIInsightsPanelProps> = ({
                   <span className="text-xs text-gray-500">
                     {new Date(insight.timestamp).toLocaleString('pt-BR')}
                   </span>
-                  <Button variant="ghost" size="sm">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      console.log('📊 Detalhes do insight:', insight);
+                      alert(
+                        `Insight: ${insight.title}\n\nDescrição: ${insight.description}\n\nConfiança: ${insight.confidence}%\n\nImpacto: ${insight.impact}`
+                      );
+                    }}
+                  >
                     <ExternalLink className="w-4 h-4 mr-1" />
                     Detalhes
                   </Button>

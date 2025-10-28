@@ -613,7 +613,24 @@ const AnomalyDetection: React.FC<AnomalyDetectionProps> = ({
                   <span className="text-xs text-gray-500">
                     Detectado em: {anomaly.detectedAt.toLocaleString('pt-BR')}
                   </span>
-                  <Button variant="ghost" size="sm">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      console.log('🔍 Detalhes da anomalia:', anomaly);
+                      alert(
+                        `Anomalia: ${anomaly.type}\n\nMétrica: ${
+                          anomaly.metric
+                        }\n\nSeveridade: ${anomaly.severity}\n\nDescrição: ${
+                          anomaly.description
+                        }\n\nValor Detectado: ${
+                          anomaly.value
+                        }\n\nValor Esperado: ${
+                          anomaly.expectedValue
+                        }\n\nDesvio: ${anomaly.deviation.toFixed(2)}%`
+                      );
+                    }}
+                  >
                     <Eye className="w-4 h-4 mr-1" />
                     Investigar
                   </Button>
@@ -628,15 +645,3 @@ const AnomalyDetection: React.FC<AnomalyDetectionProps> = ({
 };
 
 export default AnomalyDetection;
-
-
-
-
-
-
-
-
-
-
-
-

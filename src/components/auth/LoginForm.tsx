@@ -6,6 +6,7 @@ import {
   validateCredentials,
 } from '../../schemas/validation';
 import { JiraApiConfig } from '../../types/jira.types';
+import { reinitializeJiraApi } from '../../services/jiraApi';
 
 interface LoginFormProps {
   onLoginSuccess?: () => void;
@@ -87,6 +88,8 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
       onSuccess: isConnected => {
         console.log('Connection test result:', isConnected);
         if (isConnected) {
+          // ✅ REINICIALIZAR JIRA API COM CREDENCIAIS DO USUÁRIO
+          reinitializeJiraApi(credentials);
           login(credentials);
           onLoginSuccess?.();
         } else {
