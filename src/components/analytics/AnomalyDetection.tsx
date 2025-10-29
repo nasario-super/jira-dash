@@ -128,7 +128,7 @@ const AnomalyDetection: React.FC<AnomalyDetectionProps> = ({
 
     for (let i = daysBack; i >= 0; i--) {
       const date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
-      const dayIssues = issues.filter(issue => {
+      const dayIssues = issues.filter((issue : any) => {
         const created = new Date(issue.fields.created);
         return created.toDateString() === date.toDateString();
       });
@@ -157,7 +157,7 @@ const AnomalyDetection: React.FC<AnomalyDetectionProps> = ({
 
   const detectVelocityAnomalies = (data: any[]): AnomalyData[] => {
     const anomalies: AnomalyData[] = [];
-    const velocities = data.map(d => d.velocity);
+    const velocities = data.map((d : any) => d.velocity);
     const mean = velocities.reduce((a, b) => a + b, 0) / velocities.length;
     const stdDev = Math.sqrt(
       velocities.reduce((a, b) => a + Math.pow(b - mean, 2), 0) /
@@ -189,7 +189,7 @@ const AnomalyDetection: React.FC<AnomalyDetectionProps> = ({
             point.velocity > mean ? 'aumentou' : 'diminuiu'
           } ${Math.abs(deviation).toFixed(1)}% em relação à média`,
           context: { mean, stdDev, index },
-          chartData: data.map(d => ({
+          chartData: data.map((d : any) => ({
             date: d.date,
             value: d.velocity,
             expected: mean,
@@ -204,7 +204,7 @@ const AnomalyDetection: React.FC<AnomalyDetectionProps> = ({
 
   const detectCompletionAnomalies = (data: any[]): AnomalyData[] => {
     const anomalies: AnomalyData[] = [];
-    const completions = data.map(d => d.completion);
+    const completions = data.map((d : any) => d.completion);
     const mean = completions.reduce((a, b) => a + b, 0) / completions.length;
     const stdDev = Math.sqrt(
       completions.reduce((a, b) => a + Math.pow(b - mean, 2), 0) /
@@ -236,7 +236,7 @@ const AnomalyDetection: React.FC<AnomalyDetectionProps> = ({
             point.completion > mean ? 'aumentou' : 'diminuiu'
           } ${Math.abs(deviation).toFixed(1)}% em relação à média`,
           context: { mean, stdDev, index },
-          chartData: data.map(d => ({
+          chartData: data.map((d : any) => ({
             date: d.date,
             value: d.completion,
             expected: mean,
@@ -251,7 +251,7 @@ const AnomalyDetection: React.FC<AnomalyDetectionProps> = ({
 
   const detectBugAnomalies = (data: any[]): AnomalyData[] => {
     const anomalies: AnomalyData[] = [];
-    const bugRates = data.map(d => d.bugRate);
+    const bugRates = data.map((d : any) => d.bugRate);
     const mean = bugRates.reduce((a, b) => a + b, 0) / bugRates.length;
     const stdDev = Math.sqrt(
       bugRates.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / bugRates.length
@@ -282,7 +282,7 @@ const AnomalyDetection: React.FC<AnomalyDetectionProps> = ({
             point.bugRate > mean ? 'aumentou' : 'diminuiu'
           } ${Math.abs(deviation).toFixed(1)}% em relação à média`,
           context: { mean, stdDev, index },
-          chartData: data.map(d => ({
+          chartData: data.map((d : any) => ({
             date: d.date,
             value: d.bugRate,
             expected: mean,
@@ -297,7 +297,7 @@ const AnomalyDetection: React.FC<AnomalyDetectionProps> = ({
 
   const detectCycleTimeAnomalies = (data: any[]): AnomalyData[] => {
     const anomalies: AnomalyData[] = [];
-    const cycleTimes = data.map(d => d.cycleTime);
+    const cycleTimes = data.map((d : any) => d.cycleTime);
     const mean = cycleTimes.reduce((a, b) => a + b, 0) / cycleTimes.length;
     const stdDev = Math.sqrt(
       cycleTimes.reduce((a, b) => a + Math.pow(b - mean, 2), 0) /
@@ -329,7 +329,7 @@ const AnomalyDetection: React.FC<AnomalyDetectionProps> = ({
             point.cycleTime > mean ? 'aumentou' : 'diminuiu'
           } ${Math.abs(deviation).toFixed(1)}% em relação à média`,
           context: { mean, stdDev, index },
-          chartData: data.map(d => ({
+          chartData: data.map((d : any) => ({
             date: d.date,
             value: d.cycleTime,
             expected: mean,
@@ -401,7 +401,7 @@ const AnomalyDetection: React.FC<AnomalyDetectionProps> = ({
     }
   };
 
-  const filteredAnomalies = anomalies.filter(anomaly => {
+  const filteredAnomalies = anomalies.filter((anomaly : any) => {
     const metricMatch =
       selectedMetric === 'all' || anomaly.metric === selectedMetric;
     const severityMatch =
@@ -411,10 +411,10 @@ const AnomalyDetection: React.FC<AnomalyDetectionProps> = ({
 
   const anomalyStats = {
     total: anomalies.length,
-    critical: anomalies.filter(a => a.severity === 'critical').length,
-    high: anomalies.filter(a => a.severity === 'high').length,
-    medium: anomalies.filter(a => a.severity === 'medium').length,
-    low: anomalies.filter(a => a.severity === 'low').length,
+    critical: anomalies.filter((a : any) => a.severity === 'critical').length,
+    high: anomalies.filter((a : any) => a.severity === 'high').length,
+    medium: anomalies.filter((a : any) => a.severity === 'medium').length,
+    low: anomalies.filter((a : any) => a.severity === 'low').length,
   };
 
   if (loading) {
@@ -539,7 +539,7 @@ const AnomalyDetection: React.FC<AnomalyDetectionProps> = ({
               </p>
             </div>
           ) : (
-            filteredAnomalies.map(anomaly => (
+            filteredAnomalies.map((anomaly : any) => (
               <div key={anomaly.id} className="border rounded-lg p-4">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-3">

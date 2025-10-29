@@ -83,7 +83,7 @@ const DailyScrumDashboard: React.FC<DailyScrumDashboardProps> = ({
       );
     };
 
-    const yesterdayCompleted = issues.filter(issue => {
+    const yesterdayCompleted = issues.filter((issue : any) => {
       const updated = new Date(issue.fields.updated);
       return (
         updated.toDateString() === yesterday.toDateString() &&
@@ -95,7 +95,7 @@ const DailyScrumDashboard: React.FC<DailyScrumDashboardProps> = ({
     const todayInProgress = issues.filter(isInProgress);
 
     // Issues atrasadas
-    const overdueIssues = issues.filter(issue => {
+    const overdueIssues = issues.filter((issue : any) => {
       const dueDate = issue.fields.duedate;
       return dueDate && new Date(dueDate) < today && !isCompleted(issue);
     });
@@ -105,7 +105,7 @@ const DailyScrumDashboard: React.FC<DailyScrumDashboardProps> = ({
     const teamVelocity = completedThisSprint.length;
 
     // Calcular capacidade da equipe
-    const activeUsers = users.filter(user => user.totalIssues > 0);
+    const activeUsers = users.filter((user : any) => user.totalIssues > 0);
     const teamCapacity = activeUsers.reduce(
       (sum, user) => sum + (user.velocity || 0),
       0
@@ -139,7 +139,7 @@ const DailyScrumDashboard: React.FC<DailyScrumDashboardProps> = ({
 
   const resolveBlocker = (blockerId: string) => {
     setBlockers(
-      blockers.map(blocker =>
+      blockers.map((blocker : any) =>
         blocker.id === blockerId
           ? { ...blocker, status: 'resolved', resolvedAt: new Date() }
           : blocker
@@ -338,7 +338,7 @@ const DailyScrumDashboard: React.FC<DailyScrumDashboardProps> = ({
           </CardHeader>
           <CardContent>
             <div className="space-y-2">
-              {blockers.map(blocker => (
+              {blockers.map((blocker : any) => (
                 <div
                   key={blocker.id}
                   className={`p-3 rounded-lg flex items-start justify-between ${

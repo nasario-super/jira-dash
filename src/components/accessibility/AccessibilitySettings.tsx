@@ -110,7 +110,7 @@ const AccessibilitySettings: React.FC<AccessibilitySettingsProps> = ({
                   Tamanho da Fonte
                 </label>
                 <div className="grid grid-cols-3 gap-2">
-                  {fontSizeOptions.map(option => (
+                  {fontSizeOptions.map((option : any) => (
                     <Button
                       key={option.value}
                       variant={

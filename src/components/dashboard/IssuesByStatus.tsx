@@ -20,7 +20,7 @@ const IssuesByStatus: React.FC<IssuesByStatusProps> = React.memo(({ data, loadin
   // Memoizar issues filtradas por status
   const filteredIssues = useMemo(() => {
     if (!selectedStatus || !allIssues.length) return [];
-    return allIssues.filter(issue => issue.fields.status.name === selectedStatus);
+    return allIssues.filter((issue : any) => issue.fields.status.name === selectedStatus);
   }, [selectedStatus, allIssues]);
 
   const handleStatusClick = (status: string) => {

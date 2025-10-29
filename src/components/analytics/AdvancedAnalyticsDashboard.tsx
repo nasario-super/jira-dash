@@ -83,7 +83,7 @@ const AdvancedAnalyticsDashboard: React.FC<AdvancedAnalyticsDashboardProps> = ({
     console.log('🔍 AdvancedAnalyticsDashboard - useEffect Debug:', {
       issues: issues?.length || 0,
       issuesSample:
-        issues?.slice(0, 3).map(issue => ({
+        issues?.slice(0, 3).map((issue : any) => ({
           key: issue.key,
           status: issue.fields.status.name,
           type: issue.fields.issuetype.name,
@@ -104,7 +104,7 @@ const AdvancedAnalyticsDashboard: React.FC<AdvancedAnalyticsDashboardProps> = ({
         {
           issuesCount: issues?.length || 0,
           issues:
-            issues?.slice(0, 3).map(issue => ({
+            issues?.slice(0, 3).map((issue : any) => ({
               key: issue.key,
               status: issue.fields.status.name,
               type: issue.fields.issuetype.name,
@@ -203,7 +203,7 @@ const AdvancedAnalyticsDashboard: React.FC<AdvancedAnalyticsDashboardProps> = ({
 
     const cutoffDate = new Date(now.getTime() - daysAgo * 24 * 60 * 60 * 1000);
 
-    return issues.filter(issue => {
+    return issues.filter((issue : any) => {
       const createdDate = new Date(issue.fields.created);
       return createdDate >= cutoffDate;
     });
@@ -402,7 +402,7 @@ const AdvancedAnalyticsDashboard: React.FC<AdvancedAnalyticsDashboardProps> = ({
 
       {/* Tabs */}
       <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg">
-        {tabs.map(tab => {
+        {tabs.map((tab : any) => {
           const Icon = tab.icon;
           return (
             <button

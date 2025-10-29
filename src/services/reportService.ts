@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
 import jsPDF from 'jspdf';

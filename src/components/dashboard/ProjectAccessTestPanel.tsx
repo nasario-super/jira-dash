@@ -34,9 +34,9 @@ export const ProjectAccessTestPanel: React.FC<ProjectAccessTestPanelProps> = ({
 
       // Test 3: Análise de projetos
       const allProjectKeys = [
-        ...new Set(issues.map(issue => issue.fields.project.key)),
+        ...new Set(issues.map((issue : any) => issue.fields.project.key)),
       ];
-      const accessibleProjects = allProjectKeys.filter(key =>
+      const accessibleProjects = allProjectKeys.filter((key : any) =>
         projectAccessService.hasAccessToProject(key)
       );
       const inaccessibleProjects = allProjectKeys.filter(

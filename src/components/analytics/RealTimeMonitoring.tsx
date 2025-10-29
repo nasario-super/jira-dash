@@ -89,7 +89,7 @@ const RealTimeMonitoring: React.FC<RealTimeMonitoringProps> = ({
       issue => issue.fields.status.statusCategory.name === 'In Progress'
     );
 
-    const bugIssues = issues.filter(issue =>
+    const bugIssues = issues.filter((issue : any) =>
       issue.fields.issuetype.name.toLowerCase().includes('bug')
     );
 
@@ -246,7 +246,7 @@ const RealTimeMonitoring: React.FC<RealTimeMonitoringProps> = ({
   };
 
   const dismissAlert = (alertId: string) => {
-    setAlerts(prev => prev.filter(alert => alert.id !== alertId));
+    setAlerts(prev => prev.filter((alert : any) => alert.id !== alertId));
   };
 
   const clearAllAlerts = useCallback(() => {
@@ -278,7 +278,7 @@ const RealTimeMonitoring: React.FC<RealTimeMonitoringProps> = ({
   }, [metrics, alerts, issues, isMonitoring]);
 
   const filteredAlerts = useMemo(() => {
-    return alerts.filter(alert => {
+    return alerts.filter((alert : any) => {
       const severityMatch =
         alertFilters.severity === 'all' ||
         alert.severity === alertFilters.severity;

@@ -170,7 +170,7 @@ const NotificationCenter: React.FC<NotificationCenterProps> = ({
                   </div>
                 ) : (
                   <div className="max-h-80 overflow-y-auto">
-                    {notifications.map(notification => (
+                    {notifications.map((notification : any) => (
                       <motion.div
                         key={notification.id}
                         initial={{ opacity: 0, x: -20 }}

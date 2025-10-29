@@ -76,7 +76,7 @@ const AdvancedCharts: React.FC<AdvancedChartsProps> = ({
       );
       const weekEnd = new Date(now.getTime() - i * 7 * 24 * 60 * 60 * 1000);
 
-      const weekIssues = issues.filter(issue => {
+      const weekIssues = issues.filter((issue : any) => {
         const created = new Date(issue.fields.created);
         return created >= weekStart && created < weekEnd;
       });
@@ -155,7 +155,7 @@ const AdvancedCharts: React.FC<AdvancedChartsProps> = ({
 
   const getMaxValue = (data: TimeSeriesData[]) => {
     return Math.max(
-      ...data.map(d => Math.max(d.value, d.target || 0, d.forecast || 0))
+      ...data.map((d : any) => Math.max(d.value, d.target || 0, d.forecast || 0))
     );
   };
 
@@ -528,7 +528,7 @@ const AdvancedCharts: React.FC<AdvancedChartsProps> = ({
             {/* Forecast line */}
             <polyline
               points={trendsData
-                .filter(d => d.forecast)
+                .filter((d : any) => d.forecast)
                 .map(
                   (data, index) =>
                     `${(index / (trendsData.length - 1)) * 100}%,${
@@ -667,7 +667,7 @@ const AdvancedCharts: React.FC<AdvancedChartsProps> = ({
 
         {/* Chart type selector */}
         <div className="flex space-x-1 bg-gray-100 p-1 rounded-lg">
-          {chartTypes.map(type => {
+          {chartTypes.map((type : any) => {
             const Icon = type.icon;
             return (
               <button

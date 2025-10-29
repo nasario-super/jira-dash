@@ -467,13 +467,13 @@ const Analytics: React.FC = () => {
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Críticos:</span>
                   <span className="font-medium text-red-600">
-                    {insights.filter(i => i.type === 'critical').length}
+                    {insights.filter((i : any) => i.type === 'critical').length}
                   </span>
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">Avisos:</span>
                   <span className="font-medium text-yellow-600">
-                    {insights.filter(i => i.type === 'warning').length}
+                    {insights.filter((i : any) => i.type === 'warning').length}
                   </span>
                 </div>
               </div>

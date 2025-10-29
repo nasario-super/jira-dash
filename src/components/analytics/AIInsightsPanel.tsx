@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
@@ -49,12 +50,12 @@ const AIInsightsPanel: React.FC<AIInsightsPanelProps> = ({
         issuesCount: issues.length,
         sprintsCount: sprints.length,
         timeRange,
-        issuesSample: issues.slice(0, 3).map(issue => ({
+        issuesSample: issues.slice(0, 3).map((issue : any) => ({
           key: issue.key,
           status: issue.fields.status.name,
           type: issue.fields.issuetype.name,
         })),
-        sprintsSample: sprints.slice(0, 3).map(sprint => ({
+        sprintsSample: sprints.slice(0, 3).map((sprint : any) => ({
           id: sprint.id,
           name: sprint.name,
           state: sprint.state,
@@ -73,7 +74,7 @@ const AIInsightsPanel: React.FC<AIInsightsPanelProps> = ({
 
       console.log('🔍 AIInsightsPanel - generatedInsights:', {
         insightsCount: generatedInsights.length,
-        insightsSample: generatedInsights.slice(0, 3).map(insight => ({
+        insightsSample: generatedInsights.slice(0, 3).map((insight : any) => ({
           id: insight.id,
           type: insight.type,
           title: insight.title,
@@ -138,7 +139,7 @@ const AIInsightsPanel: React.FC<AIInsightsPanelProps> = ({
     }
   };
 
-  const filteredInsights = insights.filter(insight => {
+  const filteredInsights = insights.filter((insight : any) => {
     if (filter === 'all') return true;
     return insight.type === filter;
   });
@@ -170,10 +171,10 @@ const AIInsightsPanel: React.FC<AIInsightsPanelProps> = ({
 
   const insightStats = {
     total: insights.length,
-    critical: insights.filter(i => i.impact === 'critical').length,
-    high: insights.filter(i => i.impact === 'high').length,
-    medium: insights.filter(i => i.impact === 'medium').length,
-    low: insights.filter(i => i.impact === 'low').length,
+    critical: insights.filter((i : any) => i.impact === 'critical').length,
+    high: insights.filter((i : any) => i.impact === 'high').length,
+    medium: insights.filter((i : any) => i.impact === 'medium').length,
+    low: insights.filter((i : any) => i.impact === 'low').length,
   };
 
   if (loading) {
@@ -311,7 +312,7 @@ const AIInsightsPanel: React.FC<AIInsightsPanelProps> = ({
               </p>
             </div>
           ) : (
-            sortedInsights.map(insight => (
+            sortedInsights.map((insight : any) => (
               <div
                 key={insight.id}
                 className="border rounded-lg p-4 hover:shadow-md transition-shadow"

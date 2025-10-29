@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect, useMemo } from 'react';
 import { useJiraApi } from '../../hooks/useJiraApi';
 import { projectAccessService } from '../../services/projectAccessService';

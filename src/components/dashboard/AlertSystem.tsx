@@ -51,7 +51,7 @@ const AlertSystem: React.FC<AlertSystemProps> = ({
     const now = new Date();
 
     // 1. Issues atrasadas
-    const overdueIssues = issues.filter(issue => {
+    const overdueIssues = issues.filter((issue : any) => {
       const dueDate = issue.fields.duedate;
       return dueDate && new Date(dueDate) < now;
     });
@@ -69,12 +69,12 @@ const AlertSystem: React.FC<AlertSystemProps> = ({
     }
 
     // 2. Baixa velocity da equipe
-    const completedIssues = issues.filter(issue => {
+    const completedIssues = issues.filter((issue : any) => {
       const status = issue.fields.status.name.toLowerCase();
       return status.includes('concluído') || status.includes('done');
     });
 
-    const activeUsers = users.filter(user => user.totalIssues > 0);
+    const activeUsers = users.filter((user : any) => user.totalIssues > 0);
     const avgVelocity =
       activeUsers.reduce((sum, user) => sum + user.velocity, 0) /
       Math.max(activeUsers.length, 1);
@@ -94,7 +94,7 @@ const AlertSystem: React.FC<AlertSystemProps> = ({
     }
 
     // 3. Usuários sobrecarregados
-    const overloadedUsers = users.filter(user => user.totalIssues > 10);
+    const overloadedUsers = users.filter((user : any) => user.totalIssues > 10);
     if (overloadedUsers.length > 0) {
       generatedAlerts.push({
         id: 'overloaded-users',
@@ -108,7 +108,7 @@ const AlertSystem: React.FC<AlertSystemProps> = ({
     }
 
     // 4. Issues sem assignee
-    const unassignedIssues = issues.filter(issue => !issue.fields.assignee);
+    const unassignedIssues = issues.filter((issue : any) => !issue.fields.assignee);
     if (unassignedIssues.length > 5) {
       generatedAlerts.push({
         id: 'unassigned-issues',
@@ -122,7 +122,7 @@ const AlertSystem: React.FC<AlertSystemProps> = ({
     }
 
     // 5. Alta taxa de bugs
-    const bugIssues = issues.filter(issue =>
+    const bugIssues = issues.filter((issue : any) =>
       issue.fields.issuetype.name.toLowerCase().includes('bug')
     );
     const bugRate = (bugIssues.length / Math.max(issues.length, 1)) * 100;
@@ -142,7 +142,7 @@ const AlertSystem: React.FC<AlertSystemProps> = ({
     }
 
     // 6. Equipe com boa performance
-    const highPerformers = users.filter(user => user.efficiency > 85);
+    const highPerformers = users.filter((user : any) => user.efficiency > 85);
     if (highPerformers.length >= users.length * 0.7) {
       generatedAlerts.push({
         id: 'good-performance',
@@ -155,7 +155,7 @@ const AlertSystem: React.FC<AlertSystemProps> = ({
       });
     }
 
-    return generatedAlerts.filter(alert => !dismissedAlerts.has(alert.id));
+    return generatedAlerts.filter((alert : any) => !dismissedAlerts.has(alert.id));
   }, [issues, users, sprints, dismissedAlerts, alertsEnabled]);
 
   const dismissAlert = (alertId: string) => {
@@ -168,16 +168,16 @@ const AlertSystem: React.FC<AlertSystemProps> = ({
 
     switch (alertId) {
       case 'overdue-issues':
-        return issues.filter(issue => {
+        return issues.filter((issue : any) => {
           const dueDate = issue.fields.duedate;
           return dueDate && new Date(dueDate) < now;
         });
 
       case 'unassigned-issues':
-        return issues.filter(issue => !issue.fields.assignee);
+        return issues.filter((issue : any) => !issue.fields.assignee);
 
       case 'high-bug-rate':
-        return issues.filter(issue =>
+        return issues.filter((issue : any) =>
           issue.fields.issuetype.name.toLowerCase().includes('bug')
         );
 
@@ -229,11 +229,11 @@ const AlertSystem: React.FC<AlertSystemProps> = ({
     }
   };
 
-  const highPriorityAlerts = alerts.filter(alert => alert.severity === 'high');
+  const highPriorityAlerts = alerts.filter((alert : any) => alert.severity === 'high');
   const mediumPriorityAlerts = alerts.filter(
     alert => alert.severity === 'medium'
   );
-  const lowPriorityAlerts = alerts.filter(alert => alert.severity === 'low');
+  const lowPriorityAlerts = alerts.filter((alert : any) => alert.severity === 'low');
 
   return (
     <div className="space-y-6">

@@ -69,8 +69,8 @@ const ReportConfigModal: React.FC<ReportConfigModalProps> = ({
   const handleSchedule = () => {
     const recipients = schedule.recipients
       .split(',')
-      .map(email => email.trim())
-      .filter(email => email.length > 0);
+      .map((email : any) => email.trim())
+      .filter((email : any) => email.length > 0);
 
     if (recipients.length === 0) {
       alert('Por favor, insira pelo menos um email para receber o relatório.');

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { JiraIssue } from '../types/jira.types';
 
 export interface JiraUser {

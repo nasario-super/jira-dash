@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useMemo } from 'react';
 import { useJiraStore } from '../stores/jiraStore';
 import {

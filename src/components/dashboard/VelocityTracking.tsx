@@ -35,7 +35,7 @@ const VelocityTracking: React.FC<VelocityTrackingProps> = ({
     ];
 
     // Calcular velocity atual baseada em issues concluídas
-    const currentSprintCompleted = issues.filter(issue => {
+    const currentSprintCompleted = issues.filter((issue : any) => {
       const status = issue.fields.status.name.toLowerCase();
       return status.includes('concluído') || status.includes('done');
     }).length;
@@ -53,7 +53,7 @@ const VelocityTracking: React.FC<VelocityTrackingProps> = ({
 
   // Calcular métricas de velocity
   const velocityMetrics = useMemo(() => {
-    const completedSprints = velocityData.filter(sprint => sprint.sprint !== 'Sprint Atual');
+    const completedSprints = velocityData.filter((sprint : any) => sprint.sprint !== 'Sprint Atual');
     
     if (completedSprints.length === 0) return null;
 

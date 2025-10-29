@@ -44,7 +44,7 @@ const DataFilteringDiagnostic: React.FC<DataFilteringDiagnosticProps> = ({
 
       // Analisar projetos presentes nos dados
       const allProjectKeys = [
-        ...new Set(issues.map(issue => issue.fields.project.key)),
+        ...new Set(issues.map((issue : any) => issue.fields.project.key)),
       ];
 
       // Contar issues por projeto

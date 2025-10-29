@@ -87,19 +87,19 @@ const TaskTimelineCard: React.FC<TaskTimelineCardProps> = ({
       const date = new Date(now.getTime() - i * 24 * 60 * 60 * 1000);
       const dateStr = date.toISOString().split('T')[0];
       
-      const dayIssues = issues.filter(issue => {
+      const dayIssues = issues.filter((issue : any) => {
         const created = new Date(issue.fields.created);
         return created.toDateString() === date.toDateString();
       });
 
       const created = dayIssues.length;
-      const completed = dayIssues.filter(issue => 
+      const completed = dayIssues.filter((issue : any) => 
         issue.fields.status.statusCategory.name === 'Done'
       ).length;
-      const inProgress = dayIssues.filter(issue => 
+      const inProgress = dayIssues.filter((issue : any) => 
         issue.fields.status.statusCategory.name === 'In Progress'
       ).length;
-      const blocked = dayIssues.filter(issue => 
+      const blocked = dayIssues.filter((issue : any) => 
         issue.fields.status.name.toLowerCase().includes('blocked') ||
         issue.fields.status.name.toLowerCase().includes('impediment')
       ).length;
@@ -120,12 +120,12 @@ const TaskTimelineCard: React.FC<TaskTimelineCardProps> = ({
       const weekEnd = new Date(now.getTime() - i * 7 * 24 * 60 * 60 * 1000);
       const weekStr = `${weekStart.toISOString().split('T')[0]} - ${weekEnd.toISOString().split('T')[0]}`;
       
-      const weekIssues = issues.filter(issue => {
+      const weekIssues = issues.filter((issue : any) => {
         const created = new Date(issue.fields.created);
         return created >= weekStart && created <= weekEnd;
       });
 
-      const completed = weekIssues.filter(issue => 
+      const completed = weekIssues.filter((issue : any) => 
         issue.fields.status.statusCategory.name === 'Done'
       ).length;
 
@@ -133,15 +133,15 @@ const TaskTimelineCard: React.FC<TaskTimelineCardProps> = ({
       const completionRate = weekIssues.length > 0 ? (completed / weekIssues.length) * 100 : 0;
 
       // Calcular tempo médio de resolução
-      const resolvedIssues = weekIssues.filter(issue => 
+      const resolvedIssues = weekIssues.filter((issue : any) => 
         issue.fields.status.statusCategory.name === 'Done' &&
-        issue.fields.resolutiondate
+        issue.fields.updated
       );
       
       const averageResolutionTime = resolvedIssues.length > 0 
         ? resolvedIssues.reduce((sum, issue) => {
             const created = new Date(issue.fields.created);
-            const resolved = new Date(issue.fields.resolutiondate!);
+            const resolved = new Date(issue.fields.updated!);
             return sum + (resolved.getTime() - created.getTime()) / (1000 * 60 * 60 * 24);
           }, 0) / resolvedIssues.length
         : 0;
@@ -161,12 +161,12 @@ const TaskTimelineCard: React.FC<TaskTimelineCardProps> = ({
       const monthEnd = new Date(now.getFullYear(), now.getMonth() - i + 1, 0);
       const monthStr = monthStart.toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
       
-      const monthIssues = issues.filter(issue => {
+      const monthIssues = issues.filter((issue : any) => {
         const created = new Date(issue.fields.created);
         return created >= monthStart && created <= monthEnd;
       });
 
-      const completed = monthIssues.filter(issue => 
+      const completed = monthIssues.filter((issue : any) => 
         issue.fields.status.statusCategory.name === 'Done'
       ).length;
 
@@ -190,14 +190,14 @@ const TaskTimelineCard: React.FC<TaskTimelineCardProps> = ({
     }
 
     // Distribuição de tempo de resolução
-    const resolvedIssues = issues.filter(issue => 
+    const resolvedIssues = issues.filter((issue : any) => 
       issue.fields.status.statusCategory.name === 'Done' &&
-      issue.fields.resolutiondate
+      issue.fields.updated
     );
 
-    const resolutionTimes = resolvedIssues.map(issue => {
+    const resolutionTimes = resolvedIssues.map((issue : any) => {
       const created = new Date(issue.fields.created);
-      const resolved = new Date(issue.fields.resolutiondate!);
+      const resolved = new Date(issue.fields.updated!);
       return (resolved.getTime() - created.getTime()) / (1000 * 60 * 60 * 24);
     });
 

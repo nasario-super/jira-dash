@@ -43,7 +43,7 @@ export const useAutoRefresh = (): UseAutoRefreshReturn => {
     return saved ? { ...DEFAULT_CONFIG, ...JSON.parse(saved) } : DEFAULT_CONFIG;
   });
 
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastActivityRef = useRef<Date>(new Date());
   const isPausedRef = useRef(false);
 

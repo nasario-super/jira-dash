@@ -41,9 +41,9 @@ export const EnhancedProjectAccessValidation: React.FC<
     try {
       // Análise completa dos dados
       const allProjectKeys = [
-        ...new Set(issues.map(issue => issue.fields.project.key)),
+        ...new Set(issues.map((issue : any) => issue.fields.project.key)),
       ];
-      const accessibleProjectKeys = allProjectKeys.filter(key =>
+      const accessibleProjectKeys = allProjectKeys.filter((key : any) =>
         projectAccessService.hasAccessToProject(key)
       );
       const inaccessibleProjectKeys = allProjectKeys.filter(
@@ -58,7 +58,7 @@ export const EnhancedProjectAccessValidation: React.FC<
       }, {} as Record<string, number>);
 
       // Issues acessíveis vs inacessíveis
-      const accessibleIssues = issues.filter(issue =>
+      const accessibleIssues = issues.filter((issue : any) =>
         projectAccessService.hasAccessToProject(issue.fields.project.key)
       );
       const inaccessibleIssues = issues.filter(
@@ -324,7 +324,7 @@ export const EnhancedProjectAccessValidation: React.FC<
             </h5>
             <div className="space-y-1 text-sm">
               {validationResult.projects.accessible.length > 0 ? (
-                validationResult.projects.accessible.map(projectKey => (
+                validationResult.projects.accessible.map((projectKey : any) => (
                   <div
                     key={projectKey}
                     className="flex justify-between items-center bg-green-50 px-2 py-1 rounded"
@@ -355,7 +355,7 @@ export const EnhancedProjectAccessValidation: React.FC<
             </h5>
             <div className="space-y-1 text-sm">
               {validationResult.projects.inaccessible.length > 0 ? (
-                validationResult.projects.inaccessible.map(projectKey => (
+                validationResult.projects.inaccessible.map((projectKey : any) => (
                   <div
                     key={projectKey}
                     className="flex justify-between items-center bg-red-50 px-2 py-1 rounded"

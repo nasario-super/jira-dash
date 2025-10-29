@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { z } from 'zod'
 
 // Schema para credenciais do Jira

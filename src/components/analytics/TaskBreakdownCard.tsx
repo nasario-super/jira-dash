@@ -78,35 +78,35 @@ const TaskBreakdownCard: React.FC<TaskBreakdownCardProps> = ({
     }
 
     const now = new Date();
-    const completedTasks = issues.filter(issue => 
+    const completedTasks = issues.filter((issue : any) => 
       issue.fields.status.statusCategory.name === 'Done'
     );
     
-    const inProgressTasks = issues.filter(issue => 
+    const inProgressTasks = issues.filter((issue : any) => 
       issue.fields.status.statusCategory.name === 'In Progress'
     );
     
-    const blockedTasks = issues.filter(issue => 
+    const blockedTasks = issues.filter((issue : any) => 
       issue.fields.status.name.toLowerCase().includes('blocked') ||
       issue.fields.status.name.toLowerCase().includes('impediment')
     );
     
-    const overdueTasks = issues.filter(issue => {
+    const overdueTasks = issues.filter((issue : any) => {
       const dueDate = issue.fields.duedate;
       return dueDate && new Date(dueDate) < now && 
              issue.fields.status.statusCategory.name !== 'Done';
     });
 
     // Calcular tempo médio de resolução
-    const resolvedIssues = issues.filter(issue => 
+    const resolvedIssues = issues.filter((issue : any) => 
       issue.fields.status.statusCategory.name === 'Done' &&
-      issue.fields.resolutiondate
+      issue.fields.updated
     );
     
     const averageResolutionTime = resolvedIssues.length > 0 
       ? resolvedIssues.reduce((sum, issue) => {
           const created = new Date(issue.fields.created);
-          const resolved = new Date(issue.fields.resolutiondate!);
+          const resolved = new Date(issue.fields.updated!);
           return sum + (resolved.getTime() - created.getTime()) / (1000 * 60 * 60 * 24);
         }, 0) / resolvedIssues.length
       : 0;
@@ -122,7 +122,7 @@ const TaskBreakdownCard: React.FC<TaskBreakdownCardProps> = ({
     resolvedIssues.forEach(issue => {
       const assignee = issue.fields.assignee?.displayName || 'Unassigned';
       const created = new Date(issue.fields.created);
-      const resolved = new Date(issue.fields.resolutiondate!);
+      const resolved = new Date(issue.fields.updated!);
       const resolutionTime = (resolved.getTime() - created.getTime()) / (1000 * 60 * 60 * 24);
       
       if (!assigneeStats.has(assignee)) {

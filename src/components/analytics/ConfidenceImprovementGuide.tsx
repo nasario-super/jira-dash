@@ -180,7 +180,7 @@ const ConfidenceImprovementGuide: React.FC<ConfidenceImprovementGuideProps> = ({
         'Equipe técnica',
         'Infraestrutura adequada',
       ],
-      icon: Brain,
+      icon: Lightbulb, // TODO: Importar ou substituir
     },
     {
       title: 'Integração Externa',

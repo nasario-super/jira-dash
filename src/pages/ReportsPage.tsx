@@ -88,7 +88,7 @@ const ReportsPage: React.FC = () => {
                 issue.fields.status.name.toLowerCase().includes('progress')
             ).length || 0,
           overdueIssues:
-            data.issues?.filter(issue => {
+            data.issues?.filter((issue : any) => {
               const dueDate = issue.fields.duedate;
               return dueDate && new Date(dueDate) < new Date();
             }).length || 0,
@@ -232,7 +232,7 @@ const ReportsPage: React.FC = () => {
             <div className="mb-8">
               <div className="border-b border-gray-200">
                 <nav className="-mb-px flex space-x-8">
-                  {tabs.map(tab => {
+                  {tabs.map((tab : any) => {
                     const Icon = tab.icon;
                     return (
                       <button
@@ -362,7 +362,7 @@ const ReportsPage: React.FC = () => {
                     <Card>
                       <CardContent className="p-4 text-center">
                         <div className="text-2xl font-bold text-red-600">
-                          {data.issues?.filter(issue => {
+                          {data.issues?.filter((issue : any) => {
                             const dueDate = issue.fields.duedate;
                             return dueDate && new Date(dueDate) < new Date();
                           }).length || 0}

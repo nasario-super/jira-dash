@@ -154,7 +154,7 @@ const UserProjectAccess: React.FC<UserProjectAccessProps> = ({
                   Projetos Acessíveis ({accessStats.accessibleProjects.length})
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {accessStats.accessibleProjects.map(projectKey => {
+                  {accessStats.accessibleProjects.map((projectKey : any) => {
                     const status = getProjectStatus(projectKey);
                     const StatusIcon = status.icon;
                     return (
@@ -182,7 +182,7 @@ const UserProjectAccess: React.FC<UserProjectAccessProps> = ({
                   {accessStats.inaccessibleProjects.length})
                 </h4>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {accessStats.inaccessibleProjects.map(projectKey => {
+                  {accessStats.inaccessibleProjects.map((projectKey : any) => {
                     const status = getProjectStatus(projectKey);
                     const StatusIcon = status.icon;
                     return (

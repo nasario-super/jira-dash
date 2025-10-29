@@ -86,7 +86,7 @@ const UserDetailModal: React.FC<UserDetailModalProps> = ({
   }, {});
 
   // Calcular métricas de tempo
-  const recentIssues = userIssues.filter(issue => {
+  const recentIssues = userIssues.filter((issue : any) => {
     const updated = new Date(issue.fields.updated);
     const weekAgo = new Date();
     weekAgo.setDate(weekAgo.getDate() - 7);

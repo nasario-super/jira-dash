@@ -60,7 +60,7 @@ const ScheduledReportsManager: React.FC = () => {
   };
 
   const handleToggleReport = (reportId: number) => {
-    setReports(prev => prev.map(report => 
+    setReports(prev => prev.map((report : any) => 
       report.id === reportId 
         ? { ...report, isActive: !report.isActive }
         : report

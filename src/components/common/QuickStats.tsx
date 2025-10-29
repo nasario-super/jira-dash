@@ -40,10 +40,10 @@ const QuickStats: React.FC<QuickStatsProps> = ({ issues }) => {
       return acc;
     }, {} as Record<string, number>);
 
-    const assigned = issues.filter(issue => issue.fields.assignee).length;
+    const assigned = issues.filter((issue : any) => issue.fields.assignee).length;
     const unassigned = issues.length - assigned;
 
-    const overdue = issues.filter(issue => {
+    const overdue = issues.filter((issue : any) => {
       if (!issue.fields.duedate) return false;
       return new Date(issue.fields.duedate) < new Date();
     }).length;

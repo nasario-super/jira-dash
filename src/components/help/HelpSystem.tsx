@@ -134,7 +134,7 @@ const HelpSystem: React.FC<HelpSystemProps> = ({
     { id: 'troubleshooting', name: 'Problemas', icon: AlertCircle },
   ];
 
-  const filteredArticles = helpArticles.filter(article => {
+  const filteredArticles = helpArticles.filter((article : any) => {
     const matchesSearch =
       article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       article.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -320,7 +320,7 @@ const HelpSystem: React.FC<HelpSystemProps> = ({
                       Artigos Relacionados
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                      {selectedArticle.relatedArticles.map(articleId => {
+                      {selectedArticle.relatedArticles.map((articleId : any) => {
                         const article = helpArticles.find(
                           a => a.id === articleId
                         );
@@ -376,7 +376,7 @@ const HelpSystem: React.FC<HelpSystemProps> = ({
                       Categorias
                     </label>
                     <div className="space-y-1">
-                      {categories.map(category => (
+                      {categories.map((category : any) => (
                         <Button
                           key={category.id}
                           variant={
@@ -408,7 +408,7 @@ const HelpSystem: React.FC<HelpSystemProps> = ({
                       </p>
                     </div>
                   ) : (
-                    filteredArticles.map(article => (
+                    filteredArticles.map((article : any) => (
                       <Card
                         key={article.id}
                         className="cursor-pointer hover:shadow-md transition-shadow"

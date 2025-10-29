@@ -173,7 +173,7 @@ const AutoRefreshControls: React.FC<AutoRefreshControlsProps> = ({
                     </div>
 
                     <div className="grid grid-cols-4 gap-1">
-                      {getIntervalOptions().map(option => (
+                      {getIntervalOptions().map((option : any) => (
                         <Button
                           key={option.value}
                           variant={

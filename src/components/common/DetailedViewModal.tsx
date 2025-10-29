@@ -48,7 +48,7 @@ const DetailedViewModal: React.FC<DetailedViewModalProps> = React.memo(
     const filteredIssues = useMemo(() => {
       if (!issues || issues.length === 0) return [];
 
-      return issues.filter(issue => {
+      return issues.filter((issue : any) => {
         const matchesSearch =
           issue.fields.summary
             .toLowerCase()
@@ -74,14 +74,14 @@ const DetailedViewModal: React.FC<DetailedViewModalProps> = React.memo(
     // Obter opções únicas para filtros
     const uniqueStatuses = useMemo(() => {
       const statuses = [
-        ...new Set(issues.map(issue => issue.fields.status.name)),
+        ...new Set(issues.map((issue : any) => issue.fields.status.name)),
       ];
       return statuses.sort();
     }, [issues]);
 
     const uniquePriorities = useMemo(() => {
       const priorities = [
-        ...new Set(issues.map(issue => issue.fields.priority.name)),
+        ...new Set(issues.map((issue : any) => issue.fields.priority.name)),
       ];
       return priorities.sort();
     }, [issues]);
@@ -90,7 +90,7 @@ const DetailedViewModal: React.FC<DetailedViewModalProps> = React.memo(
       const assignees = [
         ...new Set(
           issues
-            .map(issue => issue.fields.assignee?.displayName)
+            .map((issue : any) => issue.fields.assignee?.displayName)
             .filter(Boolean)
         ),
       ];
@@ -130,7 +130,7 @@ const DetailedViewModal: React.FC<DetailedViewModalProps> = React.memo(
     const exportToCSV = async () => {
       setIsExporting(true);
       try {
-        const csvData = filteredIssues.map(issue => ({
+        const csvData = filteredIssues.map((issue : any) => ({
           Key: issue.key,
           Summary: issue.fields.summary,
           Status: issue.fields.status.name,
@@ -145,9 +145,9 @@ const DetailedViewModal: React.FC<DetailedViewModalProps> = React.memo(
         const headers = Object.keys(csvData[0] || {});
         const csvContent = [
           headers.join(','),
-          ...csvData.map(row =>
+          ...csvData.map((row : any) =>
             headers
-              .map(header => `"${row[header as keyof typeof row]}"`)
+              .map((header : any) => `"${row[header as keyof typeof row]}"`)
               .join(',')
           ),
         ].join('\n');
@@ -180,7 +180,7 @@ const DetailedViewModal: React.FC<DetailedViewModalProps> = React.memo(
           title: title,
           exportDate: new Date().toISOString(),
           totalIssues: filteredIssues.length,
-          issues: filteredIssues.map(issue => ({
+          issues: filteredIssues.map((issue : any) => ({
             key: issue.key,
             summary: issue.fields.summary,
             status: issue.fields.status.name,
@@ -338,7 +338,7 @@ const DetailedViewModal: React.FC<DetailedViewModalProps> = React.memo(
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">Todos os Status</SelectItem>
-                    {uniqueStatuses.map(status => (
+                    {uniqueStatuses.map((status : any) => (
                       <SelectItem key={status} value={status}>
                         {status}
                       </SelectItem>
@@ -355,7 +355,7 @@ const DetailedViewModal: React.FC<DetailedViewModalProps> = React.memo(
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="all">Todas as Prioridades</SelectItem>
-                    {uniquePriorities.map(priority => (
+                    {uniquePriorities.map((priority : any) => (
                       <SelectItem key={priority} value={priority}>
                         {priority}
                       </SelectItem>
@@ -373,7 +373,7 @@ const DetailedViewModal: React.FC<DetailedViewModalProps> = React.memo(
                   <SelectContent>
                     <SelectItem value="all">Todos os Responsáveis</SelectItem>
                     <SelectItem value="unassigned">Não Atribuído</SelectItem>
-                    {uniqueAssignees.map(assignee => (
+                    {uniqueAssignees.map((assignee : any) => (
                       <SelectItem key={assignee} value={assignee}>
                         {assignee}
                       </SelectItem>

@@ -109,7 +109,7 @@ export const ProjectConfiguration: React.FC = () => {
           <span className="text-sm text-gray-600">Projetos Selecionados:</span>
           <div className="flex flex-wrap gap-1">
             {userProjects.length > 0 ? (
-              userProjects.map(project => (
+              userProjects.map((project : any) => (
                 <span
                   key={project}
                   className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded"

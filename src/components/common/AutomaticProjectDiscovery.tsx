@@ -199,7 +199,7 @@ const AutomaticProjectDiscovery: React.FC<AutomaticProjectDiscoveryProps> = ({
                   {discoveryInfo.accessibleProjects.length})
                 </h4>
                 <div className="space-y-3">
-                  {discoveryInfo.accessibleProjects.map(project => (
+                  {discoveryInfo.accessibleProjects.map((project : any) => (
                     <div
                       key={project.key}
                       className="p-3 bg-green-50 border border-green-200 rounded-lg"

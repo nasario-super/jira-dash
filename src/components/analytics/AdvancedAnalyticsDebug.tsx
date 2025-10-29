@@ -45,7 +45,7 @@ const AdvancedAnalyticsDebug: React.FC<AdvancedAnalyticsDebugProps> = ({
             data: {
               totalIssues: issues?.length || 0,
               sampleIssues:
-                issues?.slice(0, 3).map(issue => ({
+                issues?.slice(0, 3).map((issue : any) => ({
                   key: issue.key,
                   status: issue.fields.status.name,
                   type: issue.fields.issuetype.name,
@@ -184,8 +184,8 @@ const AdvancedAnalyticsDebug: React.FC<AdvancedAnalyticsDebugProps> = ({
 
     setDebugInfo({
       totalSteps: steps.length,
-      successfulSteps: results.filter(r => r.success).length,
-      failedSteps: results.filter(r => !r.success).length,
+      successfulSteps: results.filter((r : any) => r.success).length,
+      failedSteps: results.filter((r : any) => !r.success).length,
       timestamp: new Date().toISOString(),
     });
 

@@ -73,7 +73,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                 if (e.target.checked) {
                   onChange([...value, option.value]);
                 } else {
-                  onChange(value.filter(v => v !== option.value));
+                  onChange(value.filter((v : any) => v !== option.value));
                 }
               }}
               className="rounded border-gray-300 text-primary focus:ring-primary"

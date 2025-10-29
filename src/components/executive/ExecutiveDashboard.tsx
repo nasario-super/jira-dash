@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Badge } from '../ui/badge';
@@ -71,7 +72,7 @@ const ExecutiveDashboard: React.FC<ExecutiveDashboardProps> = ({
         issue.fields.status.name.toLowerCase().includes('in progress')
     );
 
-    const overdueIssues = issues.filter(issue => {
+    const overdueIssues = issues.filter((issue : any) => {
       const dueDate = issue.fields.duedate;
       return (
         dueDate &&

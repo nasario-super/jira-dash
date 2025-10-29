@@ -69,9 +69,9 @@ const ProjectFilteringDebug: React.FC<ProjectFilteringDebugProps> = ({
 
       // Análise de projetos
       const allProjectKeys = [
-        ...new Set(issues.map(issue => issue.fields.project.key)),
+        ...new Set(issues.map((issue : any) => issue.fields.project.key)),
       ];
-      const accessibleProjects = allProjectKeys.filter(key =>
+      const accessibleProjects = allProjectKeys.filter((key : any) =>
         projectAccessService.hasAccessToProject(key)
       );
       const inaccessibleProjects = allProjectKeys.filter(
@@ -260,7 +260,7 @@ const ProjectFilteringDebug: React.FC<ProjectFilteringDebugProps> = ({
                     Projetos Acessíveis:
                   </div>
                   <div className="flex flex-wrap gap-2 mt-1">
-                    {debugInfo.serviceStatus.userProjects.map(project => (
+                    {debugInfo.serviceStatus.userProjects.map((project : any) => (
                       <Badge
                         key={project}
                         className="bg-blue-100 text-blue-800"
@@ -342,7 +342,7 @@ const ProjectFilteringDebug: React.FC<ProjectFilteringDebugProps> = ({
                               Usuários ({users.length}):
                             </div>
                             <div className="flex flex-wrap gap-1">
-                              {users.map(user => (
+                              {users.map((user : any) => (
                                 <Badge
                                   key={user}
                                   variant="outline"
