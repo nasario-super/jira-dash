@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  jira-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    container_name: jira-dashboard
+    restart: always
+    environment:
+      - NODE_ENV=production
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    volumes:
+      - ./logs:/app/logs
+    labels:
+      - "com.example.description=Jira Dashboard"
+      - "com.example.version=1.0"
+
+  # Opcional: Nginx como proxy reverso
+  # nginx:
+  #   image: nginx:alpine
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./certs:/etc/nginx/certs:ro
+  #   depends_on:
+  #     - jira-dashboard
+  #   restart: always
+
+volumes:
+  logs:
+    driver: local
