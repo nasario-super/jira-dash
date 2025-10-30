@@ -1,18 +1,1052 @@
 {
-    "name": "Jira-Dashboard",
-    "description": "Documentação da ferramenta criada para gestão de cads no Jira, IA Preditiva, Analises com IA e muto mais funcionalidades criadas para facilitar e trazer uma visão precisa, facilitando a governança dos cards, tarefas Sprints. Uma ferramenta completa que apoia na gestão e tomada de decisão, além de bem estar do profissional",
-    "theme": "basic",
+  "name": "Jira-Dashboard",
+  "description": "Documenta\u00e7\u00e3o da ferramenta criada para gest\u00e3o de cads no Jira, IA Preditiva, Analises com IA e muto mais funcionalidades criadas para facilitar e trazer uma vis\u00e3o precisa, facilitando a governan\u00e7a dos cards, tarefas Sprints. Uma ferramenta completa que apoia na gest\u00e3o e tomada de decis\u00e3o, al\u00e9m de bem estar do profissional",
+  "theme": "basic",
+  "colors": {
+    "dark": "#655DC6",
+    "light": "#3A8DDE"
+  },
+  "defaultThemeMode": "light",
+  "background": {
     "colors": {
-        "dark": "#655DC6",
-        "light": "#3A8DDE"
+      "dark": "#0D0F11",
+      "light": "#f0f0f0"
     },
-    "defaultThemeMode": "light",
-    "background": {
-        "colors": {
-            "dark": "#0D0F11",
-            "light": "#f0f0f0"
-        },
-        "image": null
-    },
-    "navigation": {}
+    "image": null
+  },
+  "navigation": {
+    "versions": [
+      {
+        "version": "1.0.0",
+        "tabs": [
+          {
+            "tab": "Documentation",
+            "items": [
+              {
+                "type": "group",
+                "title": "Getting Started",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Platform Overview",
+                    "page": "/1.0.0/documentation/getting_started/platform_overview.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "System Requirements",
+                    "page": "/1.0.0/documentation/getting_started/system_requirements.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Quick Setup Guide",
+                    "page": "/1.0.0/documentation/getting_started/quick_setup_guide.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "First Dashboard Creation",
+                    "page": "/1.0.0/documentation/getting_started/first_dashboard_creation.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Navigation Guide",
+                    "page": "/1.0.0/documentation/getting_started/navigation_guide.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Installation & Configuration",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Installation Methods",
+                    "page": "/1.0.0/documentation/installation_configuration/installation_methods.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Jira Integration Setup",
+                    "page": "/1.0.0/documentation/installation_configuration/jira_integration_setup.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Initial Configuration",
+                    "page": "/1.0.0/documentation/installation_configuration/initial_configuration.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "User Permissions Setup",
+                    "page": "/1.0.0/documentation/installation_configuration/user_permissions_setup.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Environment Variables",
+                    "page": "/1.0.0/documentation/installation_configuration/environment_variables.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Core Features",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Dashboard Management",
+                    "page": "/1.0.0/documentation/core_features/dashboard_management.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Card Governance",
+                    "page": "/1.0.0/documentation/core_features/card_governance.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Sprint Management",
+                    "page": "/1.0.0/documentation/core_features/sprint_management.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Task Analytics",
+                    "page": "/1.0.0/documentation/core_features/task_analytics.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Reporting Tools",
+                    "page": "/1.0.0/documentation/core_features/reporting_tools.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Data Export Options",
+                    "page": "/1.0.0/documentation/core_features/data_export_options.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "AI & Predictive Analytics",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Predictive AI Overview",
+                    "page": "/1.0.0/documentation/ai_predictive_analytics/predictive_ai_overview.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Sprint Prediction",
+                    "page": "/1.0.0/documentation/ai_predictive_analytics/sprint_prediction.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Task Completion Forecasting",
+                    "page": "/1.0.0/documentation/ai_predictive_analytics/task_completion_forecasting.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "AI-Powered Insights",
+                    "page": "/1.0.0/documentation/ai_predictive_analytics/ai-powered_insights.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Machine Learning Models",
+                    "page": "/1.0.0/documentation/ai_predictive_analytics/machine_learning_models.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Training Data Management",
+                    "page": "/1.0.0/documentation/ai_predictive_analytics/training_data_management.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Analytics & Insights",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Performance Metrics",
+                    "page": "/1.0.0/documentation/analytics_insights/performance_metrics.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Team Analytics",
+                    "page": "/1.0.0/documentation/analytics_insights/team_analytics.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Project Health Monitoring",
+                    "page": "/1.0.0/documentation/analytics_insights/project_health_monitoring.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Trend Analysis",
+                    "page": "/1.0.0/documentation/analytics_insights/trend_analysis.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Custom Analytics",
+                    "page": "/1.0.0/documentation/analytics_insights/custom_analytics.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Data Visualization",
+                    "page": "/1.0.0/documentation/analytics_insights/data_visualization.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Professional Wellbeing",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Workload Monitoring",
+                    "page": "/1.0.0/documentation/professional_wellbeing/workload_monitoring.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Burnout Prevention",
+                    "page": "/1.0.0/documentation/professional_wellbeing/burnout_prevention.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Productivity Insights",
+                    "page": "/1.0.0/documentation/professional_wellbeing/productivity_insights.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Work-Life Balance Metrics",
+                    "page": "/1.0.0/documentation/professional_wellbeing/work-life_balance_metrics.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Team Health Dashboard",
+                    "page": "/1.0.0/documentation/professional_wellbeing/team_health_dashboard.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "User Guides",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Creating Custom Dashboards",
+                    "page": "/1.0.0/documentation/user_guides/creating_custom_dashboards.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Setting Up Alerts",
+                    "page": "/1.0.0/documentation/user_guides/setting_up_alerts.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Managing Team Permissions",
+                    "page": "/1.0.0/documentation/user_guides/managing_team_permissions.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Integration Guides",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Jira Cloud Integration",
+                    "page": "/1.0.0/documentation/integration_guides/jira_cloud_integration.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Best Practices",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Dashboard Design Principles",
+                    "page": "/1.0.0/documentation/best_practices/dashboard_design_principles.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Data Governance Guidelines",
+                    "page": "/1.0.0/documentation/best_practices/data_governance_guidelines.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Performance Optimization",
+                    "page": "/1.0.0/documentation/best_practices/performance_optimization.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Security Recommendations",
+                    "page": "/1.0.0/documentation/best_practices/security_recommendations.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Team Collaboration Tips",
+                    "page": "/1.0.0/documentation/best_practices/team_collaboration_tips.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Maintenance Guidelines",
+                    "page": "/1.0.0/documentation/best_practices/maintenance_guidelines.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Troubleshooting",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Common Issues",
+                    "page": "/1.0.0/documentation/troubleshooting/common_issues.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Connection Problems",
+                    "page": "/1.0.0/documentation/troubleshooting/connection_problems.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Performance Issues",
+                    "page": "/1.0.0/documentation/troubleshooting/performance_issues.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Data Sync Problems",
+                    "page": "/1.0.0/documentation/troubleshooting/data_sync_problems.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Error Messages Reference",
+                    "page": "/1.0.0/documentation/troubleshooting/error_messages_reference.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Diagnostic Tools",
+                    "page": "/1.0.0/documentation/troubleshooting/diagnostic_tools.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "FAQ",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "General FAQ",
+                    "page": "/1.0.0/documentation/faq/general_faq.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Installation FAQ",
+                    "page": "/1.0.0/documentation/faq/installation_faq.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Features FAQ",
+                    "page": "/1.0.0/documentation/faq/features_faq.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "AI & Analytics FAQ",
+                    "page": "/1.0.0/documentation/faq/ai_analytics_faq.mdx"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Support",
+            "items": [
+              {
+                "type": "group",
+                "title": "Getting Help",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Support Channels",
+                    "page": "/1.0.0/support/getting_help/support_channels.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Creating Support Tickets",
+                    "page": "/1.0.0/support/getting_help/creating_support_tickets.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Community Forums",
+                    "page": "/1.0.0/support/getting_help/community_forums.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Knowledge Base Search",
+                    "page": "/1.0.0/support/getting_help/knowledge_base_search.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Resources",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Case Studies",
+                    "page": "/1.0.0/support/resources/case_studies.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Training & Certification",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Learning Resources",
+                    "page": "/1.0.0/support/training_certification/learning_resources.mdx"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "version": "V1",
+        "tabs": [
+          {
+            "tab": "Documentation",
+            "items": [
+              {
+                "type": "group",
+                "title": "Getting Started",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Platform Overview",
+                    "page": "/V1/documentation/getting_started/platform_overview.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "System Requirements",
+                    "page": "/V1/documentation/getting_started/system_requirements.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Quick Setup Guide",
+                    "page": "/V1/documentation/getting_started/quick_setup_guide.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "First Dashboard Creation",
+                    "page": "/V1/documentation/getting_started/first_dashboard_creation.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Navigation Guide",
+                    "page": "/V1/documentation/getting_started/navigation_guide.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Installation & Configuration",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Installation Methods",
+                    "page": "/V1/documentation/installation_configuration/installation_methods.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Jira Integration Setup",
+                    "page": "/V1/documentation/installation_configuration/jira_integration_setup.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Initial Configuration",
+                    "page": "/V1/documentation/installation_configuration/initial_configuration.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "User Permissions Setup",
+                    "page": "/V1/documentation/installation_configuration/user_permissions_setup.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Environment Variables",
+                    "page": "/V1/documentation/installation_configuration/environment_variables.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Core Features",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Dashboard Management",
+                    "page": "/V1/documentation/core_features/dashboard_management.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Card Governance",
+                    "page": "/V1/documentation/core_features/card_governance.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Sprint Management",
+                    "page": "/V1/documentation/core_features/sprint_management.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Task Analytics",
+                    "page": "/V1/documentation/core_features/task_analytics.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Reporting Tools",
+                    "page": "/V1/documentation/core_features/reporting_tools.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Data Export Options",
+                    "page": "/V1/documentation/core_features/data_export_options.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "AI & Predictive Analytics",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Predictive AI Overview",
+                    "page": "/V1/documentation/ai_predictive_analytics/predictive_ai_overview.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Sprint Prediction",
+                    "page": "/V1/documentation/ai_predictive_analytics/sprint_prediction.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Task Completion Forecasting",
+                    "page": "/V1/documentation/ai_predictive_analytics/task_completion_forecasting.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "AI-Powered Insights",
+                    "page": "/V1/documentation/ai_predictive_analytics/ai-powered_insights.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Machine Learning Models",
+                    "page": "/V1/documentation/ai_predictive_analytics/machine_learning_models.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Training Data Management",
+                    "page": "/V1/documentation/ai_predictive_analytics/training_data_management.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Analytics & Insights",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Performance Metrics",
+                    "page": "/V1/documentation/analytics_insights/performance_metrics.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Team Analytics",
+                    "page": "/V1/documentation/analytics_insights/team_analytics.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Project Health Monitoring",
+                    "page": "/V1/documentation/analytics_insights/project_health_monitoring.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Trend Analysis",
+                    "page": "/V1/documentation/analytics_insights/trend_analysis.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Custom Analytics",
+                    "page": "/V1/documentation/analytics_insights/custom_analytics.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Data Visualization",
+                    "page": "/V1/documentation/analytics_insights/data_visualization.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Professional Wellbeing",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Workload Monitoring",
+                    "page": "/V1/documentation/professional_wellbeing/workload_monitoring.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Burnout Prevention",
+                    "page": "/V1/documentation/professional_wellbeing/burnout_prevention.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Productivity Insights",
+                    "page": "/V1/documentation/professional_wellbeing/productivity_insights.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Work-Life Balance Metrics",
+                    "page": "/V1/documentation/professional_wellbeing/work-life_balance_metrics.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Team Health Dashboard",
+                    "page": "/V1/documentation/professional_wellbeing/team_health_dashboard.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "User Guides",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Creating Custom Dashboards",
+                    "page": "/V1/documentation/user_guides/creating_custom_dashboards.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Setting Up Alerts",
+                    "page": "/V1/documentation/user_guides/setting_up_alerts.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Managing Team Permissions",
+                    "page": "/V1/documentation/user_guides/managing_team_permissions.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Data Import and Export",
+                    "page": "/V1/documentation/user_guides/data_import_and_export.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Integration Guides",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Jira Cloud Integration",
+                    "page": "/V1/documentation/integration_guides/jira_cloud_integration.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Best Practices",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Dashboard Design Principles",
+                    "page": "/V1/documentation/best_practices/dashboard_design_principles.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Data Governance Guidelines",
+                    "page": "/V1/documentation/best_practices/data_governance_guidelines.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Performance Optimization",
+                    "page": "/V1/documentation/best_practices/performance_optimization.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Security Recommendations",
+                    "page": "/V1/documentation/best_practices/security_recommendations.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Team Collaboration Tips",
+                    "page": "/V1/documentation/best_practices/team_collaboration_tips.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Maintenance Guidelines",
+                    "page": "/V1/documentation/best_practices/maintenance_guidelines.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Troubleshooting",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Common Issues",
+                    "page": "/V1/documentation/troubleshooting/common_issues.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Connection Problems",
+                    "page": "/V1/documentation/troubleshooting/connection_problems.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Performance Issues",
+                    "page": "/V1/documentation/troubleshooting/performance_issues.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Data Sync Problems",
+                    "page": "/V1/documentation/troubleshooting/data_sync_problems.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Error Messages Reference",
+                    "page": "/V1/documentation/troubleshooting/error_messages_reference.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Diagnostic Tools",
+                    "page": "/V1/documentation/troubleshooting/diagnostic_tools.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "FAQ",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "General FAQ",
+                    "page": "/V1/documentation/faq/general_faq.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Installation FAQ",
+                    "page": "/V1/documentation/faq/installation_faq.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Features FAQ",
+                    "page": "/V1/documentation/faq/features_faq.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "AI & Analytics FAQ",
+                    "page": "/V1/documentation/faq/ai_analytics_faq.mdx"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Support",
+            "items": [
+              {
+                "type": "group",
+                "title": "Getting Help",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Support Channels",
+                    "page": "/V1/support/getting_help/support_channels.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Creating Support Tickets",
+                    "page": "/V1/support/getting_help/creating_support_tickets.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Community Forums",
+                    "page": "/V1/support/getting_help/community_forums.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Knowledge Base Search",
+                    "page": "/V1/support/getting_help/knowledge_base_search.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Resources",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Template Library",
+                    "page": "/V1/support/resources/template_library.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Case Studies",
+                    "page": "/V1/support/resources/case_studies.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Training & Certification",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Learning Resources",
+                    "page": "/V1/support/training_certification/learning_resources.mdx"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "version": "Beta tester",
+        "tabs": [
+          {
+            "tab": "Documentation",
+            "items": [
+              {
+                "type": "group",
+                "title": "Beta Testing Guide",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Beta Program Overview",
+                    "page": "/Beta tester/documentation/beta_testing_guide/beta_program_overview.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Getting Started as Beta Tester",
+                    "page": "/Beta tester/documentation/beta_testing_guide/getting_started_as_beta_tester.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Beta Environment Access",
+                    "page": "/Beta tester/documentation/beta_testing_guide/beta_environment_access.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Testing Responsibilities",
+                    "page": "/Beta tester/documentation/beta_testing_guide/testing_responsibilities.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Beta Testing Timeline",
+                    "page": "/Beta tester/documentation/beta_testing_guide/beta_testing_timeline.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Beta Features",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "New Features Overview",
+                    "page": "/Beta tester/documentation/beta_features/new_features_overview.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Enhanced AI Capabilities",
+                    "page": "/Beta tester/documentation/beta_features/enhanced_ai_capabilities.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Advanced Analytics Dashboard",
+                    "page": "/Beta tester/documentation/beta_features/advanced_analytics_dashboard.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Improved Wellbeing Metrics",
+                    "page": "/Beta tester/documentation/beta_features/improved_wellbeing_metrics.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Real-time Collaboration",
+                    "page": "/Beta tester/documentation/beta_features/real-time_collaboration.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Mobile App Beta",
+                    "page": "/Beta tester/documentation/beta_features/mobile_app_beta.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Testing Scenarios",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Core Functionality Testing",
+                    "page": "/Beta tester/documentation/testing_scenarios/core_functionality_testing.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "AI Features Testing",
+                    "page": "/Beta tester/documentation/testing_scenarios/ai_features_testing.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Integration Testing",
+                    "page": "/Beta tester/documentation/testing_scenarios/integration_testing.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Performance Testing",
+                    "page": "/Beta tester/documentation/testing_scenarios/performance_testing.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "User Experience Testing",
+                    "page": "/Beta tester/documentation/testing_scenarios/user_experience_testing.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Edge Case Testing",
+                    "page": "/Beta tester/documentation/testing_scenarios/edge_case_testing.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Feedback & Reporting",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Bug Reporting Process",
+                    "page": "/Beta tester/documentation/feedback_reporting/bug_reporting_process.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Feature Request Process",
+                    "page": "/Beta tester/documentation/feedback_reporting/feature_request_process.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Feedback Tracking System",
+                    "page": "/Beta tester/documentation/feedback_reporting/feedback_tracking_system.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Communication Channels",
+                    "page": "/Beta tester/documentation/feedback_reporting/communication_channels.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Known Issues",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Current Known Issues",
+                    "page": "/Beta tester/documentation/known_issues/current_known_issues.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Beta Limitations",
+                    "page": "/Beta tester/documentation/known_issues/beta_limitations.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Workarounds",
+                    "page": "/Beta tester/documentation/known_issues/workarounds.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Issue Status Updates",
+                    "page": "/Beta tester/documentation/known_issues/issue_status_updates.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Beta Resources",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Beta Testing Tools",
+                    "page": "/Beta tester/documentation/beta_resources/beta_testing_tools.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Test Data Sets",
+                    "page": "/Beta tester/documentation/beta_resources/test_data_sets.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Beta Tester Community",
+                    "page": "/Beta tester/documentation/beta_resources/beta_tester_community.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Beta FAQ",
+                    "page": "/Beta tester/documentation/beta_resources/beta_faq.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Release Notes",
+                    "page": "/Beta tester/documentation/beta_resources/release_notes.mdx"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Support",
+            "items": [
+              {
+                "type": "group",
+                "title": "Beta Support",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Beta Support Channels",
+                    "page": "/Beta tester/support/beta_support/beta_support_channels.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Emergency Escalation",
+                    "page": "/Beta tester/support/beta_support/emergency_escalation.mdx"
+                  }
+                ]
+              },
+              {
+                "type": "group",
+                "title": "Beta Community",
+                "children": [
+                  {
+                    "type": "page",
+                    "title": "Weekly Beta Calls",
+                    "page": "/Beta tester/support/beta_community/weekly_beta_calls.mdx"
+                  },
+                  {
+                    "type": "page",
+                    "title": "Collaborative Testing",
+                    "page": "/Beta tester/support/beta_community/collaborative_testing.mdx"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

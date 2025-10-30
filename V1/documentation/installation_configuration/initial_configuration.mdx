@@ -1,0 +1,95 @@
+# Initial Configuration Guide
+
+Welcome to the initial configuration guide for setting up your Jira Dashboard project. This guide will walk you through the essential steps to configure your environment, ensuring a secure and efficient setup.
+
+## Overview
+
+The Jira Dashboard system is designed to run seamlessly via Docker with automatic initialization, public access, enhanced security, and comprehensive support documentation. This guide focuses on configuring basic settings and preferences to get your system ready for use and monitoring.
+
+## Docker Setup
+
+### Prerequisites
+
+Ensure Docker and Docker Compose are installed on your system. If not, follow these steps:
+
+# Install Docker and Docker Compose
+sudo apt-get install -y docker.io docker-compose
+
+### Deployment
+
+Deploy the Jira Dashboard using Docker:
+
+# Navigate to the project directory
+cd /home/ssm-user/projetos/jira-dash
+
+# Execute the deployment script
+./deploy-docker.sh
+
+# Access the application
+http://3.83.28.223:3000
+
+## Security Configuration
+
+### Credentials Management
+
+- Credentials should be provided via the user interface rather than environment variables in production.
+- Ensure the `.env` file does not contain sensitive information like `JIRA_DOMAIN`, `EMAIL`, or `API_TOKEN`.
+
+### Network Security
+
+- The application is accessible via a public IP: `3.83.28.223:3000`.
+- Ensure port 3000 is open and SSH keep-alive is optimized.
+
+## SSH Configuration
+
+To maintain active SSH sessions and prevent timeouts, configure your SSH settings:
+
+# ~/.ssh/config
+
+Host jira-aws
+HostName 3.83.28.223
+User ec2-user
+IdentityFile ~/.ssh/jira-key.pem
+
+# Keep-alive settings
+ServerAliveInterval 60
+ServerAliveCountMax 10
+
+# Connection settings
+ConnectTimeout 10
+StrictHostKeyChecking no
+UserKnownHostsFile=/dev/null
+
+# Compression for faster connections
+Compression yes
+
+## Troubleshooting
+
+### Common Issues
+
+- **Docker Command Not Found**: Reinstall Docker or use the full path `/usr/bin/docker`.
+- **Permission Denied**: Add your user to the Docker group and re-login.
+- **Container Fails to Start**: Check logs with `docker-compose logs -f`.
+
+### SSH Timeout
+
+Test your SSH configuration to ensure it maintains the connection:
+
+# Connect to the server
+ssh jira-aws
+
+# Leave the session idle for 15 minutes
+
+# Attempt to execute a command
+echo "test"
+
+# If the session remains active, the timeout issue is resolved.
+
+## Summary
+
+This guide provided a step-by-step approach to configure your Jira Dashboard environment, focusing on Docker deployment, security settings, and SSH configuration. By following these instructions, you ensure a robust and secure setup ready for production use.
+
+For further assistance, refer to the detailed documentation files such as `INSTALACAO_DOCKER_AWS.md` and `MANTER_SSH_ATIVA.md` for specific troubleshooting and configuration guidance.
+
+---
+For more detailed guides and troubleshooting steps, please refer to the provided documentation links.

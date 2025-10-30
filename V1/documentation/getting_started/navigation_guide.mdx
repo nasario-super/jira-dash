@@ -1,0 +1,70 @@
+# Navigation Guide for Jira-Dashboard
+
+## Introduction
+
+Welcome to the Jira-Dashboard Navigation Guide. This guide is designed to help you effectively navigate the Jira-Dashboard interface, a modern web tool that centralizes Jira data, offering advanced analytics and reporting capabilities. The dashboard is built to provide a practical and intuitive experience for accessing projects and viewing productivity metrics.
+
+## Accessing the Application
+
+To begin using the Jira-Dashboard, access the application through the following URL:
+
+```
+http://3.83.28.223:3000
+```
+
+Upon visiting this URL, you will be presented with the login screen.
+
+## Logging In
+
+### Required Credentials
+
+To log in, you will need:
+
+- **Email**: Your registered email address
+- **API Token**: This token can be generated via your Atlassian account.
+
+### Generating an API Token
+
+1. Visit [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens).
+2. Click on "Create API token".
+3. Enter a name for the token (e.g., "Jira Dashboard").
+4. Copy the generated token.
+5. Paste the token on the Jira-Dashboard login screen.
+
+## Project Selection
+
+After logging in, you will be directed to the project selection screen. Here are your options:
+
+1. **Load Projects**: Access your available projects.
+2. **Search by Name**: Quickly find projects by typing their names.
+3. **Select Multiple Projects**: Choose more than one project if needed.
+4. **Confirm Selection**: Finalize your project choices.
+
+**Tip**: For optimal performance, it is recommended to select 1-3 projects initially. You can always select more projects later.
+
+## Main Dashboard Overview
+
+Once projects are selected, you will be taken to the main dashboard page. Here’s a brief overview of what you will find:
+
+### Top Cards Overview
+
+| Card | Description |
+| --------------------- | -------------------------------------------------- |
+| **Total de Issues** | Displays all issues in the selected projects |
+| **Projetos Ativos** | Number of active projects |
+| **Usuários Ativos** | Users with assigned issues |
+| **Filtros Aplicados** | Active filters on the dashboard |
+
+### Issues by Status Graph
+
+This section provides a graphical representation of issues categorized by their current status.
+
+## Security Considerations
+
+It is crucial to ensure that your credentials are transmitted securely. The current setup involves transmitting Jira credentials over HTTP, which poses a security risk. It is recommended to enable HTTPS/SSL to encrypt all network traffic. For detailed instructions on setting up SSL, refer to the security correction documentation.
+
+## Summary
+
+The Jira-Dashboard is a powerful tool for consolidating Jira data into a single, intuitive interface. By following this guide, you can efficiently access and navigate the dashboard, select projects, and utilize the various features available to enhance your productivity and reporting capabilities. Always ensure your credentials are handled securely by enabling HTTPS.
+
+For more detailed technical setup and security configurations, please refer to the complete documentation available in the Jira-Dashboard repository.

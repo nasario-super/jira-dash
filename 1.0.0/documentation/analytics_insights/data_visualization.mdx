@@ -1,0 +1,120 @@
+# Data Visualization Guide
+
+**Version:** 1.0.0
+**Group:** Analytics & Insights
+**Page Type:** Guide
+**Description:** Create compelling charts and visual reports
+
+---
+
+## Introduction
+
+This guide provides an overview of the data visualization capabilities within the Jira Dashboard, focusing on creating compelling charts and visual reports. The dashboard offers advanced analytics features, including detailed predictions, personalized recommendations, and a user-friendly interface for navigating data insights.
+
+## Advanced Analytics Features
+
+The Jira Dashboard's advanced analytics interface includes several key features:
+
+- **Detailed Predictions:** Analyze current versus predicted values with confidence levels and contextual factors.
+- **Personalized Recommendations:** Tailored suggestions for data-driven improvements.
+- **Intuitive Design:** Responsive modals, intuitive icons, and semantic colors for easy interpretation.
+- **Easy Navigation:** Visible "View Details" buttons, smooth animations, and mobile responsiveness.
+- **Technical Insights:** Automatic data interpretation with actionable recommendations.
+
+For more details, visit the [Advanced Analytics Features documentation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/ADVANCED_ANALYTICS_FEATURES.md).
+
+## Chart Design Principles
+
+When designing interactive charts, consider the following principles to ensure clarity and performance:
+
+1. **Adequate Spacing:** Legends should never overlap with data.
+2. **Responsiveness:** Charts should adapt to screen sizes.
+3. **Legibility:** Use appropriate fonts and sufficient contrast.
+4. **Interactivity:** Include informative tooltips.
+5. **Performance:** Optimize for large data volumes.
+
+### Global Chart Configuration
+
+Below is an example of a global chart configuration using TypeScript:
+
+```typescript
+const CHART_CONFIG = {
+colors: {
+primary: '#3b82f6',
+success: '#10b981',
+warning: '#f59e0b',
+danger: '#ef4444',
+purple: '#8b5cf6',
+indigo: '#6366f1',
+gray: '#6b7280',
+},
+margins: {
+default: { top: 20, right: 30, left: 20, bottom: 60 },
+withLegend: { top: 20, right: 30, left: 20, bottom: 80 },
+compact: { top: 10, right: 20, left: 10, bottom: 40 },
+},
+fonts: {
+axis: { fontSize: 12, fill: '#6b7280' },
+label: { fontSize: 11, fill: '#9ca3af' },
+legend: { fontSize: 13, fill: '#374151' },
+tooltip: { fontSize: 14, fill: '#1f2937' },
+},
+animation: {
+duration: 500,
+easing: 'ease-out',
+},
+};
+```
+
+## Chart Types and Examples
+
+### Burndown Chart
+
+The Burndown Chart is optimized for tracking sprint progress:
+
+```typescript
+function BurndownChart({ data }) {
+return (
+<div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+<h3 className="text-lg font-semibold text-gray-900">Burndown - Sprint Atual</h3>
+{/* Chart implementation */}
+</div>
+);
+}
+```
+
+### Velocity Chart
+
+Displays a team's velocity using a bar chart:
+
+```typescript
+function VelocityChart({ data }) {
+return (
+<div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+<h3 className="text-lg font-semibold text-gray-900 mb-4">Velocity do Time</h3>
+{/* Chart implementation */}
+</div>
+);
+}
+```
+
+### Priority by Status Chart
+
+A stacked bar chart showing issue distribution by priority and status:
+
+```typescript
+function PriorityByStatusChart({ data }) {
+return (
+<div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+<h3 className="text-lg font-semibold text-gray-900 mb-4">Distribuição por Prioridade</h3>
+{/* Chart implementation */}
+</div>
+);
+}
+```
+
+## Summary
+
+This guide has outlined the key features and design principles for creating effective data visualizations within the Jira Dashboard. By adhering to these guidelines, users can create visually appealing and informative charts that enhance data-driven decision-making. For further details, refer to the [full documentation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/filtros_e_Graficos.md).
+
+---

@@ -1,0 +1,61 @@
+# Support Channels
+
+**Version:** 1.0.0
+**Tab:** Support - Help resources and community support
+**Group:** Getting Help - Various ways to get assistance and support
+**Page Type:** Reference
+**Priority:** High
+
+## Introduction
+
+This document outlines the available support options for the Jira Dashboard project, providing guidance on how to reach out for assistance and troubleshoot common issues. Whether you're facing deployment challenges or need help understanding the platform, this guide will direct you to the appropriate resources.
+
+## Available Support Options
+
+### GitHub Issues
+
+For any questions or support needs, you can open an issue on the project's GitHub repository. This is the primary channel for reporting bugs, requesting features, or seeking help with the Jira Dashboard.
+
+### Documentation Resources
+
+- **Jira API Documentation:** Consult this for detailed information on API usage and integration.
+- **React and TypeScript Documentation:** These resources are invaluable for understanding the underlying technologies used in the project.
+
+### Troubleshooting Guide
+
+In case of issues during deployment or usage, refer to the following troubleshooting steps:
+
+- **401 Unauthorized Error:**
+  - Ensure the token is correct in the login form.
+  - Check if the proxy is forwarding the Authorization header.
+  - Verify that credentials are stored in the `authStore`.
+  - Confirm that `reinitializeJiraApi()` is called after login.
+
+- **CORS Error:**
+  - Ensure the proxy is enabled in `vite.config.ts`.
+  - Verify the target URL is correct.
+  - Check that `changeOrigin` is set to true and `rewrite` is functioning.
+
+- **Empty Dashboard:**
+  - Ensure `useJiraFilters` is receiving credentials.
+  - Verify that `loadFilterOptions()` and `fetchFilteredData()` are called with credentials.
+  - Confirm that projects are selected correctly.
+
+### Additional Support Steps
+
+For further assistance, consider the following:
+
+1. Review the `SOLUCAO_FINAL_AUTENTICACAO.md` for understanding the authentication flow.
+2. Check the browser console for error logs.
+3. Examine the Network tab for HTTP request statuses.
+4. Verify the proxy configuration in `vite.config.ts`.
+5. Check `authStore.ts` for stored credentials.
+
+## Summary
+
+This document provides a comprehensive overview of the support channels available for the Jira Dashboard project. By utilizing GitHub issues, consulting relevant documentation, and following the troubleshooting guide, users can effectively address and resolve common issues. For more detailed technical guidance, refer to the specific documentation files mentioned in the support steps.
+
+For any further assistance, please ensure to follow the outlined steps and consult the provided resources for a smoother experience with the Jira Dashboard.
+
+---
+**Note:** This documentation is based on the information available as of October 2025.

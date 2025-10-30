@@ -1,0 +1,96 @@
+# Security Recommendations
+
+## Introduction
+
+This guide provides a comprehensive overview of best practices for securing your web application installation and data. It focuses on implementing HTTPS, backend authentication, security headers, and auditing logins to protect against various security threats.
+
+## Implementing HTTPS
+
+### Immediate Actions
+
+- **Install Certbot**: Use the following command to install Certbot for managing SSL certificates.
+  ```bash
+sudo apt-get install -y certbot
+  ```
+- **Generate SSL Certificate**: Generate a certificate using Certbot.
+  ```bash
+sudo certbot certonly --standalone -d seu-dominio.com
+  ```
+- **Configure Nginx with HTTPS**: Ensure your Nginx server is set up to handle HTTPS traffic.
+- **Test HTTPS**: Verify that your domain is accessible via HTTPS.
+  ```bash
+curl -I https://seu-dominio.com
+  ```
+- **Redirect HTTP to HTTPS**: Ensure all HTTP traffic is redirected to HTTPS.
+
+### Short-Term Actions (1-2 days)
+
+- **Implement Backend Authentication Gateway**: Move authentication logic to the backend to secure credentials.
+- **Remove Frontend Credentials**: Ensure credentials are not exposed in the frontend code.
+- **Add Security Headers**: Implement headers like `Strict-Transport-Security` to enhance security.
+- **Security Testing**: Use tools like `curl` and Wireshark to test security implementations.
+
+### Medium-Term Actions (1-2 weeks)
+
+- **Audit Log of Logins**: Implement logging for all login attempts.
+- **Anomaly Detection**: Set up systems to detect unusual activity.
+- **Two-Factor Authentication (2FA)**: Enhance security by requiring a second form of authentication.
+- **Token Rotation**: Regularly rotate authentication tokens to minimize risk.
+
+## Verifying Security
+
+### HTTPS Verification
+
+- **Check HTTPS Response**: Ensure your server responds correctly to HTTPS requests.
+  ```bash
+curl -I https://seu-dominio.com
+  ```
+  Look for `HTTP/2 200` or `301 Moved Permanently`.
+
+### Security Headers Verification
+
+- **Check Security Headers**: Verify that security headers are correctly set.
+  ```bash
+curl -I https://seu-dominio.com | grep -i strict-transport
+  ```
+  Expect a response like `Strict-Transport-Security: max-age=31536000`.
+
+### Network Traffic Analysis
+
+- **Wireshark Traffic Capture**: Use Wireshark to ensure credentials are not exposed in plaintext.
+
+## Self-Signed SSL Certificates
+
+### Benefits and Limitations
+
+- **Protection Against Attacks**: Self-signed certificates encrypt traffic, protecting against sniffing and man-in-the-middle attacks.
+- **Limitations**: Users may encounter browser warnings that require manual bypassing.
+
+### Annual Renewal
+
+- **Renew Certificate**: Use OpenSSL to renew your certificate annually.
+  ```bash
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+- keyout /etc/ssl/private/jira-dashboard.key \
+- out /etc/ssl/certs/jira-dashboard.crt
+  ```
+
+## Backend Authentication
+
+### Secure Credential Handling
+
+- **Move Authentication to Backend**: Store credentials in secure server-side sessions.
+- **Use Secure Cookies**: Ensure cookies are secure and not accessible via JavaScript.
+
+## Summary
+
+Implementing HTTPS and securing backend authentication are critical steps in protecting your web application from various security threats. Regularly verify your security measures and update them as necessary to maintain a robust defense against potential attacks.
+
+For more detailed instructions, refer to the specific guides and documentation provided in the source materials.
+
+---
+
+For further details, please refer to the original documentation at the following URLs:
+
+- [CORRECAO_SEGURANCA_CRITICA.md](https://example.com/path/to/CORRECAO_SEGURANCA_CRITICA.md)
+- [HTTPS_AUTO_ASSINADO.md](https://example.com/path/to/HTTPS_AUTO_ASSINADO.md)

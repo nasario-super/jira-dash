@@ -1,0 +1,78 @@
+# Beta Tester Community Overview
+
+Welcome to the Beta Tester Community documentation page. This guide provides resources and instructions for beta testers to effectively engage with the testing process, report issues, and connect with other testers.
+
+## Reporting Issues
+
+If you encounter any errors while testing, follow these steps to report them:
+
+1. **Capture a Screenshot**: Take a screenshot of the issue.
+2. **Gather Logs**: Open DevTools (F12) and navigate to the Console tab to collect logs.
+3. **Collect Information**:
+   - Browser and version
+   - Selected projects
+   - Active tab (e.g., Overview, Daily, Velocity, Alerts)
+   - Actions performed when the error occurred
+
+4. **Submit the Report**:
+   - Include the screenshot, logs, and collected information.
+   - Use the following format for the report:
+     ```
+Title: [BUG] Brief Description
+Description: Steps to reproduce + Expected vs. Actual outcome
+     ```
+
+## Testing Procedures
+
+### Agile Dashboard Testing
+
+1. **Compile and Launch the Server**:
+   ```bash
+cd /path/to/jira-dash
+npm run build
+npm run dev
+   ```
+
+2. **Access the Application**:
+   ```
+http://localhost:3000
+   ```
+
+3. **Validate Key Metrics**:
+   - Ensure issues are correctly categorized (Completed, In Progress, Blocked).
+   - Verify the progress bar reflects ~22% completion.
+
+### Modal Testing
+
+1. **Issue Information**:
+   - Verify status, priority, project details, assignee, and creator information.
+   - Ensure all details are visible and formatted correctly.
+
+2. **Closing Modals**:
+   - Test closing the modal using the [X] button or by clicking outside the modal.
+
+## Deployment Checklist
+
+Before deploying to production, ensure the following:
+
+- All tests are passing.
+- Build completes without errors: `npm run build`
+- No linting warnings: `npm run lint`
+- `.env.production` is correctly configured.
+- HTTPS is enabled in the proxy configuration.
+- API tokens are securely stored.
+- Documentation is updated.
+
+## Summary
+
+This documentation provides an overview of the beta testing process, including how to report issues, conduct tests, and prepare for deployment. By following these guidelines, beta testers can contribute effectively to the development and improvement of the Agile Dashboard.
+
+For more detailed instructions and resources, please refer to the specific documentation sections linked within this guide.
+
+---
+
+For further information, please refer to the following resources:
+
+- [Agile Dashboard Testing Guide](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/TESTE_AGILE_DASHBOARD.md)
+- [Deployment Checklist](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/PROXIMOS_PASSOS.md)
+- [Dynamic Filters and Optimized Graphs](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/filtros_e_Graficos.md)

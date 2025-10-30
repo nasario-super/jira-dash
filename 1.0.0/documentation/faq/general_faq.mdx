@@ -1,0 +1,141 @@
+# General FAQ for Jira Dashboard
+
+## Introduction
+
+Welcome to the General FAQ for Jira Dashboard, a modern web tool designed to centralize Jira data, provide advanced analytics, and generate executive reports. This documentation aims to address the most common questions and issues users may encounter while using Jira Dashboard.
+
+## What is Jira Dashboard?
+
+Jira Dashboard is a web-based application that offers a centralized view of Jira data. It provides advanced productivity analytics, executive reports, quality metrics, AI insights, and anomaly predictions. This tool is designed to facilitate project selection and metric visualization in a practical and intuitive manner.
+
+## Getting Started
+
+### Accessing the Application
+
+To access the Jira Dashboard, visit the following URL:
+
+```
+http://3.83.28.223:3000
+```
+
+Upon visiting, you will be greeted with the login screen.
+
+### Login Requirements
+
+To log in, you need the following credentials:
+- **Email**: your-email@example.com
+- **API Token**: Generate at [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
+
+#### Steps to Generate an API Token
+
+1. Visit [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
+2. Click on "Create API token"
+3. Enter a name (e.g., "Jira Dashboard")
+4. Copy the generated token
+5. Paste it on the login screen of the Dashboard
+
+### Project Selection
+
+After logging in, you will see the project selection screen. Here are your options:
+- Load Projects
+- Search by name
+- Select multiple projects
+- Confirm selection
+
+**Tip**: For optimal performance, select 1-3 projects initially. You can select more later if needed.
+
+## Main Dashboard Features
+
+### Overview (Top Cards)
+
+| Card | Meaning |
+| -------------------- | ------------------------------------------ |
+| **Total de Issues** | All issues in selected projects |
+| **Projetos Ativos** | Number of active projects |
+| **Usuários Ativos** | Users with assigned issues |
+| **Filtros Aplicados** | Active filters |
+
+### Available Graphs
+
+- **Issues by Status**: Displays a pie chart showing the distribution by status.
+- **Issues by Type**: Visual representation of issues categorized by type.
+
+## Common Issues and Solutions
+
+### Issue Status Discrepancy
+
+**Why?**
+- Real-time updates
+- Multiple users modifying
+- Synchronization with Jira
+
+**Solution**:
+- Click **Update** on the Dashboard or refresh the page (F5).
+
+### Mismatched Issue Numbers
+
+**Why?**
+- Applied filters
+- Sub-item issues not included
+- Synchronization in progress
+
+**Check**:
+- Review active filters
+- Look for "Applied Filters" on the card
+
+### Missing User
+
+**Why?**
+- User without assigned issues
+- Issues reassigned
+- User removed from the project
+
+**Action**: Reassign issues if necessary.
+
+## Configuration and Use Cases
+
+### Project Configuration
+
+```
+Project Configuration
+├─ Selected Projects: [List]
+├─ Status: ✅ Connected
+└─ Update
+```
+
+**Use for**:
+- Checking selected projects
+- Adding/removing projects
+- Validating connection
+
+### Typical Use Cases
+
+1. **Sprint Planning**
+   - Open **Agile Dashboard**
+   - View **Total Issues** available
+   - Analyze previous **Velocity**
+   - Set sprint goals
+
+2. **Daily Standup**
+   - Navigate to **Daily Scrum**
+   - View today's issues
+   - Identify blockages
+   - Discuss solutions
+
+3. **Managerial Reporting**
+   - Access **Executive Dashboard**
+   - Analyze KPIs
+   - Export **Reports**
+   - Present data
+
+4. **Problem Identification**
+   - Go to **Quality Metrics**
+   - Look for high **Defect Rate**
+   - Click to view bugs
+   - Prioritize fixes
+
+## Summary
+
+Jira Dashboard is a powerful tool for consolidating and visualizing Jira data, offering a unified interface for project management and decision-making. By addressing common issues and providing clear configuration guidelines, this FAQ aims to enhance user experience and productivity.
+
+For more detailed guidance, refer to the complete user guide available at: [Complete User Guide](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/GUIA_USO_COMPLETO.md).

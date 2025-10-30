@@ -1,0 +1,107 @@
+# Creating Your First Dashboard in Jira
+
+Welcome to the Jira Dashboard tutorial. This guide will walk you through the process of creating your first dashboard, understanding its interface, and leveraging its powerful features for data visualization and project management.
+
+## Introduction to Jira Dashboard
+
+The **Jira Dashboard** is a modern web tool designed to centralize Jira data, offering advanced analytics, executive reports, and productivity metrics. It provides a practical and intuitive way to access and visualize project data.
+
+## Getting Started
+
+### Accessing the Application
+
+To begin, access the Jira Dashboard application by navigating to:
+
+```
+http://3.83.28.223:3000
+```
+
+You will be greeted with the login screen.
+
+### Logging In
+
+To log in, you will need:
+
+- **Email**: your-email@example.com
+- **API Token**: Generated from [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
+
+#### Steps to Generate an API Token:
+
+1. Visit [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens).
+2. Click on "Create API token".
+3. Name your token (e.g., "Jira Dashboard").
+4. Copy the generated token.
+5. Paste it on the dashboard login screen.
+
+### Project Selection
+
+After logging in, you will see the project selection screen. Here, you can:
+
+1. Load Projects
+2. Search by name
+3. Select multiple projects
+4. Confirm your selection
+
+**Tip**: For optimal performance, select 1-3 projects initially. You can add more later.
+
+## Dashboard Overview
+
+### Main Dashboard Components
+
+The Jira Dashboard integrates filters and visualizations to process data for various charts. It displays a filter bar and other UI elements using Tailwind CSS for layout and styling.
+
+#### Key Features:
+
+- **Centralized Data Visualization**: View all your Jira data in one place.
+- **Advanced Analytics**: Gain insights into productivity and performance.
+- **Executive Reports**: Generate reports for stakeholders.
+- **Quality Metrics**: Monitor and improve project quality.
+- **AI Insights**: Predict trends and detect anomalies.
+
+### Visualizations and Filters
+
+The dashboard includes several visual components:
+
+- **Burndown Charts**
+- **Status Distribution**
+- **Velocity Charts**
+- **Issue Type Distribution**
+- **Timeline Views**
+- **Priority by Status**
+
+#### Example of Priority Visualization:
+
+```typescript
+<div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+{[
+{ label: 'Highest', color: '#ef4444' },
+{ label: 'High', color: '#f59e0b' },
+{ label: 'Medium', color: '#eab308' },
+{ label: 'Low', color: '#10b981' },
+].map((item, idx) => (
+<div key={idx} className="flex items-center gap-2">
+<div
+className="w-3 h-3 rounded flex-shrink-0"
+style={{ backgroundColor: item.color }}
+></div>
+<span className="text-sm text-gray-700">{item.label}</span>
+</div>
+))}
+</div>
+```
+
+### Common Issues and Solutions
+
+- **Issue Status Discrepancies**: Ensure real-time updates by refreshing the dashboard.
+- **Mismatch in Issue Counts**: Check active filters and ensure synchronization.
+- **Missing Users**: Reassign issues if necessary.
+
+## Conclusion
+
+The Jira Dashboard is a powerful tool for managing and visualizing your Jira data. By following this guide, you should be able to set up your first dashboard, select projects, and start analyzing your data effectively. Remember to utilize the advanced filters and visualizations to gain deeper insights into your projects.
+
+For more detailed instructions, refer to the complete documentation available in the Jira Dashboard repository.
+
+---
+
+For further assistance, please consult the [Jira Dashboard Documentation](https://id.atlassian.com/manage-profile/security/api-tokens) or reach out to support.

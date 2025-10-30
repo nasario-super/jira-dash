@@ -1,0 +1,102 @@
+# Collaborative Testing Guide
+
+## Introduction
+
+This guide provides a comprehensive overview of collaborative testing scenarios for beta testers. It is designed to assist the beta community in effectively testing and validating various features and functionalities within the Agile Dashboard and Jira environments. The guide outlines testing procedures, reporting methods, and collaboration strategies to ensure thorough validation and feedback.
+
+## Testing Procedures
+
+### Agile Dashboard Testing
+
+#### Step 1: Compile and Launch the Server
+
+To begin testing, compile and launch the server using the following commands:
+
+```bash
+cd /home/anderson.nasario/Documentos/Nasario/jira-dash
+
+```
+
+# Compile
+npm run build
+
+# Or use development mode
+npm run dev
+```
+
+Access the application at `http://localhost:3000`.
+
+```
+
+#### Step 2: Validate Key Metrics
+
+- **Select Projects**: INFOSECC and SEGP
+- **Navigate**: Agile Dashboard → Overview
+- **Expected Metrics**:
+  - Total Issues: ~200
+  - Completed: ~45
+  - In Progress: ~30
+  - Blocked: ~8
+  - Overdue: ~11
+  - Completion Percentage: ~22%
+
+Validate the metrics using the browser console:
+
+```plaintext
+📊 Métricas Agile: { total: 200, completed: 45, inProgress: 30, blocked: 8, ... }
+```
+
+### Discrepancy Investigation
+
+For investigating discrepancies in user and issue counts:
+
+- **Count Real Users**: Use JQL to verify unique users with issues.
+- **Count Real Issues**: Check total issues per project using JQL.
+- **Validate Deduplication**: Ensure deduplication does not remove valid issues.
+
+### Checklist for Investigation
+
+- Verify logs for user and issue counts.
+- Test JQL for each project.
+- Compare numbers with Jira Web.
+
+## Reporting Results
+
+### Error Reporting
+
+If errors are encountered during testing:
+
+1. **Capture Screenshots**: Take a screenshot of the issue.
+2. **Collect Logs**: Use DevTools (F12) → Console to gather logs.
+3. **Provide Information**:
+   - Browser and version
+   - Selected projects
+   - Active tab (Overview/Daily/Velocity/Alerts)
+   - Steps taken
+
+Submit the report with the title `[BUG] Brief Description` and include steps to reproduce, expected vs. actual results.
+
+### Successful Test Completion
+
+If all tests pass:
+
+1. Commit the changes:
+
+   ```bash
+git add src/pages/AgileDashboard.tsx
+git add src/components/dashboard/DailyScrumDashboard.tsx
+git add src/components/dashboard/AlertSystem.tsx
+git commit -m "✨ Correções críticas do Agile Dashboard: métricas, Daily list, alertas interativos"
+git push origin main
+   ```
+
+2. Proceed with the next development steps, such as implementing the `useFilteredProjectData` hook.
+
+## Summary
+
+This guide outlines the collaborative testing process for beta testers, focusing on Agile Dashboard and Jira environments. It includes detailed steps for testing, reporting errors, and validating results. By following these procedures, beta testers can ensure comprehensive testing and contribute valuable feedback to the development team.
+
+For further assistance, refer to the documentation or contact the support team.
+
+**Version**: Beta Tester
+**Status**: Ready for Testing

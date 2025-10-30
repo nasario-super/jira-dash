@@ -1,0 +1,127 @@
+# Workload Monitoring
+
+## Introduction
+
+This guide provides comprehensive information on monitoring and balancing team member workloads using the Jira Dashboard. The focus is on ensuring team productivity and wellbeing by leveraging real-time data and analytics to manage workloads effectively.
+
+## Agile Dashboard Features
+
+### Overview
+
+The Agile Dashboard offers a detailed view of the current sprint, including:
+
+- **Total Issues**: Number of issues in the current sprint.
+- **Completed**: Percentage of issues completed.
+- **In Progress**: Issues currently being worked on.
+- **Blocked**: Issues that are currently stalled.
+- **Overdue**: Issues that have passed their due date.
+
+### Daily Scrum
+
+The dashboard provides a daily list of issues, which includes:
+
+- Current status
+- Responsible team member
+- Priority level
+- Due date
+
+This feature is particularly useful for daily standups, identifying blockers, and tracking sprint progress.
+
+### Intelligent Alerts
+
+The system automatically detects and alerts users to:
+
+- Overdue issues
+- Blocked issues
+- High bug rates
+- Overloaded capacity
+
+Clicking on an alert provides more details about the related issues.
+
+## Executive Dashboard
+
+### Key Performance Indicators (KPIs)
+
+The Executive Dashboard is designed for directors and managers, offering insights into:
+
+1. **Velocity**: Number of issues completed per sprint.
+2. **Throughput**: Delivery rate.
+3. **Cycle Time**: Average time taken per issue.
+4. **Lead Time**: Time from request to completion.
+5. **Efficiency**: Percentage of completed issues.
+
+### Graphical Analysis
+
+- **Trend Analysis**: Productivity over time.
+- **Type Distribution**: Comparison of bugs versus tasks.
+- **Project Performance**: Speed of different projects.
+
+## Quality Metrics
+
+### Defect Rate
+
+The defect rate is calculated as the number of bugs found versus total issues:
+
+- **Ideal**: Less than 20%
+- **Alert**: More than 30%
+
+### Time to Resolve Bugs
+
+- **Fast**: Less than 2 days
+- **Normal**: 2-5 days
+- **Slow**: More than 5 days
+
+### Test Coverage
+
+If integrated, the dashboard shows:
+
+- Percentage of issues with tests
+- Bugs found post-release
+
+### Rework Rate
+
+Calculated as reopened issues versus resolved issues:
+
+- **Low**: Less than 10% (good)
+- **High**: More than 20% (problematic)
+
+## Workload Analysis
+
+### User Workload
+
+The workload for each user is calculated based on assigned issues:
+
+```
+For each user:
+1. Count total assigned issues
+2. Count open issues
+3. Count completed issues
+4. Calculate workload proportion
+
+Workload = Open Issues / (Open Issues + Completed Issues)
+```
+
+#### Interpretation
+
+| Workload | Status | Action |
+| ---------- | -------------- | ----------------------- |
+| &lt; 30% | ✅ Available | Can take more work |
+| 30-60% | ✅ Normal | Balanced |
+| 60-80% | ⚠️ Alert | Monitor closely |
+| &gt; 80% | 🔴 Critical | Redistribute work |
+
+## Forecasting
+
+### Sprint and Monthly Predictions
+
+Using recent velocity data, the dashboard forecasts the number of issues likely to be completed in upcoming sprints and months. The calculation is based on the average velocity of the last three sprints.
+
+### Burn-Down Logic
+
+The current completion rate is used to estimate the remaining days needed to complete the backlog.
+
+## Summary
+
+The Jira Dashboard provides a robust set of tools for monitoring team workloads and productivity. By leveraging real-time data and intelligent analytics, teams can ensure balanced workloads, identify potential issues early, and maintain high productivity levels. The dashboards cater to both agile teams and executive management, offering insights and forecasts that aid in strategic planning and decision-making.
+
+For further details, refer to the complete documentation available [here](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/GUIA_USO_COMPLETO.md).

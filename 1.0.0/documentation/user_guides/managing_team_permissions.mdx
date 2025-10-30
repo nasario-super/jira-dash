@@ -1,0 +1,85 @@
+# Managing Team Permissions
+
+Version: 1.0.0
+
+## Introduction
+
+This guide provides a comprehensive overview of managing team permissions within the Jira Dashboard application. It focuses on controlling access and permissions for team members, ensuring security, transparency, and flexibility in project management.
+
+## User Project Access Implementation
+
+### Problem Identification
+
+The initial problem involved users having access to all projects within Jira, including those they were not authorized to view. This guide outlines the solution implemented to restrict access to specific projects.
+
+### Solutions Implemented
+
+#### Project Access Service
+
+The `projectAccessService.ts` is central to managing user access. It includes:
+
+- **Configuration of Known Users**: Specific projects are assigned to known users.
+- **Automatic Issue Filtering**: Issues are filtered based on user access.
+- **Access Validation**: Ensures users only access authorized projects.
+- **Detailed Access Statistics**: Provides comprehensive access logs for monitoring.
+
+```typescript
+// Configuration for a specific user
+if (email === 'anderson.nasario@superlogica.com') {
+this.initializeUserProjects(email, ['INFOSECC', 'SEGP']);
+}
+```
+
+#### Integration with Jira API
+
+The integration with Jira API ensures that only authorized issues are displayed:
+
+```typescript
+// Filter issues based on user project access
+const filteredIssues = projectAccessService.filterIssuesByUserAccess(issues);
+```
+
+### Benefits of Implementation
+
+- **Data Security**: Automatic protection of sensitive information.
+- **Transparency**: Users are informed about the data they can access.
+- **Flexible Configuration**: Easily expandable to include new users.
+- **Intuitive Interface**: Provides clear visual feedback on access status.
+
+## Dynamic User Access
+
+### Problem Resolution
+
+The system was enhanced to dynamically manage access for multiple users, moving away from a static configuration. This allows for automatic discovery and management of user access to Jira projects.
+
+### Solution Details
+
+#### Automatic Discovery Service
+
+The `userProjectDiscovery.ts` service uses multiple methods to determine user access:
+
+- **JQL Method**: The most precise method, identifying issues where the user is involved.
+- **Project API Method**: Lists projects and verifies access.
+- **Board API Method**: Identifies accessible boards and associated projects.
+- **Fallback Method**: Uses a list of common projects as a backup.
+
+#### Monitoring and Logging
+
+Logs are used to monitor the discovery process, providing insights into user access and system performance.
+
+## Configuration for New Users
+
+To add a new user, update the `projectAccessService.ts`:
+
+```typescript
+// Add known user configuration
+if (email === 'novo.usuario@empresa.com') {
+this.initializeUserProjects(email, ['PROJ1', 'PROJ2', 'PROJ3']);
+}
+```
+
+## Summary
+
+This guide has outlined the implementation of a robust system for managing team permissions within the Jira Dashboard. By leveraging automatic filtering, dynamic user access, and comprehensive logging, the system ensures secure and transparent project management. The flexibility of the configuration allows for easy adaptation to new users and projects, maintaining control over who accesses what data.
+
+For further details, refer to the [User Project Access Implementation documentation](https://example.com/path) and explore the code examples provided for practical insights into the configuration and management processes.

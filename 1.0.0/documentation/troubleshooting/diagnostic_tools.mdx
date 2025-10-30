@@ -1,0 +1,66 @@
+# Diagnostic Tools
+
+## Introduction
+
+This guide provides an overview of the built-in tools available for system diagnosis in the Jira Dashboard application. These tools are essential for troubleshooting common issues, monitoring system performance, and ensuring the smooth operation of the application.
+
+## System Configuration and Deployment
+
+The Jira Dashboard system is configured to run via Docker, with features such as automatic startup, public access, enhanced security, and comprehensive documentation. The system is ready for use and monitoring, ensuring a seamless user experience.
+
+### Key Configuration Files
+
+- **Dockerfile**: Used for creating the Docker image.
+- **docker-compose.yml**: Manages container orchestration.
+- **deploy-docker.sh**: Automates the deployment process.
+- **DOCKER_PRODUCAO.md**: Provides a Docker guide.
+- **INSTALACAO_DOCKER_AWS.md**: Offers installation instructions.
+- **CONFIGURACAO_NETWORK_AWS.md**: Details network configuration.
+- **MANTER_SSH_ATIVA.md**: Guides on maintaining SSH connections.
+
+## Troubleshooting Common Issues
+
+### Docker and Network Issues
+
+- **If Docker does not install**: Refer to `INSTALACAO_DOCKER_AWS.md`.
+- **If SSH timeout occurs**: Consult `MANTER_SSH_ATIVA.md`.
+- **If the container does not start**: Use the following command to view logs:
+  ```bash
+docker-compose logs -f
+  ```
+
+### Debugging and Performance
+
+- **Incorrect Dashboard Calculations**: Issues with service files and components can lead to incorrect totals. Debugging files such as `debug-data-discrepancy.js` and `debug-api-response.js` are available for investigating these discrepancies.
+- **Jira API v3 Bug**: A critical bug in Jira API v3 affects queries with multiple projects, returning issues from only one project. The workaround involves fetching data separately for each project and merging the results.
+
+### Monitoring and Logs
+
+- **Monitor Docker Containers**: Use the following command to check resource usage:
+  ```bash
+docker stats jira-dashboard
+  ```
+- **View Logs**: Access logs with:
+  ```bash
+docker logs jira-dashboard
+  ```
+
+## Advanced Analytics and Insights
+
+The Jira Dashboard includes advanced analytics features that provide automatic insights, anomaly detection, and predictive analytics. These tools help in identifying trends, forecasting project timelines, and optimizing team performance.
+
+### Key Features
+
+- **AI Insights**: Offers detailed insights and recommendations.
+- **Anomaly Detection**: Identifies unusual patterns and alerts users.
+- **Predictive Analytics**: Provides forecasts for sprints and issue resolutions.
+
+## Summary
+
+The Jira Dashboard's diagnostic tools are designed to facilitate efficient troubleshooting and performance monitoring. By leveraging Docker for deployment and utilizing advanced analytics features, users can ensure optimal system functionality and gain valuable insights into their projects.
+
+For further assistance, users are encouraged to consult the detailed documentation provided with the system or contact their system administrator.
+
+**Version**: 1.0.0
+**Date**: October 28, 2025
+**Status**: Ready for Use

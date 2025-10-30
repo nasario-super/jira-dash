@@ -1,0 +1,79 @@
+# System Requirements for Jira Dashboard
+
+Version: 1.0.0
+
+This document outlines the hardware, software, and Jira version requirements necessary to set up and deploy the Jira Dashboard. This guide is part of the "Getting Started" group and is essential for ensuring a smooth initial setup and operation of the Jira Dashboard.
+
+## Hardware Requirements
+
+- **EC2 Instance**: Ensure your EC2 instance is properly configured to support Node.js and npm installations.
+
+## Software Requirements
+
+To successfully deploy and run the Jira Dashboard, the following software components are required:
+
+- **Node.js**: Version 18 or higher
+  ```bash
+node --version
+  ```
+
+- **npm**: Version 9 or higher
+  ```bash
+npm --version
+  ```
+
+- **Git**: Ensure Git is installed for version control
+  ```bash
+git --version
+  ```
+
+- **Docker**: Required for containerization
+  ```bash
+docker --version
+  ```
+
+- **Docker Compose**: For managing multi-container Docker applications
+  ```bash
+docker-compose --version
+  ```
+
+## Jira Requirements
+
+- **Jira Cloud Account**: A valid Jira Cloud account with API access permissions is necessary.
+- **API Token**: Create an API token for authentication with the Jira API.
+  - Visit [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens) to create a token.
+
+## Environment Configuration
+
+- **Environment Variables**: Configure your `.env` file with the following variables:
+  ```env
+VITE_JIRA_DOMAIN=your-domain.atlassian.net
+VITE_JIRA_EMAIL=your-email@company.com
+VITE_JIRA_API_TOKEN=your-api-token
+  ```
+
+## Security Guidelines
+
+- **Credentials Management**: Do not store Jira credentials directly in the `.env` file. Use UI-based login for authentication.
+
+## Troubleshooting and Support
+
+For any issues during setup or deployment, consider the following steps:
+
+- **Check Logs**: Use `pm2 logs jira-dashboard` to view application logs.
+- **Restart Application**: Use `pm2 restart jira-dashboard` if necessary.
+- **Common Errors**:
+  - **Build Failed**: Clear node modules and rebuild.
+    ```bash
+rm -rf node_modules package-lock.json
+npm install
+npm run build
+    ```
+
+## Summary
+
+This document provides a comprehensive overview of the system requirements for deploying the Jira Dashboard. Ensure all software prerequisites are met, configure your environment correctly, and follow security best practices to maintain a secure and efficient deployment.
+
+For further assistance, consult the [complete documentation](https://id.atlassian.com/manage-profile/security/api-tokens) or reach out to your system administrator.
+
+---

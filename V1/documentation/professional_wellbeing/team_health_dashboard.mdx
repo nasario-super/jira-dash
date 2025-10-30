@@ -1,0 +1,100 @@
+# Team Health Dashboard
+
+## Introduction
+
+The Team Health Dashboard is a comprehensive tool designed to monitor overall team health and satisfaction. It provides insights into team productivity, workload management, and project performance, helping team leaders and managers make informed decisions to support team member wellbeing and productivity.
+
+## Features Overview
+
+### Agile Dashboard
+
+The Agile Dashboard offers a real-time overview of team activities and productivity metrics. It includes:
+
+- **Total Issues**: Track the number of issues in the current sprint.
+- **Completion Rate**: Percentage of issues completed.
+- **In Progress**: Issues currently being worked on.
+- **Blocked**: Issues that are currently blocked.
+- **Overdue**: Issues that have passed their due date.
+
+#### Daily Scrum
+
+The Daily Scrum feature provides a list of daily issues, including:
+
+- Current status
+- Responsible team member
+- Priority level
+- Due date
+
+This feature is useful for daily standups, identifying blockers, and tracking sprint progress.
+
+#### Intelligent Alerts
+
+The dashboard automatically detects and alerts users to:
+
+- Overdue issues
+- Blocked issues
+- High bug rates
+- Overloaded capacity
+
+Users can click on alerts to view related issues.
+
+### Executive Dashboard
+
+Designed for directors and managers, the Executive Dashboard provides key performance indicators (KPIs) such as:
+
+1. **Velocity**: Number of issues completed per sprint.
+2. **Throughput**: Delivery rate.
+3. **Cycle Time**: Average time per issue.
+4. **Lead Time**: Time from request to completion.
+5. **Efficiency**: Percentage of completed issues.
+
+#### Graphs and Trends
+
+- **Trend Analysis**: Productivity over time.
+- **Type Distribution**: Comparison of bugs versus tasks.
+- **Project Performance**: Speed comparison across projects.
+
+### Quality Metrics
+
+The dashboard includes quality analysis features such as:
+
+- **Defect Rate**: Ratio of bugs found to total issues, with ideal rates below 20% and alerts for rates above 30%.
+
+## Technical Architecture
+
+The Team Health Dashboard is a Single Page Application (SPA) that connects directly to Jira Cloud via API. It features:
+
+- **Real-time Data Integration**: Ensures metrics are accurate and up-to-date.
+- **Responsive Interface**: Optimized for mobile, tablet, and desktop.
+- **Data Persistence**: Utilizes local cache for data storage without a backend database.
+
+### Deployment and Updates
+
+The dashboard is ready for deployment on AWS EC2 with the following steps:
+
+1. **Clone the Repository**:
+   ```bash
+cd /home/ssm-user/projetos
+git clone https://github.com/seu-usuario/jira-dash.git
+cd jira-dash
+   ```
+
+2. **Execute Deployment Script**:
+   ```bash
+chmod +x install-and-deploy.sh
+./install-and-deploy.sh
+   ```
+
+3. **Access the Application**:
+   ```
+http://SEU-IP-DA-EC2:3000
+   ```
+
+### Security and Authentication
+
+- **API Token Authentication**: Users must generate an API token from their Jira account for authentication.
+- **Security Best Practices**: Credentials should not be stored in environment files but provided via the UI login.
+
+## Summary
+
+The Team Health Dashboard is a powerful tool for monitoring team productivity and wellbeing. It offers real-time insights, intelligent alerts, and comprehensive performance metrics, all integrated seamlessly with Jira. The dashboard is designed for ease of use and rapid deployment, making it an essential tool for team leaders and managers focused on enhancing team performance and satisfaction.

@@ -1,0 +1,160 @@
+# Security Recommendations
+
+Version: 1.0.0
+Tab: Documentation - Complete product documentation and user guides
+Group: Best Practices - Recommended patterns and optimization strategies
+Page Type: Guide
+Page Description: Secure your installation and data
+Priority: Medium
+
+## Introduction
+
+Securing your web application is crucial to protect sensitive data and maintain user trust. This guide provides a comprehensive checklist and procedures to enhance the security of your installation, focusing on implementing HTTPS, backend authentication, security headers, and auditing logins.
+
+## Implementation Checklist
+
+### Immediate Actions (Today)
+
+- **Install Certbot**:
+  ```bash
+sudo apt-get install -y certbot
+  ```
+- **Generate SSL Certificate**:
+  ```bash
+sudo certbot certonly --standalone -d seu-dominio.com
+  ```
+- **Configure Nginx with HTTPS** and test:
+  ```bash
+https://seu-dominio.com
+  ```
+- **Redirect HTTP to HTTPS**.
+
+### Short Term (1-2 Days)
+
+- Implement a backend authentication gateway.
+- Move credentials to server-side sessions.
+- Remove credentials from the frontend.
+- Add security headers.
+- Test with security tools like `curl` and Wireshark.
+
+### Medium Term (1-2 Weeks)
+
+- Audit login logs.
+- Implement anomaly detection.
+- Enable Two-Factor Authentication (2FA).
+- Rotate tokens regularly.
+
+## Verification Procedures
+
+### Test 1: Verify HTTPS
+
+# Should return HTTPS
+curl -I https://seu-dominio.com
+
+# Look for: HTTP/2 200 (or 301 redirect)
+
+# HTTP should redirect
+curl -I http://seu-dominio.com
+
+# Should return: 301 Moved Permanently
+
+### Test 2: Verify Security Headers
+
+```bash
+curl -I https://seu-dominio.com | grep -i strict-transport
+```
+
+# Should return: Strict-Transport-Security: max-age=31536000
+
+### Test 3: Use Wireshark
+
+1. Open Wireshark.
+2. Capture traffic.
+3. Filter by "jira-dashboard".
+4. **Before (❌)**: Credentials visible in plain text.
+5. **After (✅)**: Credentials encrypted.
+
+## Self-Signed SSL Certificate
+
+### Security Benefits
+
+| Type of Attack | Protection |
+| ------------------------- | -------------------- |
+| **Sniffing** | ✅ Encrypted traffic |
+| **Man-in-the-Middle** | ✅ TLS 1.2/1.3 |
+| **Credentials in text** | ✅ Base64 encrypted |
+| **Session hijacking** | ✅ Secure cookie |
+| **Direct phishing** | ✅ HTTPS required |
+
+### Limitations
+
+- **Self-Signed Certificate Warning**:
+  - Users must manually bypass warnings.
+  - Common in corporate environments.
+  - Can be added as a browser exception.
+
+### Certificate Renewal (Annual)
+
+```bash
+sudo su -
+
+```
+
+# Generate new certificate
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+- keyout /etc/ssl/private/jira-dashboard.key \
+- out /etc/ssl/certs/jira-dashboard.crt \
+- subj "/C=BR/ST=SP/L=Sao Paulo/O=SeuEmpresa/CN=3.83.28.223"
+
+# Restart Nginx
+systemctl restart nginx
+
+# Verify
+curl -k https://3.83.28.223
+
+## Secure Credential Handling
+
+### Frontend to Backend Transition
+
+- **Before (Insecure)**: Credentials sent directly in requests.
+- **After (Secure)**: Credentials handled via a backend gateway.
+
+### Backend Gateway Example (Node.js Express)
+
+```javascript
+// src/server/auth-gateway.js
+import express from 'express';
+import session from 'express-session';
+
+const app = express();
+
+app.use(session({
+secret: process.env.SESSION_SECRET | | 'your-secret-key',
+resave: false,
+saveUninitialized: false,
+cookie: {
+secure: true,
+httpOnly: true,
+sameSite: 'strict',
+maxAge: 1000 * 60 * 60 * 24
+}
+}));
+
+app.post('/api/auth/validate', async (req, res) => {
+const { email, apiToken } = req.body;
+req.session.jiraCredentials = { email, apiToken };
+// Validate credentials securely
+});
+```
+
+## Summary
+
+Implementing these security measures will significantly enhance the protection of your web application. By ensuring HTTPS is active, credentials are securely handled, and security headers are in place, you can protect against common threats such as sniffing, man-in-the-middle attacks, and session hijacking. Regular audits and updates will maintain this security posture over time.
+
+For more detailed instructions and scripts, refer to the provided documentation links.
+
+## Additional Resources
+
+- [CORRECAO_SEGURANCA_CRITICA.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/CORRECAO_SEGURANCA_CRITICA.md)
+- [HTTPS_AUTO_ASSINADO.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/HTTPS_AUTO_ASSINADO.md)
+- [RESUMO_FINAL_CRITICO.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/RESUMO_FINAL_CRITICO.md)

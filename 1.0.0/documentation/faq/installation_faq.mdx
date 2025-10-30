@@ -1,0 +1,137 @@
+# Installation FAQ
+
+Welcome to the Installation FAQ for version 1.0.0 of the Jira Dashboard. This document aims to address common questions and provide guidance on the installation and setup process for deploying the Jira Dashboard application on AWS EC2 instances. This guide is part of the complete product documentation and user guides.
+
+## Prerequisites
+
+Before beginning the installation, ensure that the following prerequisites are met on your AWS EC2 instance:
+
+- **Node.js**: Version 18 or higher
+- **npm**: Version 9 or higher
+- **Git**: Installed and configured
+
+## Installation Steps
+
+### Step 1: Clone the Repository
+
+To begin the installation, clone the Jira Dashboard repository to your EC2 instance:
+
+```bash
+cd /home/ssm-user/projetos
+git clone https://github.com/seu-usuario/jira-dash.git
+cd jira-dash
+```
+
+### Step 2: Install Dependencies
+
+Install all necessary dependencies, including `@tanstack/react-query` and `vite-plugin-pwa`:
+
+```bash
+npm install
+npm list @tanstack/react-query
+npm list vite-plugin-pwa
+```
+
+### Step 3: Build for Production
+
+Compile the project using TypeScript and Vite:
+
+```bash
+npm run build
+ls -la dist/
+```
+
+### Step 4: Serve the Application
+
+#### Option 1: Simple Server
+
+Install a simple web server and run the build:
+
+```bash
+npm install -g serve
+serve -s dist -l 3000
+```
+
+#### Option 2: PM2 (Recommended for Production)
+
+Configure and start the application using PM2:
+
+```bash
+npm install -g pm2
+
+cat > pm2.config.js << 'EOFPM2'
+module.exports = {
+apps: [
+{
+name: 'jira-dashboard',
+script: 'serve',
+args: '-s dist -l 3000',
+instances: 'max',
+exec_mode: 'cluster',
+env: {
+NODE_ENV: 'production',
+},
+error_file: './logs/err.log',
+out_file: './logs/out.log',
+log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
+merge_logs: true,
+},
+],
+};
+EOFPM2
+
+pm2 start pm2.config.js
+```
+
+## Post-Installation Steps
+
+After deploying the application, follow these steps to ensure everything is functioning correctly:
+
+1. **Test Login**: Verify that you can log into the application.
+2. **Select Projects**: Ensure that project selection works as expected.
+3. **Check Dashboard**: Confirm that the dashboard displays correctly.
+4. **Configure Nginx (Optional)**: Set up Nginx for domain handling if required.
+5. **Monitor Logs**: Use `pm2 logs jira-dashboard` to check for any errors.
+
+## Docker Installation
+
+For those preferring Docker, follow these quick steps to install Docker on your AWS EC2 instance:
+
+### Quick Installation (3 Steps)
+
+1. **SSH into the Instance**:
+
+    ```bash
+ssh -i seu-key.pem ec2-user@3.83.28.223
+    ```
+
+2. **Install Docker**:
+
+    ```bash
+sudo apt-get update
+sudo apt-get install -y docker.io docker-compose
+sudo usermod -aG docker $USER
+exit
+ssh -i seu-key.pem ec2-user@3.83.28.223
+    ```
+
+3. **Verify Installation**:
+
+    ```bash
+docker --version
+docker-compose --version
+    ```
+
+## Troubleshooting
+
+- **Permission Errors**: Adjust permissions with `sudo chown -R ssm-user:ssm-user /home/ssm-user/projetos/jira-dash`.
+- **PM2 Issues**: Ensure PM2 is installed and configured with `pm2 startup` and `pm2 save`.
+- **Build Failures**: Clear and reinstall dependencies with `rm -rf node_modules package-lock.json` followed by `npm install` and `npm run build`.
+
+## Summary
+
+This document provided a comprehensive guide to installing and deploying the Jira Dashboard on AWS EC2 instances. It covered prerequisites, installation steps, post-installation checks, and troubleshooting tips. For further assistance, refer to the detailed guides and scripts provided in the documentation.
+
+For more detailed information, please refer to the complete documentation available in the repository.
+
+**Documentation URL**: [Jira Dashboard Documentation](https://github.com/seu-usuario/jira-dash)

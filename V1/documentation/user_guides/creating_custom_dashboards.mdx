@@ -1,0 +1,155 @@
+# Creating Custom Dashboards
+
+## Introduction
+
+This tutorial provides a comprehensive guide to building personalized dashboards using the Jira Dashboard application. Designed for executives, project managers, and team leaders, the Jira Dashboard offers a unified view of project data, real-time insights, and customizable visualizations to facilitate strategic decision-making.
+
+## Overview of the Jira Dashboard
+
+### Purpose and Value Proposition
+
+The Jira Dashboard is a standalone web application that integrates directly with the Jira API to consolidate and visualize data from multiple projects and teams. It addresses the limitations of native Jira reporting by providing:
+
+- **Unified View**: Consolidates data from various projects and boards into a single interface.
+- **Real-Time Insights**: Automatically updates metrics with the latest Jira data.
+- **Intelligent Visualization**: Offers graphs and indicators to identify patterns, trends, and anomalies.
+- **Agile Decision-Making**: Presents relevant information clearly and concisely.
+- **Customization**: Includes advanced filters for specific analyses by project, team, period, or work type.
+
+### Target Audience
+
+- **Primary**: Executives, project managers, and team leaders.
+- **Secondary**: Product owners, scrum masters, and analysts.
+
+## Key Features
+
+### Functionalities
+
+- **Main KPIs**: Total open issues, completed issues, completion rate, average resolution time, team velocity, and overdue issues.
+- **Graphical Visualizations**: Burndown charts, issues by status/type, team velocity, and priority distribution.
+- **Advanced Filters**: Filter by project, sprint, issue type, status, assignee, priority, and period.
+- **Recent Activity**: List of the latest updated issues with direct links to Jira.
+- **Responsive Layout**: Adaptable interface for desktop, tablet, and mobile.
+- **Complete Integration**: Direct connection to the Jira Cloud API.
+
+### Technical Stack
+
+- **Frontend**: React 18+ with TypeScript
+- **Styling**: Tailwind CSS
+- **Charts**: Recharts
+- **API**: Axios for Jira REST API integration
+- **State Management**: React Context API and custom hooks
+- **Routing**: React Router v6
+- **Build Tool**: Vite
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+- Jira Cloud account with API permissions
+- Jira API token
+
+### Installation
+
+1. **Clone the Repository**
+   ```bash
+git clone <url-do-repositorio>
+cd jira-dashboard
+   ```
+
+2. **Install Dependencies**
+   ```bash
+npm install
+```
+
+# or
+yarn install
+   ```
+
+3. **Configure Environment Variables**
+   Copy the example file and edit with your Jira credentials:
+   ```
+cp env.example .env
+   ```
+
+   Edit the `.env` file:
+   ```
+VITE_JIRA_DOMAIN=your-company.atlassian.net
+VITE_JIRA_EMAIL=your-email@example.com
+
+### Running the Application
+
+- **Development Mode**
+  ```bash
+npm run dev
+```
+
+# Access: http://localhost:5173
+  ```
+
+- **Production Build**
+  ```
+npm run build
+npm run preview
+
+## Dashboard Components
+
+### Main Dashboard Component
+
+The dashboard integrates filters and visualizations, processing data for various charts and displaying a filter bar using Tailwind CSS for layout and styling.
+
+```typescript
+function Dashboard() {
+const {
+filters,
+filterOptions,
+data,
+loading,
+error,
+updateFilter,
+clearAllFilters,
+activeFiltersCount,
+} = useJiraFilters();
+
+const processedData = useMemo(() => {
+if (!data?.issues) return null;
+
+return {
+burndown: processBurndownData(data.issues),
+statusDistribution: processStatusData(data.issues),
+velocity: processVelocityData(data.issues),
+issueTypes: processIssueTypeData(data.issues),
+timeline: processTimelineData(data.issues),
+priorityByStatus: processPriorityByStatus(data.issues),
+};
+}, [data]);
+
+return (
+<div className="min-h-screen bg-gray-50">
+<Header />
+<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<FilterBar
+filters={filters}
+filterOptions={filterOptions}
+updateFilter={updateFilter}
+clearAllFilters={clearAllFilters}
+activeFiltersCount={activeFiltersCount}
+loading={loading}
+/>
+</div>
+</div>
+);
+}
+```
+
+## Summary
+
+The Jira Dashboard is a powerful tool for visualizing and analyzing project data in real-time. By integrating directly with the Jira API, it offers a comprehensive and customizable interface for executives and project managers to make informed decisions. With features like advanced filtering, responsive design, and real-time updates, the dashboard enhances productivity and strategic planning.
+
+For more detailed information, please refer to the full documentation and user guides available in the project repository.
+
+---
+
+For further details, visit the [Jira Dashboard Documentation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/README.md).

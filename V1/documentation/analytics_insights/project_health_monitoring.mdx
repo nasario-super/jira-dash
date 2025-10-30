@@ -1,0 +1,78 @@
+# Project Health Monitoring
+
+Welcome to the Project Health Monitoring guide. This document provides insights into monitoring project health and identifying risks using advanced analytics and business intelligence features. This guide is part of the Analytics & Insights group, focusing on providing comprehensive analytics to ensure project success.
+
+## Overview
+
+Project Health Monitoring involves using analytics dashboards to display accurate, project-specific metrics. These dashboards update dynamically as project selections change, allowing for real-time insights into project performance and health.
+
+## Key Features
+
+### Real-Time Analytics
+
+- **Dynamic Metrics**: The analytics dashboard displays metrics that update in real-time based on the selected projects. This ensures that the data reflects the current state of the projects.
+- **Project-Specific Insights**: Metrics such as velocity, throughput, and efficiency are calculated based on the selected Jira issues, providing tailored insights for each project.
+
+### Quality Metrics
+
+- **Defect Rate**: Monitors the ratio of bugs found versus total issues, with an ideal rate of less than 20%.
+- **Bug Resolution Time**: Tracks the time taken from bug report to resolution, categorized as fast (&lt;2 days), normal (2-5 days), or slow (&gt;5 days).
+- **Test Coverage**: Measures the percentage of issues with tests and identifies bugs found post-release.
+- **Rework**: Assesses the ratio of reopened issues to resolved issues, with a low rate (&lt;10%) being favorable.
+
+### AI-Driven Analytics
+
+- **Automatic Insights**: The system generates insights automatically, identifying trends, anomalies, and making predictions.
+- **Anomaly Detection**: Detects sudden drops in velocity or abnormal increases in bug counts.
+- **Predictive Analytics**: Provides forecasts on sprint completion, issue counts, and burn-down rates.
+
+### Reporting and Dashboards
+
+- **Agile Dashboard**: Offers a comprehensive view of current sprints, including total issues, completion percentage, and blocked or overdue issues.
+- **Executive Dashboard**: Displays key performance indicators (KPIs) such as velocity, throughput, cycle time, and efficiency.
+- **Report Generation**: Users can generate detailed reports, including executive summaries, key metrics, and graphical analyses.
+
+## Testing and Validation
+
+### Test Cases
+
+1. **Single Project Analytics**:
+   - Select a single project and verify that metrics are specific to that project.
+
+2. **Multiple Projects Analytics**:
+   - Select multiple projects and ensure that metrics are aggregated from all selected projects.
+
+3. **Advanced Analytics**:
+   - Verify that advanced analytics display data-driven insights and do not show "No correlation found."
+
+4. **Project Selection Changes**:
+   - Change project selections and confirm that metrics update automatically.
+
+### Validation Checklist
+
+- Ensure analytics display different data for each project.
+- Confirm that insights are based on real data, not hardcoded values.
+- Verify that performance metrics are logical and predictions vary based on data.
+
+## Technical Implementation
+
+### Architecture and Stack
+
+- **Application Type**: Single Page Application (SPA) that connects directly to Jira Cloud via API.
+- **Data Handling**: Utilizes periodic polling and manual refresh for data updates.
+- **Interface**: Responsive design compatible with mobile, tablet, and desktop.
+
+### Development Phases
+
+1. **MVP**: Initial setup with basic metric cards and responsive layout.
+2. **Expansion**: Addition of advanced graphs and incident sections.
+3. **Refinement**: Enhancements like dark mode and widget customization.
+
+## Summary
+
+Project Health Monitoring leverages advanced analytics to provide real-time insights into project performance. By integrating with Jira, the system ensures accurate and dynamic data representation, aiding in effective project management and risk identification.
+
+For more detailed information, please refer to the following resources:
+- [CORRECAO_ANALYTICS_FILTRO.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/CORRECAO_ANALYTICS_FILTRO.md)
+- [GUIA_USO_COMPLETO.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/GUIA_USO_COMPLETO.md)
+- [Escopo.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/Escopo.md)

@@ -1,0 +1,104 @@
+# Workload Monitoring
+
+Version: 1.0.0
+Tab: Documentation - Complete product documentation and user guides
+Group: Professional Wellbeing - Features supporting team member wellbeing and productivity
+Page Type: Guide
+Page Description: Monitor and balance team member workloads
+Priority: High
+
+## Introduction
+
+Monitoring and balancing team member workloads is crucial for maintaining productivity and ensuring the wellbeing of team members. This guide provides insights into using dashboards to track workloads, identify potential overloads, and manage tasks effectively.
+
+## Agile Dashboard Overview
+
+The Agile Dashboard offers a comprehensive view of team activities, helping you monitor productivity and workload in real-time. It includes the following features:
+
+- **Total Issues**: Track the number of issues in the current sprint.
+- **Completion Rate**: Percentage of issues completed.
+- **In Progress**: Issues currently being worked on.
+- **Blocked**: Issues that are currently blocked.
+- **Overdue**: Issues that have passed their due date.
+
+### Daily Scrum
+
+Utilize the daily scrum feature to:
+
+- Review the current status of issues.
+- Identify the responsible team member.
+- Check priorities and due dates.
+
+### Intelligent Alerts
+
+The dashboard automatically detects and alerts you about:
+
+- Overdue issues.
+- Blocked issues.
+- High bug rates.
+- Overloaded capacity.
+
+Click on an alert to view related issues and take necessary actions.
+
+## Executive Dashboard for Managers
+
+The Executive Dashboard is designed for directors and managers to provide key performance indicators (KPIs) and insights into team productivity:
+
+- **Velocity**: Number of issues completed per sprint.
+- **Throughput**: Delivery rate.
+- **Cycle Time**: Average time taken to complete an issue.
+- **Lead Time**: Time from request to completion.
+- **Efficiency**: Percentage of issues completed.
+
+### Graphical Insights
+
+- **Trend Analysis**: Monitor productivity trends over time.
+- **Distribution by Type**: Compare bugs versus tasks.
+- **Project Performance**: Identify which projects are progressing faster.
+
+## Workload Analysis Per User
+
+Understanding the workload distribution among team members is essential for balancing tasks:
+
+- **Workload Calculation**: Determine the proportion of open issues relative to the total assigned to each user.
+
+  Example:
+  ```plaintext
+User A:
+- Total: 20 issues
+- Open: 15
+- Completed: 5
+- Load: 15 / 20 = 75% (heavily loaded)
+
+User B:
+- Total: 20 issues
+- Open: 5
+- Completed: 15
+- Load: 5 / 20 = 25% (available)
+  ```
+
+### Interpretation
+
+| Load Percentage | Status | Action |
+| ----------------- | -------------- | ------------------------- |
+| &lt; 30% | ✅ Available | Can take more work |
+| 30-60% | ✅ Normal | Balanced |
+| 60-80% | ⚠️ Alert | Monitor closely |
+| &gt; 80% | 🔴 Critical | Redistribute workload |
+
+## Forecasting and Predictions
+
+Leverage recent velocity data to forecast upcoming sprint and monthly issue completions:
+
+- **Sprint Forecast**: Based on the average velocity of the last three sprints.
+- **Monthly Forecast**: Calculated using the average daily rate multiplied by 30 days.
+
+### Burn-Down Logic
+
+Estimate completion time with burn-down rates to manage backlogs effectively.
+
+## Summary
+
+This guide provides a structured approach to monitoring team workloads using the Agile and Executive Dashboards. By leveraging intelligent alerts, workload analysis, and forecasting tools, managers can ensure balanced workloads and maintain team productivity. For further details, refer to the complete product documentation and user guides.
+
+For more information, visit the [Jira Dash Guide](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/GUIA_USO_COMPLETO.md).

@@ -1,0 +1,69 @@
+# Case Studies
+
+## Introduction
+
+This document provides real-world implementation examples of the Jira Dashboard, showcasing various functionalities, configurations, and use cases. The examples illustrate how the system is used in practice, highlighting its capabilities in project management, data filtering, and analytics.
+
+## Real-World Implementations
+
+### Project Filtering and Security
+
+The Jira Dashboard ensures that data and reports are displayed only for the projects selected by the user. This guarantees correct filtering and secure access to information. Key features include:
+
+- **Executive Dashboard**: Displays KPIs only for selected projects.
+- **Quality Metrics**: Shows metrics only for selected projects.
+- **Analytics IA**: Provides analytics only for selected projects.
+- **Reports**: Generates reports only for selected projects.
+- **Validation**: If a user attempts to access a non-selected project, data is filtered accordingly.
+
+#### Testing Scenarios
+
+- **Test 1: Verify Project Filter**
+  - Login and select only the "INFOSECC" project.
+  - Open the Agile Dashboard.
+  - Console should display: `useFilteredProjectData: projects: ['INFOSECC']`.
+  - No warnings for issues from non-selected projects should appear.
+  - Data displayed should be only from "INFOSECC".
+
+- **Test 2: Verify Multiple Projects**
+  - Login and select "INFOSECC" and "SEGP".
+  - Open the Executive Dashboard.
+  - Console should display: `useFilteredProjectData: projects: ['INFOSECC', 'SEGP']`.
+  - Data should be aggregated from both projects.
+
+- **Test 3: Verify Security**
+  - Login and select only the "INFOSECC" project.
+  - Open Quality Metrics.
+  - Count the issues displayed; the number should be only from "INFOSECC".
+
+### Common Dashboard Issues and Solutions
+
+The Jira Dashboard addresses common issues encountered in integrated dashboards:
+
+- **Issue with Different Status**: Caused by real-time updates and multiple users. Solution: Click "Update" on the Dashboard or refresh the page (F5).
+- **Mismatch in Issue Numbers**: Due to applied filters or ongoing synchronization. Verify active filters and check for "Applied Filters" in the card.
+- **Missing User**: Occurs when a user has no assigned issues or issues have been reassigned. Action: Reassign issues if necessary.
+
+### Use Cases
+
+- **Sprint Planning**: Access the Agile Dashboard to view total issues, analyze previous velocity, and set sprint goals.
+- **Daily Standup**: Navigate to Daily Scrum to view today's issues, identify blockages, and discuss solutions.
+- **Managerial Reporting**: Use the Executive Dashboard to analyze KPIs, export reports, and present data.
+- **Problem Identification**: Go to Quality Metrics to find high defect rates, view bugs, and prioritize fixes.
+
+### Advanced Analytics and Data Filtering
+
+The system includes advanced analytics and data filtering capabilities:
+
+- **Advanced Analytics**: Access predictive analytics and follow improvement plans based on current data.
+- **Data Filtering**: Implemented solutions include a data validation service and a detailed diagnostic component for analyzing access and inconsistencies across projects.
+
+## Summary
+
+The Jira Dashboard offers a robust and secure platform for managing projects with features like project-specific filtering, real-time analytics, and comprehensive reporting. It addresses common issues with integrated dashboards and provides actionable insights through advanced analytics. The system is designed to enhance productivity and decision-making in project management environments.
+
+For more detailed information, refer to the following documentation files:
+
+- [FILTRO_PROJETOS_GLOBAIS.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/FILTRO_PROJETOS_GLOBAIS.md)
+- [GUIA_USO_COMPLETO.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/GUIA_USO_COMPLETO.md)
+- [RESUMO_PROJETO.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/RESUMO_PROJETO.md)

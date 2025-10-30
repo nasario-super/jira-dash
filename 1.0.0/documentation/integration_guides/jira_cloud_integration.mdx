@@ -1,0 +1,160 @@
+# Jira Cloud Integration Guide
+
+## Introduction
+
+Welcome to the Jira Cloud Integration Guide for version 1.0.0. This document provides comprehensive instructions on how to connect and deploy the Jira Dashboard, a modern and responsive tool for visualizing Jira metrics, projects, and sprints. The guide is part of the Integration Guides group, focusing on connecting with third-party tools and services.
+
+## Features of the Jira Dashboard
+
+The Jira Dashboard offers a centralized and intuitive interface for accessing Jira data. Key features include:
+
+- **Main Metrics (KPIs):** Track total open issues, completed issues, completion rate, average resolution time, velocity, and overdue issues.
+- **Graphical Visualizations:** Includes burndown charts, issues by status/type, team velocity, and priority distribution.
+- **Advanced Filters:** Filter by project, sprint, issue type, status, assignee, priority, and time period.
+- **Recent Activity:** View the latest updated issues with direct links to Jira.
+- **Responsive Layout:** Optimized for desktop, tablet, and mobile use.
+- **Complete Integration:** Direct connection to the Jira Cloud API.
+
+## Technical Stack
+
+The Jira Dashboard is built using the following technologies:
+
+- **Frontend:** React 18+ with TypeScript
+- **Styling:** Tailwind CSS
+- **Charts:** Recharts
+- **API Integration:** Axios for Jira REST API
+- **State Management:** React Context API and custom hooks
+- **Routing:** React Router v6
+- **Build Tool:** Vite
+
+## Prerequisites
+
+Before setting up the Jira Dashboard, ensure you have the following:
+
+- Node.js 18+
+- npm or yarn
+- Jira Cloud account with API permissions
+- Jira API token
+
+## Installation and Setup
+
+### Step 1: Clone the Repository
+
+```bash
+git clone <url-do-repositorio>
+cd jira-dashboard
+```
+
+### Step 2: Install Dependencies
+
+```bash
+npm install
+```
+
+# or
+yarn install
+
+### Step 3: Configure Environment Variables
+
+Copy the example environment file and edit it with your Jira credentials:
+
+```bash
+cp env.example .env
+```
+
+Edit the `.env` file:
+
+```env
+VITE_JIRA_DOMAIN=sua-empresa.atlassian.net
+VITE_JIRA_EMAIL=seu-email@empresa.com
+VITE_JIRA_API_TOKEN=seu-token-aqui
+```
+
+### Step 4: Start the Development Server
+
+```bash
+npm run dev
+```
+
+# or
+yarn dev
+```
+
+Access the application at [http://localhost:3000](http://localhost:3000).
+
+```
+
+## Deploying on AWS
+
+### Quick Deployment Steps
+
+1. **Clone the Repository on EC2**
+
+   ```bash
+cd /home/ssm-user/projetos
+git clone https://github.com/seu-usuario/jira-dash.git
+cd jira-dash
+   ```
+
+2. **Run the Deployment Script**
+
+   ```bash
+chmod +x install-and-deploy.sh
+./install-and-deploy.sh
+   ```
+
+3. **Access the Application**
+
+   Open `http://SEU-IP-DA-EC2:3000` in your browser.
+
+### Security Guidelines
+
+- Do not store Jira credentials in the `.env` file. Provide them via the UI login.
+
+## Troubleshooting
+
+### Common Errors
+
+- **Cannot find package '@tanstack/react-query'**
+
+  ```bash
+npm install
+  ```
+
+- **Cannot find package 'vite-plugin-pwa'**
+
+  ```bash
+npm install
+  ```
+
+- **Build Failed**
+
+  ```bash
+rm -rf node_modules package-lock.json
+npm install
+npm run build
+  ```
+
+### Checking Application Status
+
+Use PM2 to manage and monitor the application:
+
+```bash
+pm2 status
+pm2 logs jira-dashboard
+pm2 monit
+```
+
+## Support
+
+For support and questions, you can:
+
+- Open an issue on GitHub
+- Check the [Jira API documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/)
+- Consult the React and TypeScript documentation
+
+## Summary
+
+This guide provides the necessary steps to integrate and deploy the Jira Dashboard, offering a powerful tool for visualizing and analyzing Jira data. By following the installation and deployment instructions, users can quickly set up the dashboard to enhance project visibility and productivity.
+
+For further assistance, refer to the support section or the available documentation links.

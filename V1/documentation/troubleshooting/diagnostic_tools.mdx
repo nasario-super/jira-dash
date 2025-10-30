@@ -1,0 +1,106 @@
+# Diagnostic Tools for System Diagnosis
+
+This guide provides an overview of the built-in tools available for diagnosing and troubleshooting issues within the Jira Dashboard system. These tools are essential for maintaining optimal performance and ensuring smooth operation.
+
+## System Configuration and Deployment
+
+The Jira Dashboard system is configured to run via Docker with automatic startup, public access, enhanced security, and comprehensive documentation support. It is ready for use and monitoring.
+
+### Key Configuration Files
+
+- **Dockerfile**: Defines the Docker image.
+- **docker-compose.yml**: Manages orchestration.
+- **deploy-docker.sh**: Automates deployment.
+
+### Deployment Steps
+
+To deploy the system using Docker, follow these steps:
+
+# Install Docker and Docker Compose if not already installed
+sudo apt-get install -y docker.io docker-compose
+
+# Navigate to the project directory and deploy
+cd /home/ssm-user/projetos/jira-dash
+./deploy-docker.sh
+
+# Access the application
+
+# http://3.83.28.223:3000
+
+## Troubleshooting Common Issues
+
+### Docker Installation Issues
+
+If Docker fails to install, refer to `INSTALACAO_DOCKER_AWS.md` for detailed installation instructions.
+
+### SSH Timeout
+
+To address SSH timeout issues, consult `MANTER_SSH_ATIVA.md`.
+
+### Container Startup Failures
+
+If a container does not start, use the following command to view logs:
+
+```bash
+docker-compose logs -f
+```
+
+### Disk Space Management
+
+To free up disk space, use the following Docker commands:
+
+# Remove unused images
+docker image prune -a
+
+# Remove stopped containers
+docker container prune
+
+# Remove unused volumes
+docker volume prune
+
+# Clean up everything
+docker system prune -a
+
+## Monitoring and Debugging
+
+### Monitoring Container Resources
+
+Monitor the resources used by the container with:
+
+```bash
+docker stats jira-dashboard
+```
+
+### Viewing Logs
+
+Access logs for troubleshooting:
+
+# View logs with timestamps
+docker logs jira-dashboard -t
+
+# Follow logs in real-time
+docker logs jira-dashboard -f
+
+## Advanced Diagnostics
+
+### Analyzing Code and Data Discrepancies
+
+For issues related to incorrect data calculations on the dashboard, analyze the following files:
+
+- **`src/services/filterService.ts`**: Potential issues with undefined data.
+- **`src/services/jiraApi.ts`**: Incorrect data fields returned.
+
+### Debugging Steps
+
+1. **Correct API Usage**: Remove access to `response.data.total` and use `response.data.issues.length` for local counts.
+2. **User and Issue Validation**: Ensure all users and issues are correctly fetched and deduplicated.
+
+## Summary
+
+This guide provides essential tools and steps for diagnosing and troubleshooting the Jira Dashboard system. By following the outlined procedures, users can effectively manage and resolve common issues, ensuring the system operates efficiently.
+
+For further assistance, please refer to the detailed documentation provided in the respective sections or contact your system administrator.
+
+---
+
+For more detailed instructions and support, please refer to the complete documentation available at the provided URLs in the source content.

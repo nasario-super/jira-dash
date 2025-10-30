@@ -1,0 +1,78 @@
+# Troubleshooting Jira Connection and Authentication Issues
+
+This guide provides solutions for resolving common connection and authentication issues encountered in the Jira Dashboard application. These issues include incorrect credential usage, proxy failures, CORS errors, and more. Follow the steps below to ensure a smooth and secure connection to your Jira instance.
+
+## Common Issues and Solutions
+
+### 1. Incorrect Credential Usage
+
+**Problem**: The system was using expired or invalid credentials from the `.env` file instead of the user-provided credentials during login.
+
+**Solution**:
+- Ensure that the application uses the credentials provided by the user at login. Avoid storing sensitive information like API tokens in the `.env` file, especially in production environments.
+
+### 2. Proxy Configuration
+
+**Problem**: The Vite proxy was not forwarding authentication headers, causing APIs to return a 401 Unauthorized error.
+
+**Solution**:
+- Configure the Vite proxy to correctly pass the `Authorization` header to Jira. Update the `vite.config.ts` file as follows:
+
+  ```typescript
+proxy: {
+'/api/jira': {
+target: 'https://superlogica.atlassian.net',
+changeOrigin: true,
+secure: true,
+rewrite: (path) => path.replace(/^\/api\/jira/, ''),
+configure: (proxy, _options) => {
+proxy.on('proxyReq', (proxyReq, req, _res) => {
+const authHeader = req.headers['authorization'];
+if (authHeader) {
+proxyReq.setHeader('Authorization', authHeader);
+console.log('✅ Auth header from user passed to proxy');
+}
+});
+},
+},
+},
+  ```
+
+### 3. CORS Errors
+
+**Problem**: Direct HTTPS requests from the frontend were blocked by CORS policy.
+
+**Solution**:
+- Ensure that requests are routed through the configured proxy. Verify that the proxy settings in `vite.config.ts` are correct and that the `changeOrigin` option is set to `true`.
+
+### 4. Missing Environment Variables
+
+**Problem**: Variables like `JIRA_BASE_URL` were not defined, leading to request failures.
+
+**Solution**:
+- Ensure all necessary environment variables are defined and passed as parameters where needed.
+
+### 5. Security Concerns
+
+**Problem**: Jira credentials were being transmitted in plain text over HTTP, posing a critical security risk.
+
+**Solution**:
+- Enable HTTPS/SSL to encrypt all network traffic. Use tools like Certbot to generate SSL certificates and configure your server (e.g., Nginx) to use HTTPS.
+
+# Example for generating SSL certificate using Let's Encrypt
+sudo apt-get install -y certbot python3-certbot-nginx
+sudo certbot certonly --nginx -d seu-dominio.com
+
+## Post-Deployment Checks
+
+- Test login with real credentials.
+- Verify that all APIs return 200 OK.
+- Monitor logs for 401 errors.
+- Test project selection and dashboard functionality.
+- Ensure performance is satisfactory in production.
+
+## Summary
+
+This guide addressed several connection and authentication issues within the Jira Dashboard application, including credential mismanagement, proxy configuration, CORS errors, and security vulnerabilities. By following the provided solutions, you can ensure a secure and efficient connection to your Jira instance.
+
+For further assistance, refer to the detailed logs and ensure that your environment is configured according to the best practices outlined in this guide.

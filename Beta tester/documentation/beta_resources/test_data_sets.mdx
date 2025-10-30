@@ -1,0 +1,84 @@
+# Test Data Sets
+
+## Introduction
+
+This documentation provides an overview of sample data sets used for testing scenarios within the Jira Dashboard application. It highlights improvements in prediction metrics, data validation, and testing methodologies to ensure reliable and accurate data processing.
+
+## Prediction Improvements
+
+### Score Prediction
+
+- **Confidence**: 45-85%
+- **Values**: 75+ score
+- **Factors**: 8 factors
+- **Quality**: Enhanced quality metrics
+
+### Velocity Prediction
+
+- **Confidence**: 70-95%
+- **Values**: 8.5+ points/week
+- **Factors**: 8 factors
+- **Sprint Analysis**: Improved sprint analysis
+
+### Resolution Time Prediction
+
+- **Confidence**: 60-90%
+- **Values**: 2.8+ days
+- **Factors**: 8 factors
+- **Resolution Process**: Optimized resolution process
+
+## Data Validation and Fallback Mechanisms
+
+### Number Validation
+
+Ensures all values are valid numbers:
+
+```typescript
+const validVelocity = isNaN(velocity) ? 8.5 : velocity;
+const validConfidence = isNaN(adjustedConfidence) ? 0.7 : adjustedConfidence;
+```
+
+### Quality Data Validation
+
+Ensures data quality metrics are valid:
+
+```typescript
+const multiplier = isNaN(dataQuality.confidenceMultiplier)
+? 0.3
+: dataQuality.confidenceMultiplier;
+
+return {
+hasEnoughData,
+dataCompleteness: isNaN(dataCompleteness) ? 0 : dataCompleteness,
+timeSpan: isNaN(timeSpan) ? 0 : timeSpan,
+dataConsistency: isNaN(dataConsistency) ? 0 : dataConsistency,
+confidenceMultiplier: Math.min(
+Math.max(isNaN(confidenceMultiplier) ? 0.3 : confidenceMultiplier, 0),
+1
+),
+};
+```
+
+## Testing Procedures
+
+### How to Test the Fixes
+
+1. Access Advanced Analytics: [http://localhost:3000/advanced-analytics](http://localhost:3000/advanced-analytics)
+2. Navigate to Predictions:
+   - Click on "Analytics IA" in the sidebar
+   - Go to "Analytics Preditivos"
+3. Verify the Cards:
+   - **Confidence**: Should display 45-95%
+   - **Values**: Should show realistic values
+   - **Factors**: Should display 8 factors
+   - **Details**: Click "View Details" for improvement guide
+4. Test the Improvement Guide:
+   - If confidence &lt; 80%, the guide will appear automatically
+   - Explore the tabs: Quick Wins, Detailed Improvements, Advanced Strategies
+   - Follow the recommended action plan
+
+## Summary
+
+This documentation outlines the enhancements made to prediction metrics and data validation processes within the Jira Dashboard. By implementing robust validation mechanisms and providing detailed testing instructions, the system ensures accurate and reliable data processing. These improvements are crucial for maintaining high confidence levels and realistic values in predictive analytics.
+
+For further details, refer to the full documentation available at the following URL: [PREDICTION_CARD_FIXES.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/PREDICTION_CARD_FIXES.md).

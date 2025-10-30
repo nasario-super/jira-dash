@@ -1,0 +1,105 @@
+# Performance Metrics
+
+**Version:** 1.0.0
+**Group:** Analytics & Insights
+**Page Type:** Reference
+**Priority:** High
+
+## Introduction
+
+This documentation provides an overview of key performance indicators and metrics used in analytics dashboards to monitor and improve project performance. The metrics are dynamically updated based on real project data, ensuring accurate insights and predictions.
+
+## Key Performance Indicators
+
+### Agile Dashboard Metrics
+
+- **Total Issues**: Number of issues in the current sprint.
+- **Completed**: Percentage of issues completed.
+- **In Progress**: Issues currently being worked on.
+- **Blocked**: Issues that are stalled.
+- **Overdue**: Issues that have passed their due date.
+
+### Executive Dashboard KPIs
+
+1. **Velocity**: Number of issues completed per sprint.
+2. **Throughput**: Rate of issue delivery.
+3. **Cycle Time**: Average time taken to complete an issue.
+4. **Lead Time**: Time from issue creation to completion.
+5. **Efficiency**: Percentage of completed issues.
+
+### Quality Metrics
+
+- **Defect Rate**: Ratio of bugs found to total issues.
+  - **Ideal**: Less than 20%
+  - **Alert**: Greater than 30%
+- **Time to Resolve Bugs**: Days from report to resolution.
+  - **Fast**: Less than 2 days
+  - **Normal**: 2-5 days
+  - **Slow**: More than 5 days
+- **Test Coverage**: Percentage of issues with tests and post-release bugs.
+- **Rework**: Ratio of reopened to resolved issues.
+  - **Low**: Less than 10% (good)
+  - **High**: More than 20% (problematic)
+
+## Advanced Analytics
+
+### Insights and Predictions
+
+- **Trends**: Patterns in velocity, activity peaks, and seasonality.
+- **Anomaly Detection**: Sudden drops in velocity, abnormal bug increases, and user overload.
+- **Predictions**: Sprint completion times, monthly issue forecasts, and expected burn-down rates.
+- **Recommendations**: Prioritization of critical bugs, workload distribution, and momentum utilization.
+
+### Predictive Analytics Improvements
+
+- **Expanded Factors**: From 4 to 8 factors for more reliable predictions.
+- **Metrics**: Throughput, cycle time, lead time, and quality score predictions.
+- **Confidence Levels**: Improved from NaN% to 60-95% based on data.
+
+## Testing and Validation
+
+### Test Cases
+
+1. **Single Project Analytics**
+   - Select only the INFOSECC project and verify that metrics are specific to it.
+2. **Multiple Projects Analytics**
+   - Select INFOSECC and SEGP projects to aggregate metrics from both.
+3. **Advanced Analytics**
+   - Ensure data-driven analyses are displayed without "No correlation found" messages.
+4. **Project Selection Change**
+   - Metrics should update automatically when project selections are changed.
+
+### Validation Checklist
+
+- Different data for each project in analytics.
+- AI analytics should not display "No results."
+- Metrics should change with project selection.
+- Console logs should indicate data processing for selected projects.
+- Insights should be based on real data, not hardcoded values.
+
+## Reports and Interpretation
+
+### Generating Reports
+
+1. Click on **"Reports"** in the menu.
+2. Select the desired period and projects.
+3. Export the report in PDF or Excel format.
+
+### Report Contents
+
+- Executive summary
+- Key metrics
+- Graphical representations
+- User analysis
+- Recommendations
+
+### Data Interpretation
+
+- Real-time updates and synchronization with Jira.
+- Consideration of external context and trends over isolated peaks.
+
+## Conclusion
+
+This documentation outlines the essential performance metrics and analytics features available in the dashboards. By leveraging these insights, teams can enhance their project management processes, improve efficiency, and achieve better outcomes.
+
+For further details, refer to the [complete usage guide](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/GUIA_USO_COMPLETO.md) and [advanced analytics features](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/ADVANCED_ANALYTICS_FEATURES.md).

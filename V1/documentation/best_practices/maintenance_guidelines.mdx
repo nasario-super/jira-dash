@@ -1,0 +1,116 @@
+# Maintenance Guidelines
+
+## Introduction
+
+This guide provides best practices and step-by-step instructions to ensure your system runs smoothly. It covers secure credential handling, application monitoring, code updates, troubleshooting, and production recommendations.
+
+## Secure Credential Handling
+
+### ❌ Do Not:
+Avoid exposing credentials in `.env` files or environment variables.
+
+# Example of what NOT to do
+JIRA_DOMAIN=superlogica.atlassian.net
+EMAIL=seu-email@example.com
+API_TOKEN=seu-api-token
+
+### ✅ Recommended Approach:
+1. User logs in via the UI.
+2. Credentials are provided on the login screen.
+3. The system stores them in `authStore` (localStorage).
+4. Requests use the logged-in user's credentials.
+
+## Application Monitoring
+
+### Checking if the Application is Running
+
+Use the following commands to verify the status of your application:
+
+# List PM2 processes
+pm2 list
+
+# View real-time logs
+pm2 logs jira-dashboard
+
+# Check status
+pm2 status
+
+# Verify if port 3000 is open
+lsof -i :3000
+
+# Test access
+curl http://localhost:3000
+
+# Check for 404 errors in Nginx
+curl -v http://localhost:80
+
+## Updating Production Code
+
+To update your production code, follow these steps:
+
+# 1. Navigate to the project directory
+cd /home/ssm-user/projetos/jira-dash
+
+# 2. Pull updates
+git pull origin main
+
+# 3. Reinstall dependencies if package.json has changed
+npm install
+
+# 4. Build the project
+npm run build
+
+# 5. Restart the application
+pm2 restart jira-dashboard
+
+# 6. Check logs
+pm2 logs jira-dashboard
+
+## Troubleshooting Common Issues
+
+### Error: "Cannot find package '@tanstack/react-query'"
+```bash
+npm install @tanstack/react-query --save
+```
+
+### Error: "Cannot find package 'vite-plugin-pwa'"
+```bash
+npm install vite-plugin-pwa --save-dev
+```
+
+### Error: "Build failed"
+
+# Clear cache
+rm -rf node_modules package-lock.json
+npm install
+npm run build
+
+### Application is Slow or Crashing
+Increase Node memory:
+```bash
+NODE_OPTIONS="--max-old-space-size=2048" npm run build
+
+```
+
+# Or via PM2
+pm2 start pm2.config.js --node-args="--max-old-space-size=2048"
+
+## Production Recommendations
+
+### Token Refresh
+Implement automatic token refresh to maintain session validity.
+
+### Cache with TTL
+Implement caching for frequent requests to improve performance.
+
+### Automatic Logout
+Enable automatic logout when tokens expire for enhanced security.
+
+### Improved Error Handling
+Enhance API error handling with an improved error boundary.
+
+## Summary
+
+This guide provides essential maintenance practices for secure credential management, application monitoring, code updates, and troubleshooting. By following these guidelines, you can ensure a stable and efficient system operation.
+
+For more detailed instructions, refer to the complete documentation available at the provided URLs.

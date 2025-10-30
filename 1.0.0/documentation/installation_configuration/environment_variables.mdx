@@ -1,0 +1,101 @@
+# Environment Variables
+
+**Version:** 1.0.0
+**Group:** Installation & Configuration
+**Page Type:** Reference
+**Description:** Complete reference of configuration variables for setting up and managing the Jira Dashboard application.
+
+---
+
+## Introduction
+
+This documentation provides a comprehensive reference for configuring environment variables necessary for deploying and managing the Jira Dashboard application. The information is derived from various deployment and configuration guides, focusing on secure and efficient setup practices.
+
+---
+
+## Configuring Environment Variables
+
+### Using Docker and Docker Compose
+
+Environment variables can be configured directly within the `docker-compose.yml` file or through a `.env` file. This approach ensures that sensitive information is not hardcoded into your application code, maintaining security and flexibility.
+
+#### Example `docker-compose.yml` Configuration
+
+```yaml
+services:
+jira-dashboard:
+build: .
+ports:
+- "3000:3000"
+environment:
+- NODE_ENV=production
+- VITE_API_URL=https://sua-api.com
+- LOG_LEVEL=info
+restart: always
+```
+
+#### Example `.env` File
+
+# .env
+NODE_ENV=production
+VITE_API_URL=https://sua-api.com
+```
+
+To use the `.env` file with Docker Compose, execute:
+
+```
+docker-compose --env-file .env up -d
+
+### Secure Production Environment
+
+When configuring environment variables for a production environment, it is crucial to avoid exposing sensitive credentials directly in the `.env` file. Instead, credentials should be provided through secure login mechanisms.
+
+#### Example Production `.env` File
+
+# .env
+
+# Note: In production, credentials should be provided via login, not via environment variables!
+
+# Do not add JIRA_DOMAIN, EMAIL, or API_TOKEN here!
+
+# Optional: URLs for logging, analytics, etc.
+VITE_API_URL=https://seu-dominio.com
+VITE_ENABLE_LOGS=true
+```
+
+---
+
+```
+
+## Security Considerations
+
+- **Do Not Expose Credentials:** Avoid placing sensitive credentials such as `JIRA_DOMAIN`, `EMAIL`, or `API_TOKEN` in the `.env` file for production environments.
+- **User Login for Credentials:** Ensure that credentials are obtained through user login processes rather than being hardcoded or stored in environment variables.
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+- **"Jira configuration is missing" Error:** This error occurs if the application expects credentials in the `.env` file during startup. In production, adjust the application to initialize without these credentials, prompting for user login instead.
+
+### Solutions
+
+- Modify application code to issue warnings instead of errors when credentials are missing, allowing normal initialization.
+
+---
+
+## Summary
+
+This documentation outlines the best practices for configuring environment variables for the Jira Dashboard application. It emphasizes the importance of security by recommending the use of `.env` files and Docker Compose for managing environment variables, while ensuring that sensitive information is not exposed in production environments.
+
+For more detailed instructions on deploying and configuring the Jira Dashboard application, refer to the specific guides and documentation provided in the source materials.
+
+---
+
+**Related Documentation:**
+
+- [DEPLOY_AWS.md](https://example.com/DEPLOY_AWS.md)
+- [DOCKER_PRODUCAO.md](https://example.com/DOCKER_PRODUCAO.md)
+- [CORRECAO_ERRO_PRODUCAO.md](https://example.com/CORRECAO_ERRO_PRODUCAO.md)

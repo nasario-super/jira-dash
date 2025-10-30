@@ -1,0 +1,152 @@
+# Installation Methods
+
+## Overview
+
+This documentation provides an overview of the available installation methods for deploying applications on AWS EC2 instances. It covers the use of Node.js, Docker, and Nginx with SSL, offering step-by-step guidance on setting up and configuring these environments for optimal performance and security.
+
+## Node.js Deployment on AWS EC2
+
+### Prerequisites
+
+Before deploying a Node.js application on AWS, ensure the following prerequisites are installed on your EC2 instance:
+
+- **Node.js**: Version 18 or higher
+- **npm**: Version 9 or higher
+- **Git**
+
+### Installation Steps
+
+1. **Clone the Repository**
+
+   ```bash
+cd /home/ssm-user/projetos
+git clone https://github.com/seu-usuario/jira-dash.git
+cd jira-dash
+   ```
+
+2. **Install Dependencies**
+
+   ```bash
+npm install
+   ```
+
+3. **Build for Production**
+
+   ```bash
+npm run build
+   ```
+
+4. **Serve the Application**
+
+   - **Simple Server**
+
+     ```bash
+npm install -g serve
+serve -s dist -l 3000
+     ```
+
+   - **Using PM2 (Recommended for Production)**
+
+     ```bash
+npm install -g pm2
+pm2 start pm2.config.js
+     ```
+
+## Docker Installation on AWS EC2
+
+### Quick Installation
+
+1. **SSH into the Instance**
+
+   ```bash
+ssh -i seu-key.pem ec2-user@3.83.28.223
+   ```
+
+2. **Install Docker**
+
+   ```bash
+sudo apt-get update
+sudo apt-get install -y docker.io docker-compose
+sudo usermod -aG docker $USER
+   ```
+
+3. **Verify Installation**
+
+   ```bash
+docker --version
+docker-compose --version
+   ```
+
+### Deploying with Docker Compose
+
+1. **Navigate to Project Directory**
+
+   ```bash
+cd /home/ssm-user/projetos/jira-dash
+   ```
+
+2. **Deploy the Application**
+
+   ```bash
+docker-compose up -d
+   ```
+
+3. **Check Status and Logs**
+
+   ```bash
+docker-compose ps
+docker-compose logs -f
+   ```
+
+## Nginx Configuration with SSL
+
+### Setting Up Nginx
+
+1. **Configure Nginx with SSL**
+
+   ```bash
+cat > /etc/nginx/sites-available/jira-dashboard << 'EOFNGINX'
+server {
+listen 80;
+server_name _;
+return 301 https://$host$request_uri;
+}
+
+server {
+listen 443 ssl http2;
+server_name _;
+ssl_certificate /etc/ssl/certs/jira-dashboard.crt;
+ssl_certificate_key /etc/ssl/private/jira-dashboard.key;
+ssl_protocols TLSv1.2 TLSv1.3;
+ssl_ciphers HIGH:!aNULL:!MD5;
+ssl_prefer_server_ciphers on;
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+add_header X-Content-Type-Options "nosniff" always;
+add_header X-Frame-Options "SAMEORIGIN" always;
+location / {
+proxy_pass http://localhost:3000;
+proxy_http_version 1.1;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection 'upgrade';
+proxy_set_header Host $host;
+proxy_cache_bypass $http_upgrade;
+}
+}
+EOFNGINX
+   ```
+
+2. **Activate Nginx Configuration**
+
+   ```bash
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/jira-dashboard /etc/nginx/sites-enabled/
+nginx -t
+systemctl start nginx
+systemctl enable nginx
+   ```
+
+## Summary
+
+This documentation outlines the installation methods for deploying applications on AWS EC2, focusing on Node.js, Docker, and Nginx with SSL. Each method provides specific steps to ensure a secure and efficient deployment. For production environments, using Docker and configuring Nginx with SSL is recommended for enhanced scalability and security.
+
+For more detailed instructions, refer to the specific guides linked within each section.

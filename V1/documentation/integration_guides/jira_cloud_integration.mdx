@@ -1,0 +1,130 @@
+# Jira Cloud Integration Guide
+
+## Introduction
+
+Welcome to the Jira Cloud Integration Guide. This document provides comprehensive instructions for integrating and deploying the Jira Dashboard, a modern and responsive web tool designed to enhance visibility into Jira projects. The dashboard offers advanced analytics, executive reports, and real-time data integration with Jira Cloud.
+
+## Features
+
+### Key Functionalities
+
+- **Main Metrics (KPIs):** Track total open issues, completed issues, completion rate, average resolution time, velocity, and overdue issues.
+- **Graphical Visualizations:** Includes burndown charts, issues by status/type, team velocity, and priority distribution.
+- **Advanced Filters:** Filter by project, sprint, issue type, status, assignee, priority, and time period.
+- **Recent Activity:** View the latest updated issues with direct links to Jira.
+- **Responsive Layout:** Adaptable interface for desktop, tablet, and mobile.
+- **Complete Integration:** Direct connection to the Jira Cloud API.
+
+## Technical Stack
+
+- **Frontend:** React 18+ with TypeScript
+- **Styling:** Tailwind CSS
+- **Charts:** Recharts
+- **API Integration:** Axios for Jira REST API
+- **State Management:** React Context API and custom hooks
+- **Routing:** React Router v6
+- **Build Tool:** Vite
+
+## Prerequisites
+
+- **Node.js:** Version 18+
+- **Package Manager:** npm or yarn
+- **Jira Cloud Account:** With API permissions
+- **API Token:** Generated from Jira
+
+## Installation
+
+1. **Clone the Repository:**
+   ```bash
+git clone <repository-url>
+cd jira-dashboard
+   ```
+
+2. **Install Dependencies:**
+   ```bash
+npm install
+```
+
+# or
+yarn install
+   ```
+
+3. **Configure Environment Variables:**
+   Copy the example file and edit with your Jira credentials:
+   ```
+cp env.example .env
+VITE_JIRA_DOMAIN=your-company.atlassian.net
+VITE_JIRA_EMAIL=your-email@company.com
+VITE_JIRA_API_TOKEN=your-token-here
+   ```
+
+4. **Start the Development Server:**
+   ```
+npm run dev
+
+# or
+yarn dev
+   ```
+
+5. **Access the Application:**
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+```
+
+## Deployment on AWS
+
+### Quick Deployment Steps
+
+1. **Clone the Repository on EC2:**
+   ```bash
+cd /home/ssm-user/projects
+git clone https://github.com/your-username/jira-dash.git
+cd jira-dash
+   ```
+
+2. **Run the Deployment Script:**
+   ```bash
+chmod +x install-and-deploy.sh
+./install-and-deploy.sh
+   ```
+
+3. **Access the Application:**
+   Visit `http://your-ec2-ip:3000`.
+
+### Security Recommendations
+
+- **Do Not Store Credentials in `.env`:**
+
+# ❌ WRONG
+JIRA_DOMAIN=your-domain.atlassian.net
+EMAIL=your-email@example.com
+API_TOKEN=your-token
+
+# ✅ RIGHT - Provide via login UI
+
+## Troubleshooting
+
+### Common Errors
+
+- **Cannot find package '@tanstack/react-query':**
+  ```bash
+npm install
+  ```
+
+- **Cannot find package 'vite-plugin-pwa':**
+  ```bash
+npm install
+  ```
+
+- **Build Failed:**
+  ```bash
+rm -rf node_modules package-lock.json
+npm install
+npm run build
+  ```
+
+## Summary
+
+This guide provides a detailed walkthrough for setting up and deploying the Jira Dashboard, a tool designed to centralize and visualize Jira data effectively. By following the steps outlined, users can integrate Jira Cloud with a responsive dashboard that offers advanced analytics and real-time data insights. For further support, users can open issues on GitHub or consult the Jira API documentation.
+
+For more information, please refer to the [Jira REST API Documentation](https://developer.atlassian.com/cloud/jira/platform/rest/v3/).

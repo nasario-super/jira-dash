@@ -1,0 +1,145 @@
+# Core Functionality Testing Guide
+
+This guide provides comprehensive testing scenarios for the core platform features of the Agile Dashboard. It is intended for beta testers to ensure the platform's functionalities are operating correctly and efficiently. The document outlines the necessary steps for testing, reporting errors, and proceeding with development tasks.
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Testing Scenarios](#testing-scenarios)
+- [Interface and Responsiveness](#interface-and-responsiveness)
+- [Error Reporting](#error-reporting)
+- [Successful Test Commit Procedures](#successful-test-commit-procedures)
+- [Advanced Testing](#advanced-testing)
+- [API Error Handling](#api-error-handling)
+- [Authentication Tests](#authentication-tests)
+- [Deployment Checklist](#deployment-checklist)
+- [Summary](#summary)
+
+## Introduction
+
+This guide is designed for beta testers to validate the core functionalities of the Agile Dashboard. It includes detailed instructions on testing interface elements, responsiveness across devices, error reporting, and procedures for committing changes after successful tests. Additionally, it covers advanced testing scenarios such as API error handling and authentication tests.
+
+## Testing Scenarios
+
+### Interface and Responsiveness
+
+The following checks ensure that the interface elements are functioning correctly and the application is responsive across different devices:
+
+- **Interface Checks:**
+- Visual icons are displayed correctly.
+- Clickable cards are functional.
+- Modals open upon clicking.
+- Related issues are listed.
+- Internal scrolling works.
+- Closing with "X" and clicking outside the modal works.
+
+- **Responsiveness Checks:**
+- Desktop (1920px): All elements are visible.
+- Tablet (768px): Layout adjusts appropriately.
+- Mobile (375px): Layout adjusts appropriately.
+
+### Error Reporting
+
+If any errors are encountered during testing, follow these steps to report them:
+
+1. **Capture a Screenshot:** Take a screenshot of the error.
+2. **Collect Logs:** Open DevTools (F12) and navigate to the Console tab.
+3. **Gather Information:**
+- Browser and version
+- Selected projects
+- Active tab (Overview/Daily/Velocity/Alerts)
+- Actions being performed at the time of the error
+
+4. **Submit Report:**
+   ```
+   [Include screenshot + logs + information]
+
+   Title: [BUG] Brief description
+   Description: Steps to reproduce + Expected vs. Actual outcome
+   ```
+
+### Successful Test Commit Procedures
+
+After all tests pass, commit the changes using the following commands:
+
+```bash
+git add src/pages/AgileDashboard.tsx
+git add src/components/dashboard/DailyScrumDashboard.tsx
+git add src/components/dashboard/AlertSystem.tsx
+git commit -m "✨ Correções críticas do Agile Dashboard: métricas, Daily list, alertas interativos"
+git push origin main
+```
+
+Proceed with the following development tasks:
+- Implement the `useFilteredProjectData` hook.
+- Apply global filters to other dashboards.
+- Conduct integration tests.
+
+## Advanced Testing
+
+### API Error Handling
+
+Enhance API error handling with custom user messages:
+
+```typescript
+export class ApiErrorBoundary extends React.Component {
+  componentDidCatch(error: any, info: React.ErrorInfo) {
+    if (error.response?.status === 401) {
+      return <div>Sessão expirada. Por favor, faça login novamente.</div>;
+    }
+    if (error.response?.status === 403) {
+      return <div>Você não tem permissão para acessar este recurso.</div>;
+    }
+    // ... other errors
+  }
+}
+```
+
+### Authentication Tests
+
+Add automated tests for authentication:
+
+```typescript
+describe('Authentication', () => {
+  test('Login com credenciais corretas deve funcionar', async () => {
+    // Setup
+    // Execute login
+    // Assert that dashboard loads
+  });
+
+  test('Proxy deve repassar auth headers', async () => {
+    // Mock proxy
+    // Make request
+    // Assert that Authorization header is present
+  });
+
+  test('Token expirado deve fazer logout automático', async () => {
+    // Setup expired token
+    // Make request
+    // Assert that user is logged out
+  });
+});
+```
+
+## Deployment Checklist
+
+Before deploying to production, ensure the following checklist is complete:
+
+- [ ] All tests passing
+- [ ] Build without errors: `npm run build`
+- [ ] No linting warnings: `npm run lint`
+- [ ] `.env.production` configured with correct credentials
+- [ ] HTTPS enabled on the proxy
+- [ ] API token stored securely
+- [ ] Backup created: `jira-dash-final/`
+- [ ] Documentation updated
+
+After deployment, verify the following:
+
+- [ ] Test login with real credentials
+- [ ] Check that all APIs return 200 OK
+- [ ] Monitor 401 errors in logs
+
+## Summary
+
+This guide provides a structured approach to testing the core functionalities of the Agile Dashboard. It includes detailed testing scenarios for interface checks, responsiveness, error reporting, and advanced testing for API and authentication. Follow the deployment checklist to ensure a secure and functional production release. For further details, refer to the specific sections outlined above.

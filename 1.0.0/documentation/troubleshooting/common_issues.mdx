@@ -1,0 +1,147 @@
+# Common Issues
+
+## Introduction
+
+This documentation provides guidance on the most frequently encountered problems and their solutions when using the Jira Dashboard. It aims to assist users in troubleshooting common issues, optimizing performance, and ensuring effective collaboration.
+
+## Identifying and Solving Common Problems
+
+### Finding Problems
+
+To identify issues within your projects, follow these steps:
+
+1. Navigate to **Quality Metrics**.
+2. Look for a high **Defect Rate**.
+3. Click to view detailed bug reports.
+4. Prioritize fixing these issues.
+
+### Evaluating Performance
+
+To assess project performance:
+
+1. Go to **Analytics IA**.
+2. Review **Predictions** and **Anomalies**.
+3. Compare these with historical data.
+4. Adjust processes accordingly.
+
+## Tips and Tricks
+
+### For Better Performance
+
+- Limit to 1-3 projects at a time.
+- Clear unnecessary filters.
+- Reload the page if it becomes slow.
+
+### For Better Analysis
+
+- Compare weekly vs. monthly periods.
+- Focus on trends rather than peaks.
+- Consider external context.
+
+### For Better Collaboration
+
+- Share reports with your team.
+- Use insights for one-on-one meetings.
+- Discuss anomalies with your team.
+
+## Common Issues and Solutions
+
+### "No Issues Found"
+
+**Possible Causes:**
+
+1. Project has no issues.
+2. Filters are too restrictive.
+3. User lacks access.
+
+**Solutions:**
+
+- Clear all filters.
+- Select a different project.
+- Verify Jira access.
+
+### "Numbers Differ from Jira"
+
+**Reasons:**
+
+- Synchronization delay (5-10 minutes).
+- Different filters applied.
+- Sub-item issues not included.
+
+**Solutions:**
+
+- Click **Update**.
+- Wait for 5 minutes.
+- Check filters.
+
+### "User Not Appearing"
+
+**Reasons:**
+
+- No issues assigned to the user.
+- User has left the project.
+- User is deactivated.
+
+**Solutions:**
+
+- Reassign issues.
+- Invite the user back to the project.
+
+### Issue Status Discrepancies
+
+**Reasons:**
+
+- Real-time updates.
+- Multiple users making changes.
+- Synchronization with Jira.
+
+**Solutions:**
+
+- Click **Update** on the Dashboard.
+- Refresh the page (F5).
+
+## Data Filtering and Analysis
+
+### Identified Problems
+
+1. **Incorrect Project Display**: Projects not accessible are shown.
+2. **Issue Count Inconsistencies**: Discrepancies between displayed and actual data.
+3. **Missing Projects**: Certain projects like INFOSECC do not appear.
+
+### Solutions Implemented
+
+- A new data validation service (`projectAccessService.ts`) was implemented to address these issues.
+
+## Troubleshooting Steps for AWS Deployment
+
+### Permission Errors
+
+```bash
+sudo chown -R ssm-user:ssm-user /home/ssm-user/projetos/jira-dash
+```
+
+### PM2 Not Starting
+
+```bash
+npm install -g pm2
+pm2 startup
+pm2 save
+```
+
+### Build Failures
+
+```bash
+rm -rf node_modules package-lock.json
+npm install
+npm run build
+```
+
+## Summary
+
+This documentation has outlined common issues encountered in the Jira Dashboard, along with practical solutions and tips for optimizing performance and collaboration. By following the provided steps and solutions, users can effectively troubleshoot and resolve these issues, ensuring a smoother and more efficient use of the platform.
+
+For further assistance, please refer to the complete technical documentation or contact your system administrator.
+
+**Version**: 1.0.0
+**Date**: 28 de Outubro de 2025
+**Status**: Ready for Use

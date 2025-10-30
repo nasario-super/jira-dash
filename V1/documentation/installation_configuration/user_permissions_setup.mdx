@@ -1,0 +1,90 @@
+# User Permissions Setup
+
+This guide provides instructions on configuring user roles and access controls within the Jira dashboard project. It focuses on setting up user permissions to ensure secure and transparent access to project data.
+
+## Overview
+
+The Jira dashboard project implements a user access filtering system to ensure that users only see data from projects they are authorized to access. This setup enhances security, provides transparency, and allows for flexible configuration.
+
+## User Access Filtering Implementation
+
+### Problem Identification
+
+Initially, the system allowed users to view data from all available projects in Jira, regardless of their access rights. This posed a security risk as users could potentially access sensitive information from unauthorized projects.
+
+### Solutions Implemented
+
+1. **Project Access Service (`projectAccessService.ts`)**
+   - Configures known users with specific project access.
+   - Automatically filters issues based on user access.
+   - Validates access to specific projects.
+   - Provides detailed access statistics and debug logs.
+
+   ```typescript
+// Configuration for a known user
+if (email === 'anderson.nasario@superlogica.com') {
+this.initializeUserProjects(email, ['INFOSECC', 'SEGP']);
+}
+   ```
+
+2. **Integration with Jira API (`jiraApi.ts`)**
+   - Filters issues based on user project access.
+   - Logs the filtering process for transparency.
+
+   ```typescript
+const filteredIssues = projectAccessService.filterIssuesByUserAccess(issues);
+console.log('🔐 JiraApiService - Issues filtered by user access:', {
+originalCount: issues.length,
+filteredCount: filteredIssues.length,
+userProjects: projectAccessService.getUserProjects(),
+});
+   ```
+
+3. **User Interface Enhancements**
+   - The `UserProjectAccess.tsx` component displays access statistics and project lists.
+   - Provides a clear indication of accessible and inaccessible projects.
+
+## Dynamic User Access
+
+### Dynamic Discovery of User Projects
+
+The system now dynamically discovers and manages user access to projects using multiple methods, ensuring up-to-date and accurate permissions.
+
+#### Methods of Discovery
+
+1. **JQL Method**
+   - Searches for issues where the user is an assignee or reporter to determine accessible projects.
+
+   ```typescript
+const jql = `assignee = "${userEmail}" OR reporter = "${userEmail}"`;
+const issues = await jiraApi.getIssues(jql, 0, 1);
+   ```
+
+2. **API Methods**
+   - Lists all projects and verifies access by attempting to fetch issues.
+   - Uses boards to determine accessible projects.
+
+3. **Fallback Method**
+   - Uses a list of common projects to test access when other methods fail.
+
+### Monitoring and Optimization
+
+- Logs are available for monitoring the discovery process.
+- Future enhancements include integration with authentication systems and more intelligent caching.
+
+## Configuration for New Users
+
+To add a new user with specific project access, modify the `projectAccessService.ts` file:
+
+```typescript
+// Adding a new known user
+if (email === 'novo.usuario@empresa.com') {
+this.initializeUserProjects(email, ['PROJ1', 'PROJ2', 'PROJ3']);
+}
+```
+
+## Summary
+
+The user permissions setup in the Jira dashboard project ensures that users can only access data from authorized projects. This is achieved through a combination of static configuration for known users and dynamic discovery for new users. The system provides transparency and security by filtering data and displaying clear access statistics.
+
+For more details, refer to the [User Project Access Implementation documentation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/USER_PROJECT_ACCESS_IMPLEMENTATION.md).

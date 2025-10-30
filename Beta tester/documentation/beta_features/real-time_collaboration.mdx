@@ -1,0 +1,78 @@
+# Real-time Collaboration Features
+
+## Introduction
+
+Welcome to the guide on the new real-time collaboration features available in the beta version of our Jira Dashboard. This document provides an overview of the enhancements and functionalities designed to improve team collaboration and project management efficiency.
+
+## Key Features
+
+### Daily Scrum Enhancements
+
+The Daily Scrum interface has been improved to be more interactive and responsive. Users can now expand sections to view all relevant tasks:
+
+- **"Ontem Concluí"**: Expandable to show all completed tasks.
+- **"Hoje Vou Fazer"**: Expandable to show all tasks planned for today.
+- **"Em Atraso"**: Expandable to show all overdue tasks.
+
+### Alert System
+
+The alert system has been enhanced to provide more detailed insights:
+
+- **Delayed Issues**: Clickable alerts that open a detailed modal.
+- **Low Velocity**: Alerts that provide insights into team performance.
+- **Overloaded Users**: Alerts for users with excessive workloads, with related issues visible in the modal.
+
+### Real-time Updates
+
+The system now supports real-time updates to ensure that the status of issues is always current:
+
+- **Issue Status**: Updated in real-time.
+- **Aggregations**: Updated every 5 minutes.
+- **Predictions**: Updated hourly.
+- **Trends**: Updated daily.
+
+## Implementation Checklist
+
+The following tasks have been completed to implement these features:
+
+- Correct detection of "Completed", "In Progress", and "Blocked" statuses.
+- Inclusion of Portuguese language support in statuses.
+- Conversion of the Daily Scrum to an expandable list format.
+- Addition of scroll functionality in lists.
+- Making alerts clickable with detailed modals.
+- Listing related issues up to 20 visible at a time.
+- Validation with no linting errors.
+- Testing of data structures.
+
+## Testing and Validation
+
+To ensure the functionality of the new features, follow these steps:
+
+1. **Compile and Test**:
+   ```bash
+npm run build
+npm run dev
+   ```
+
+2. **Test Scenarios**:
+   - Log in and select projects.
+   - Navigate to the Agile Dashboard and view the Overview tab.
+   - Check updated metrics.
+   - Click on alerts to open modals.
+   - Expand lists in the Daily Scrum section.
+
+3. **Validate Data**:
+   - Compare outputs with console logs.
+   - Cross-check with the Jira UI.
+
+## Benefits
+
+- **Accurate Metrics**: Metrics now reflect real data, enhancing decision-making.
+- **Improved UI/UX**: A more responsive interface with no unwanted text truncation.
+- **Interactivity**: Alerts are now interactive, providing detailed insights.
+
+## Summary
+
+The new real-time collaboration features in the Jira Dashboard beta version enhance team productivity and project management through improved Daily Scrum interfaces, a detailed alert system, and real-time updates. These enhancements are designed to provide accurate metrics, an improved user experience, and increased interactivity, ultimately facilitating better team collaboration and project oversight.
+
+For more details, refer to the [source documentation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/CORRECOES_AGILE_IMPLEMENTADAS.md).

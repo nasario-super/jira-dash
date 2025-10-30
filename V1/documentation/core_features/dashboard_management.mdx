@@ -1,0 +1,120 @@
+# Dashboard Management
+
+## Introduction
+
+The Jira Dashboard is a modern, responsive web application designed to consolidate and visualize data from Jira. It connects directly to the Jira API, providing executives and team leaders with real-time metrics and customizable visualizations to facilitate strategic decision-making.
+
+## Core Features
+
+### Unified Data View
+
+- **Consolidation**: The dashboard integrates data from multiple Jira projects and boards into a single interface, offering a comprehensive view of operations.
+- **Real-Time Insights**: Automatically updates with the latest data from Jira, ensuring that users have access to current metrics.
+
+### Customizable Widgets
+
+- **Dark Mode**: Supports a dark theme for better visibility and user preference.
+- **Widget Customization**: Users can tailor widgets to display specific data and metrics relevant to their needs.
+- **Advanced Historical Comparisons**: Allows for in-depth analysis of trends over time.
+
+### Advanced Filtering and Visualization
+
+- **Filter Options**: Includes filters for project, sprint, issue type, status, assignee, priority, and time period.
+- **Interactive Charts**: Features burndown charts, issue distribution by status/type, team velocity, and priority distribution.
+- **Tailwind CSS**: Utilizes Tailwind CSS for layout and styling, ensuring a responsive and visually appealing interface.
+
+## Technical Context
+
+### Technology Stack
+
+- **Frontend**: Built with React 18+ and TypeScript.
+- **Styling**: Tailwind CSS for responsive design.
+- **Charts**: Implemented using Recharts for dynamic data visualization.
+- **API Integration**: Axios is used for seamless interaction with the Jira REST API.
+- **State Management**: Managed using React Context API and custom hooks.
+- **Routing**: Handled by React Router v6.
+- **Build System**: Vite is used for building the application.
+
+### Installation and Setup
+
+1. **Clone the Repository**
+   ```bash
+git clone <repository-url>
+cd jira-dashboard
+   ```
+
+2. **Install Dependencies**
+   ```bash
+npm install
+```
+
+# or
+yarn install
+   ```
+
+3. **Configure Environment Variables**
+   - Copy the example file:
+     ```
+cp env.example .env
+     ```
+   - Edit the `.env` file with your Jira credentials:
+     ```
+VITE_JIRA_DOMAIN=your-company.atlassian.net
+VITE_JIRA_EMAIL=your-email@company.com
+VITE_JIRA_API_TOKEN=your-api-token
+     ```
+
+4. **Start the Development Server**
+   ```
+npm run dev
+
+# or
+yarn dev
+   ```
+
+5. **Access the Application**
+   - Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+```
+
+## Deployment
+
+### AWS Deployment
+
+The Jira Dashboard is ready for rapid deployment on AWS EC2. Follow these steps:
+
+1. **Clone the Repository on EC2**
+   ```bash
+cd /home/ssm-user/projects
+git clone https://github.com/your-username/jira-dash.git
+cd jira-dash
+   ```
+
+2. **Run the Deployment Script**
+   ```bash
+chmod +x install-and-deploy.sh
+./install-and-deploy.sh
+   ```
+
+3. **Access the Application**
+   - Navigate to `http://YOUR-EC2-IP:3000`
+
+## Usage Guide
+
+### Common Use Cases
+
+- **Sprint Planning**: Analyze previous velocity and set sprint goals.
+- **Daily Standup**: Review current issues and identify blockers.
+- **Executive Reporting**: Generate and export reports for management review.
+- **Quality Analysis**: Monitor defect rates and prioritize bug fixes.
+
+### Troubleshooting
+
+- **Issue Status Discrepancies**: Refresh the dashboard or reload the page to ensure data synchronization.
+- **Missing Users**: Check if issues have been reassigned or if the user is no longer part of the project.
+
+## Summary
+
+The Jira Dashboard is a powerful tool for consolidating and visualizing Jira data, offering real-time insights and customizable views to enhance project management and strategic decision-making. With its advanced filtering, interactive charts, and seamless integration with Jira, it serves as an essential resource for executives and team leaders.
+
+For more detailed information, refer to the [complete project documentation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/README.md).

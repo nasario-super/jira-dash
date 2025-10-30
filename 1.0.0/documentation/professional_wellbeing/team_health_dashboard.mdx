@@ -1,0 +1,96 @@
+# Team Health Dashboard
+
+## Introduction
+
+The Team Health Dashboard is designed to monitor the overall health and satisfaction of teams, providing insights into productivity and wellbeing. This guide provides a comprehensive overview of the features and functionalities available in version 1.0.0 of the dashboard, which is part of the Professional Wellbeing group, supporting team member wellbeing and productivity.
+
+## Features Overview
+
+### Agile Dashboard
+
+The Agile Dashboard offers a real-time view of team productivity and issue tracking. Key features include:
+
+- **Total Issues**: Displays the total number of issues in the current sprint.
+- **Completion Percentage**: Shows the percentage of issues completed.
+- **In Progress**: Lists issues currently being worked on.
+- **Blocked Issues**: Highlights issues that are currently blocked.
+- **Overdue Issues**: Identifies issues that are past their due date.
+
+#### Daily Scrum
+
+The dashboard provides a daily list of issues with the following details:
+
+- Current status
+- Responsible team member
+- Priority level
+- Due date
+
+This feature is useful for daily standups, identifying blockers, and tracking sprint progress.
+
+#### Intelligent Alerts
+
+Automatic detection of critical issues such as:
+
+- Overdue issues
+- Blocked issues
+- High bug rates
+- Overloaded capacity
+
+Users can click on alerts to view related issues.
+
+### Executive Dashboard
+
+The Executive Dashboard is tailored for directors and managers, providing key performance indicators (KPIs) such as:
+
+- **Velocity**: Number of issues completed per sprint.
+- **Throughput**: Delivery rate.
+- **Cycle Time**: Average time to complete an issue.
+- **Lead Time**: Time from request to completion.
+- **Efficiency**: Percentage of completed issues.
+
+#### Graphical Insights
+
+- **Trend Analysis**: Productivity trends over time.
+- **Type Distribution**: Comparison of bugs versus tasks.
+- **Project Performance**: Identifies the fastest projects.
+
+### Quality Metrics
+
+The dashboard includes quality analysis features:
+
+- **Defect Rate**: Ratio of bugs found to total issues, with an ideal rate of less than 20%.
+
+## Technical Architecture
+
+The Team Health Dashboard is a standalone web application that connects directly to the Jira API. It consolidates data from multiple projects and teams, providing real-time metrics and customizable visualizations.
+
+### Key Technical Features
+
+- **Application Type**: Single Page Application (SPA)
+- **Deployment**: Frontend application connects directly to Jira Cloud via API
+- **Authentication**: Utilizes Jira API Token configured through environment variables
+- **Data Update**: Periodic polling and manual refresh
+- **Local Persistence**: Uses browser cache, no backend database
+
+## Deployment and Configuration
+
+The dashboard is ready for deployment on AWS EC2, with a focus on high responsiveness and precision. The deployment process includes:
+
+1. **Cloning the Repository**: Clone the project repository on your EC2 instance.
+2. **Running the Deployment Script**: Execute the provided deployment script to set up the application.
+3. **Accessing the Application**: The application runs on port 3000 and can be accessed via the EC2 instance's IP address.
+
+### Security and Authentication
+
+- **Login**: Users must log in with their Jira credentials.
+- **API Token**: Generate and use an API token for authentication.
+
+## Summary
+
+The Team Health Dashboard provides a comprehensive set of tools for monitoring team productivity and wellbeing. With its Agile and Executive dashboards, intelligent alerts, and quality metrics, it offers valuable insights for team leaders and executives. The application is designed for easy deployment and integration with Jira, ensuring a seamless experience for users.
+
+For further details, refer to the complete documentation available in the project repository.
+
+---
+
+For more information, visit the [Jira Dashboard Guide](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/GUIA_USO_COMPLETO.md).

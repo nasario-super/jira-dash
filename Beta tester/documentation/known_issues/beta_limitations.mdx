@@ -1,0 +1,70 @@
+# Beta Limitations
+
+This document outlines the current limitations and missing features identified during the beta testing phase of the Jira Dashboard project. It provides insights into known issues, potential causes, and areas requiring further investigation and improvement.
+
+## Known Issues and Limitations
+
+### Dashboard Metrics Discrepancies
+
+The dashboard has been showing metrics significantly lower than expected due to limitations in the code. Although improvements have been made to the data fetching function, questions remain about the accuracy of the numbers. Possible reasons include:
+
+- Test limits may not have captured all issues.
+- Historical or archived data might be incorrectly visible.
+- Synchronization issues with Jira data.
+
+### Critical API Issues
+
+Testing without page limits revealed a critical problem where the Jira API returns issues repeatedly due to a bug in the `isLast` parameter, leading to abnormal counts and potential infinite loops. Key issues include:
+
+- The `isLast` parameter never returns `true`, suggesting an infinite pagination loop or data duplication.
+- The Jira API V3 may have a critical bug causing these anomalies.
+
+### Jira API Limitations
+
+Several limitations have been identified with the Jira API endpoints:
+
+- Endpoint `/search` returns a 410 error (not available).
+- Endpoint `/project/{id}/issues` returns a 404 error (not found).
+- Endpoint `/issue` returns a 405 error (method not allowed).
+
+### TypeScript Warnings
+
+The project currently faces several TypeScript warnings that need addressing:
+
+- Unused variables and imports.
+- Missing properties in analytics components.
+
+## Code Changes and Improvements
+
+### Fetch Filtered Data Function
+
+Significant changes were made to the `fetchFilteredData` function to address issues with data fetching:
+
+- Removed the hardcoded limit of 1000 issues.
+- Added detection for multiple projects and implemented separate fetch loops per project.
+- Maintained compatibility with single-project scenarios and added detailed logs for debugging.
+
+### Error Handling Adjustments
+
+An error regarding "Jira configuration is missing" was addressed by allowing initialization without credentials, which are now expected to be provided post-login.
+
+## Next Steps
+
+### Immediate Actions
+
+- Increase test limits to capture 100% of data.
+- Validate real totals using JQL with `COUNT()`.
+- Verify access filters that might limit visible data.
+- Compare results with Jira Cloud UI.
+
+### Future Improvements
+
+- Implement search and sorting features within the modal interface.
+- Develop export functionality for issue lists.
+- Enhance the timeline view for issues and display dependencies.
+
+## Summary
+
+The beta testing phase has highlighted several critical limitations and areas for improvement within the Jira Dashboard project. Addressing these issues will involve further investigation into API behaviors, refining data fetching mechanisms, and enhancing the user interface to handle large datasets effectively. Continuous improvements and testing are planned to ensure a robust and reliable dashboard experience.
+
+For more detailed information, refer to the [source documentation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/SESSAO_ATUAL_RESUMO.md).

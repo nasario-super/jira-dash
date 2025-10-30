@@ -1,0 +1,108 @@
+# Dashboard Management Guide
+
+## Introduction
+
+Welcome to the comprehensive guide on managing the Jira Dashboard. This documentation is designed to help you create, customize, and manage dashboards effectively. The Jira Dashboard is a modern, responsive web application that consolidates data from multiple Jira projects, providing real-time insights and customizable visualizations to facilitate strategic decision-making.
+
+## Overview of the Jira Dashboard
+
+### Project Objective
+
+The Jira Dashboard aims to develop a standalone web application that functions as an intelligent executive dashboard for project management. It connects directly to the Jira API to consolidate scattered information across multiple boards, projects, and sprints, transforming raw data into actionable insights.
+
+### Target Audience
+
+- **Primary**: Executives, project managers, and team leaders who require a consolidated and strategic view.
+- **Secondary**: Product Owners, Scrum Masters, and analysts who need to track performance metrics.
+
+### Key Features
+
+1. **Unified View**: Consolidation of data from multiple projects and boards into a single interface.
+2. **Real-Time Insights**: Automatically updated metrics with the latest Jira data.
+3. **Intelligent Visualization**: Graphs and indicators that facilitate the identification of patterns, trends, and anomalies.
+4. **Agile Decision-Making**: Clear and objective presentation of relevant information.
+5. **Customization**: Advanced filters for specific analyses by project, team, period, or work type.
+
+## Technical Context
+
+### Core Features
+
+- **Dark Mode**: Enhance visual comfort by switching to a dark theme.
+- **Widget Customization**: Personalize the dashboard with customizable widgets.
+- **Advanced Historical Comparisons**: Analyze data over time with advanced comparison tools.
+- **Local Storage Configurations**: Save configurations locally for quick access.
+
+### Dashboard Components
+
+The dashboard integrates filters and visualizations, processing data for various charts using Tailwind CSS for layout and styling. It includes a filter bar and other UI elements to enhance user interaction.
+
+### Technology Stack
+
+- **Frontend**: React 18+ with TypeScript
+- **Styling**: Tailwind CSS
+- **Charts**: Recharts
+- **API Integration**: Axios for Jira REST API
+- **State Management**: React Context API and custom hooks
+- **Routing**: React Router v6
+- **Build Tool**: Vite
+
+## Deployment and Configuration
+
+### Quick Deployment on AWS
+
+1. **Clone the Repository**:
+   ```bash
+cd /home/ssm-user/projetos
+git clone https://github.com/seu-usuario/jira-dash.git
+cd jira-dash
+   ```
+
+2. **Run the Deployment Script**:
+   ```bash
+chmod +x install-and-deploy.sh
+./install-and-deploy.sh
+   ```
+
+3. **Access the Application**:
+   ```
+http://SEU-IP-DA-EC2:3000
+   ```
+
+### Environment Setup
+
+1. **Create an API Token**:
+   - Visit [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens)
+   - Click "Create API token" and copy the generated token.
+
+2. **Configure Environment Variables**:
+   ```env
+VITE_JIRA_DOMAIN=sua-empresa.atlassian.net
+VITE_JIRA_EMAIL=seu-email@empresa.com
+VITE_JIRA_API_TOKEN=seu-token-aqui
+   ```
+
+3. **Start the Development Server**:
+   ```bash
+npm run dev
+   ```
+
+## Usage and Configuration
+
+### Common Use Cases
+
+1. **Sprint Planning**: Use the Agile Dashboard to analyze velocity and define sprint goals.
+2. **Daily Standup**: Access the Daily Scrum to view today's issues and identify blockers.
+3. **Managerial Reporting**: Utilize the Executive Dashboard to analyze KPIs and export reports.
+4. **Quality Analysis**: Check the Quality Metrics for high defect rates and prioritize corrections.
+
+### Troubleshooting
+
+- **Issue Status Discrepancies**: Refresh the dashboard or reload the page.
+- **Missing Issues**: Check active filters and ensure all sub-items are included.
+- **User Visibility Issues**: Reassign issues if necessary.
+
+## Summary
+
+The Jira Dashboard is a robust tool for visualizing and managing Jira data, offering a unified view of multiple projects and real-time insights. With advanced customization options and seamless integration with Jira's API, it empowers users to make informed decisions swiftly. Deployable on AWS, it provides a scalable solution for teams seeking to enhance their project management capabilities.
+
+For more detailed deployment instructions and troubleshooting tips, refer to the provided documentation links.

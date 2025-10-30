@@ -1,0 +1,71 @@
+# Performance Issues
+
+## Introduction
+
+This guide provides insights into diagnosing and fixing performance problems in the Jira Dashboard application. It covers recent optimizations, testing methodologies, and troubleshooting steps to ensure efficient data processing and issue management.
+
+## Performance Optimizations
+
+Recent updates have significantly improved the performance of data fetching and merging processes in the Jira Dashboard. By fetching data from multiple projects in parallel, the processing time has been reduced from over 100 seconds to just 5-10 seconds, enhancing performance by 10-20 times.
+
+### Time Reduction Details
+
+- **Before:** Over 100 seconds
+- **After:** 5-10 seconds
+- **Improvement:** 10-20x faster
+
+## Testing Performance
+
+### Test 1: Performance with Two Projects
+
+To test the performance improvements:
+
+1. Open DevTools (F12) and navigate to the Console.
+2. Log in to the application.
+3. Select the projects `INFOSECC` and `SEGP`.
+4. Observe the processing time:
+   - The process should complete in 5-15 seconds.
+   - The console should display "SUCCESS".
+   - If it takes more than 30 seconds, investigate further.
+
+### Test 2: Verify Logs
+
+Ensure the console logs the following during data fetching:
+
+- Initiation of parallel fetching for multiple projects.
+- Pagination details for each project.
+- Successful merging of issues from selected projects.
+
+## Data Filtering and Diagnostics
+
+The diagnostic system now identifies and corrects data filtering issues, providing detailed status and specific recommendations for validation and monitoring.
+
+### Diagnostic Steps
+
+1. Expand the "Diagnóstico de Filtragem de Dados" card to view the current status.
+2. Analyze data for total issues, accessible issues, and inaccessible projects.
+3. Review recommendations for removing inaccessible projects and correcting filtering errors.
+
+## Troubleshooting Common Issues
+
+### API Limits and Pagination
+
+The team is investigating API limits and pagination issues, particularly when handling large datasets. Critical diagnostics are scheduled to address these concerns.
+
+#### Checklist for Investigation
+
+- Validate the implemented solution if API limits are confirmed.
+- Test the dashboard with real data.
+- Adjust the frontend to handle large datasets if necessary.
+
+### Common Problems and Solutions
+
+- **"Nenhuma issue encontrada"**: Ensure projects have issues, clear restrictive filters, and verify Jira access.
+- **"Números diferentes do Jira"**: Allow for synchronization delays and verify filters.
+- **"Usuário não aparece"**: Reassign issues or invite the user back to the project.
+
+## Summary
+
+The Jira Dashboard has undergone significant performance enhancements, reducing data processing times and improving efficiency. By following the provided testing and troubleshooting steps, users can ensure optimal performance and resolve common issues effectively. For further assistance, consult the detailed documentation or contact the system administrator.
+
+For more detailed information, refer to the [OTIMIZACOES_PERFORMANCE.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/OTIMIZACOES_PERFORMANCE.md) and other related documentation.

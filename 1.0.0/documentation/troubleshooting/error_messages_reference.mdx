@@ -1,0 +1,57 @@
+# Error Messages Reference
+
+## Introduction
+
+This document serves as a comprehensive reference for error messages encountered in the Jira Dashboard application. It provides detailed explanations and solutions for common issues, helping users troubleshoot effectively.
+
+## Common Error Messages and Solutions
+
+### 1. Project Data Errors
+
+#### Error: "Projetos ausentes nos dados"
+
+- **Description**: This error indicates that some expected projects are missing from the data fetched.
+- **Solution**:
+  1. Verify the console for specific error messages.
+  2. Check connectivity with Jira.
+  3. Ensure that the credentials used are correct.
+
+#### Error: "fetchFilteredData - ERRO"
+
+- **Description**: This error occurs when there is a failure in fetching filtered data.
+- **Solution**: Ensure that user credentials are correctly passed to all API calls and internal functions to maintain authenticated requests.
+
+### 2. Data Filtering Issues
+
+#### Problem: "Inconsistência de Issues"
+
+- **Description**: The number of issues displayed does not match the actual data from accessible projects.
+- **Solution**: Implement a new service for validating access to projects, ensuring only accessible project data is shown.
+
+### 3. Authentication and API Errors
+
+#### Error: "Invalid credentials"
+
+- **Description**: This error occurs when the provided credentials are not valid.
+- **Solution**: Ensure the correct credentials are used and passed through the API requests. Reinitialize the Jira API with new credentials after login to maintain session accuracy.
+
+### 4. Prediction Card Issues
+
+#### Problem: "Confiança NaN%"
+
+- **Description**: Invalid confidence values caused by division by zero.
+- **Solution**: Implement robust validation of values to prevent NaN errors.
+
+## Troubleshooting Tips
+
+### Quick Troubleshooting
+
+- **If only one project is shown**: Check the console for messages indicating a single project detection and ensure two projects are selected.
+- **If console shows an error**: Look for "❌" or "🚨" in the console and report the error message.
+- **If numbers do not match**: Verify that "✅ fetchFilteredData - SUCESSO" appears in the console. If not, an error occurred during data fetch.
+
+## Summary
+
+This document provides a reference for understanding and resolving common error messages in the Jira Dashboard. By following the solutions and troubleshooting tips provided, users can effectively address issues related to project data, authentication, and prediction card calculations. For further assistance, users should verify their console logs and ensure correct credentials and configurations are in place.
+
+For more detailed technical documentation, please refer to the [Jira Dashboard Documentation Index](./INDICE_DOCUMENTACAO.md).

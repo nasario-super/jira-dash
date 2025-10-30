@@ -1,0 +1,111 @@
+# Jira Integration Setup
+
+## Introduction
+
+Welcome to the Jira Integration Setup guide for version 1.0.0. This document provides comprehensive instructions on how to connect your Jira-Dashboard to your Jira instance, ensuring a seamless integration that allows you to visualize and manage your Jira data effectively. This guide is part of the Installation & Configuration group, aimed at helping you with the initial setup and configuration of the Jira Dashboard.
+
+## Overview of Jira Dashboard
+
+The Jira Dashboard is a modern, responsive web tool designed to consolidate and visualize data from Jira. It provides advanced analytics, executive reports, and productivity metrics, making it an essential tool for project managers and team leaders who need a strategic overview of their projects.
+
+### Key Features
+
+- **Centralized Data Visualization**: Access and analyze Jira data from a single interface.
+- **Advanced Analytics**: Get insights into productivity, quality metrics, and AI-driven forecasts.
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices.
+- **Full API Integration**: Direct connection to Jira Cloud API for real-time data updates.
+
+## Prerequisites
+
+Before starting the integration, ensure you have the following:
+
+- Node.js 18+
+- npm or yarn
+- A Jira Cloud account with API permissions
+- A Jira API token
+
+## Installation Steps
+
+Follow these steps to set up the Jira Dashboard:
+
+1. **Clone the Repository**
+   ```bash
+git clone <url-do-repositorio>
+cd jira-dashboard
+   ```
+
+2. **Install Dependencies**
+   ```bash
+npm install
+```
+
+# or
+yarn install
+   ```
+
+3. **Configure Environment Variables**
+   Copy the example environment file and edit it with your Jira credentials:
+   ```
+cp env.example .env
+   ```
+   Edit the `.env` file:
+   ```
+VITE_JIRA_DOMAIN=sua-empresa.atlassian.net
+VITE_JIRA_EMAIL=seu-email@empresa.com
+VITE_JIRA_API_TOKEN=seu-token-aqui
+   ```
+
+4. **Start the Development Server**
+   ```
+npm run dev
+
+# or
+yarn dev
+   ```
+
+5. **Access the Application**
+   Open [http://localhost:3000](http://localhost:3000) in your web browser.
+
+```
+
+## Jira Configuration
+
+### Creating an API Token
+
+1. Visit [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens).
+2. Click "Create API token".
+3. Name your token (e.g., "Jira Dashboard").
+4. Copy the generated token and paste it into your `.env` file.
+
+### Verify Permissions
+
+Ensure your Jira account has access to the projects you wish to view on the dashboard.
+
+## Dashboard Features
+
+### Main Metrics
+
+- **Open Issues**: Total number of unresolved issues.
+- **Completed (Month)**: Issues completed in the current month.
+- **Completion Rate**: Percentage of issues completed.
+- **Average Resolution Time**: Average time to resolve issues in days.
+- **Current Velocity**: Story points completed in the active sprint.
+- **Overdue**: Issues past their due date.
+
+### Available Graphs
+
+- **Issues by Status**: Pie chart showing distribution by status.
+- **Issues by Type**: Graph categorizing issues by type.
+
+## Troubleshooting
+
+If you encounter issues during setup, refer to the following solutions:
+
+- **Missing Jira Configuration Error**: Ensure credentials are provided during user login, not in the `.env` file.
+- **Package Errors**: Run `npm install` to resolve missing package issues.
+
+## Summary
+
+This guide provides the necessary steps to integrate your Jira-Dashboard with a Jira instance, ensuring you have access to real-time data and analytics. By following the installation and configuration instructions, you can leverage the full capabilities of the Jira Dashboard for strategic project management.
+
+For further assistance, consult the provided documentation links or reach out for support if needed.

@@ -1,0 +1,64 @@
+# Beta Program Overview
+
+Welcome to the Beta Testing Program for the Jira Dashboard. This document serves as an introduction to the beta testing program, outlining the expectations and providing essential information for beta testers.
+
+## Introduction
+
+The Beta Testing Program is designed to gather feedback on new features and improvements before they are released to the public. As a beta tester, you play a crucial role in helping us identify issues and improve the overall quality of our product.
+
+## Project Selection and Discovery Flow
+
+Recent improvements have been made to the project selection and discovery flow to enhance user experience:
+
+- **Project Selection**: After logging in, users are required to select projects. This ensures a controlled and user-friendly process.
+- **Feedback During Discovery**: Clear feedback is provided during the project discovery phase. Users will see messages such as "Carregando Projetos" during automatic discovery, "Descoberta Concluída" when successful, and "Descoberta Falhou" if it fails.
+- **Dashboard Access**: Access to the dashboard is only granted once projects are selected, ensuring that users follow the correct flow: Login → Project Selection → Dashboard.
+
+## Testing Procedures
+
+### Complete Flow Test
+
+1. Log in to the system.
+2. A project selection screen should appear.
+3. The status "Carregando Projetos" will be displayed during discovery.
+4. Once loading is complete, available projects will be shown.
+5. Select the desired projects and confirm the selection.
+6. Access the dashboard with the selected projects.
+
+### Discovery Test
+
+- On the project selection screen, check the console logs.
+- Ensure messages like "Starting automatic project discovery..." and "Discovery completed, found projects: [...]" are displayed.
+- Confirm the status "Descoberta de Projetos Concluída" is shown.
+
+### Dashboard Test
+
+- After selecting projects, access the dashboard to ensure it functions correctly with the selected projects.
+
+## Reporting Errors
+
+If you encounter any errors during testing, follow these steps:
+
+1. **Capture a Screenshot**: Take a screenshot of the issue.
+2. **Logs**: Open DevTools (F12) and check the console for logs.
+3. **Information to Include**:
+   - Browser and version
+   - Selected projects
+   - Active tab (Overview/Daily/Velocity/Alerts)
+   - Description of what you were doing
+
+4. **Submit the Report**:
+   - Include the screenshot, logs, and information.
+   - Title: [BUG] Brief description
+   - Description: Steps to reproduce, expected vs. actual results
+
+## Summary
+
+The Beta Testing Program is an essential phase in the development of the Jira Dashboard, allowing us to refine features and improve user experience based on your feedback. By participating, you help ensure that the final product is robust and user-friendly. We appreciate your contributions and look forward to your insights.
+
+For more detailed instructions and documentation, please refer to the following resources:
+
+- [Project Selection Flow Fix Documentation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/PROJECT_SELECTION_FLOW_FIX.md)
+- [Agile Dashboard Testing Guide](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/TESTE_AGILE_DASHBOARD.md)
+
+Thank you for your participation in the Beta Testing Program!

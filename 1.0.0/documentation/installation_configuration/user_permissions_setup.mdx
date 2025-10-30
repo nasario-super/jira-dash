@@ -1,0 +1,68 @@
+# User Permissions Setup
+
+Version: 1.0.0
+
+## Introduction
+
+This guide provides instructions for configuring user roles and access controls within the Jira dashboard project, focusing on ensuring that users have access only to the projects they are authorized to view. The system is designed to automatically filter project access, providing security, transparency, and a flexible configuration.
+
+## Automatic User Access Filtering
+
+The Jira dashboard implements a robust system for filtering user access to projects, ensuring that users can only view data from projects they are authorized to access. This is achieved through the `projectAccessService.ts`, which initializes user project access and filters issues based on user permissions.
+
+### Key Features
+
+- **Automatic Filtering**: The system automatically filters Jira issues based on user access, ensuring that only authorized project data is displayed.
+- **Security and Transparency**: Sensitive information is protected automatically, and users are clearly informed about the data they can access.
+- **Flexible Configuration**: Known users can be configured with specific project access, and the system can easily expand to include new users.
+
+### Code Example
+
+```typescript
+// Configuration for a known user
+if (email === 'anderson.nasario@superlogica.com') {
+this.initializeUserProjects(email, ['INFOSECC', 'SEGP']);
+}
+```
+
+## Dynamic User Access Implementation
+
+The system has transitioned from a static user configuration to a dynamic and automatic discovery system that manages access for multiple users with varying project permissions.
+
+### Discovery Methods
+
+1. **JQL Method**: Uses JQL to find issues where the user is an assignee or reporter.
+2. **Project API**: Lists all projects and tests access.
+3. **Board API**: Finds accessible boards and extracts projects.
+4. **Fallback Method**: Tests access to common projects.
+
+### Example Functionality
+
+- **User A**: Access to projects INFOSECC and SEGP.
+- **User B**: Access to projects TS, TRE, and CRMS.
+- **User C**: No access to any projects.
+
+## User Interface and Dashboard Integration
+
+The user access details and statistics are visually displayed within the main dashboard, ensuring an intuitive and informative user experience.
+
+### Visual Features
+
+- **Expandable Card**: Displays access information and statistics.
+- **Status Badges**: Indicate access levels with semantic icons and colors.
+- **Project List**: Shows accessible and inaccessible projects with clear status indicators.
+
+### Code Example
+
+```typescript
+// Initialize project access for the current user
+useEffect(() => {
+projectAccessService.configureKnownUserProjects('anderson.nasario@superlogica.com');
+}, []);
+```
+
+## Summary
+
+The user permissions setup in the Jira dashboard project ensures secure and transparent access control. By implementing automatic filtering and dynamic user access discovery, the system provides a flexible and efficient solution for managing user permissions. The intuitive user interface further enhances the user experience by clearly displaying access information and statistics.
+
+For more detailed information, refer to the [User Project Access Implementation documentation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/USER_PROJECT_ACCESS_IMPLEMENTATION.md).

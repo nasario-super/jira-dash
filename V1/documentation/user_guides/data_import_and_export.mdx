@@ -1,0 +1,88 @@
+# Data Import and Export
+
+## Introduction
+
+This tutorial provides a comprehensive guide on how to import existing data and export reports using the Jira dashboard application. The guide focuses on ensuring data is filtered based on user-selected projects, enhancing security and accuracy in data handling.
+
+## Project Data Filtering
+
+The Jira dashboard application employs a robust filtering mechanism to ensure that only data from user-selected projects is displayed. This is achieved through the `useFilteredProjectData` hook, which guarantees that all functionalities across the application adhere to project-based filtering.
+
+### Key Features
+
+- **Executive Dashboard**: Displays KPIs only for selected projects.
+- **Quality Metrics**: Shows metrics exclusively for selected projects.
+- **Analytics IA**: Provides analysis only for selected projects.
+- **Reports**: Displays reports filtered by selected projects.
+
+### Testing Project Filters
+
+#### Test 1: Verify Single Project Filter
+1. Login to the application.
+2. Select only the project "INFOSECC".
+3. Open the Agile Dashboard.
+4. Ensure the console shows: `useFilteredProjectData: projects: ['INFOSECC']`.
+5. Verify that only data from "INFOSECC" is displayed.
+
+#### Test 2: Verify Multiple Project Filters
+1. Login to the application.
+2. Select projects "INFOSECC" and "SEGP".
+3. Open the Executive Dashboard.
+4. Ensure the console shows: `useFilteredProjectData: projects: ['INFOSECC', 'SEGP']`.
+5. Verify that data from both projects is aggregated and displayed.
+
+#### Test 3: Verify Security
+1. Login to the application.
+2. Select only the project "INFOSECC".
+3. Open Quality Metrics.
+4. Count the issues displayed to ensure they belong only to "INFOSECC".
+
+## Data Handling and Security
+
+### Data Loading and Display
+
+The application uses a consistent pattern to load and display data only after projects are selected. This ensures that dashboards and reports show information filtered by the selected projects.
+
+```typescript
+import { useFilteredProjectData } from '../hooks/useFilteredProjectData';
+const { issues, loading, selectedProjects, isReady } = useFilteredProjectData();
+
+if (!isReady) {
+return <div>Selecione projetos para continuar</div>;
+}
+```
+
+### Security and Transparency
+
+- **Automatic Protection**: Sensitive information is automatically protected.
+- **Transparent Filtering**: Users are aware of the data they are accessing.
+- **Debug Logs**: Available for monitoring and ensuring data integrity.
+
+### User Project Access
+
+The system automatically filters user access to projects like "INFOSECC" and "SEGP", ensuring security and transparency. Only issues from these projects are returned, and access statistics are clearly displayed on the dashboard.
+
+## Advanced Analytics Features
+
+The advanced analytics interface provides detailed predictions and personalized recommendations, with an intuitive design and easy navigation.
+
+### Interface and UX
+
+- **Responsive Modals**: Modern design with intuitive icons.
+- **Semantic Colors**: Green for positive, red for negative.
+- **Organized Layout**: Clear sections for easy navigation.
+
+### Using Advanced Analytics
+
+1. Access the Advanced Analytics at `http://localhost:3000/advanced-analytics`.
+2. Navigate through sections like Correlation Analysis and Advanced Metrics.
+3. Explore detailed insights and specific recommendations.
+
+## Summary
+
+This guide has outlined the process of importing and exporting data within the Jira dashboard application, emphasizing the importance of project-based filtering for data security and accuracy. By following the outlined steps and utilizing the provided hooks and interfaces, users can effectively manage and analyze their project data.
+
+For further details, refer to the following resources:
+- [FILTRO_PROJETOS_GLOBAIS.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/FILTRO_PROJETOS_GLOBAIS.md)
+- [ADVANCED_ANALYTICS_FEATURES.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/ADVANCED_ANALYTICS_FEATURES.md)
+- [USER_PROJECT_ACCESS_IMPLEMENTATION.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/USER_PROJECT_ACCESS_IMPLEMENTATION.md)

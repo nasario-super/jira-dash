@@ -1,0 +1,95 @@
+# Case Studies
+
+## Introduction
+
+This documentation page provides real-world implementation examples of the Jira Dashboard system. It highlights various functionalities, configurations, and use cases, demonstrating how the system can be effectively utilized in different scenarios. The examples are derived from practical applications and are intended to offer insights into the system's capabilities.
+
+## Real-World Implementation Examples
+
+### Project Filtering and Security
+
+The Jira Dashboard system ensures that data and reports are displayed only for the projects selected by the user. This functionality enhances data security and accuracy by filtering out unauthorized access to project information.
+
+- **Executive Dashboard**: Displays KPIs only for selected projects.
+- **Quality Metrics**: Shows metrics only for selected projects.
+- **Analytics IA**: Provides analysis only for selected projects.
+- **Reports**: Generates reports only for selected projects.
+- **Validation**: If a user attempts to access a non-selected project, data is filtered out.
+
+#### Testing Project Filtering
+
+1. **Verify Filter by Project**:
+   - Login and select only the "INFOSECC" project.
+   - Open the Agile Dashboard.
+   - Console should display: `useFilteredProjectData: projects: ['INFOSECC']`.
+   - Data displayed should be exclusively from the "INFOSECC" project.
+
+2. **Verify Multiple Projects**:
+   - Login and select "INFOSECC" + "SEGP".
+   - Open the Executive Dashboard.
+   - Console should display: `useFilteredProjectData: projects: ['INFOSECC', 'SEGP']`.
+   - Data should aggregate from both projects.
+
+3. **Verify Security**:
+   - Login and select only the "INFOSECC" project.
+   - Open Quality Metrics.
+   - Count issues displayed should be only from "INFOSECC".
+
+### Common Dashboard Issues and Solutions
+
+The documentation outlines common issues encountered in dashboards integrated with Jira, their causes, and solutions.
+
+1. **Issue with Different Status**:
+   - **Cause**: Real-time updates, multiple users altering data, synchronization with Jira.
+   - **Solution**: Click "Update" on the Dashboard or refresh the page (F5).
+
+2. **Mismatch in Number of Issues**:
+   - **Cause**: Applied filters, subitem issues not included, synchronization in progress.
+   - **Verification**: Check active filters and look for "Applied Filters" on the card.
+
+3. **User Disappeared**:
+   - **Cause**: User without assigned issues, reassigned issues, user removed from the project.
+   - **Action**: Reassign issues if necessary.
+
+### Use Cases
+
+1. **Sprint Planning**:
+   - Open Agile Dashboard.
+   - View total issues available.
+   - Analyze previous velocity.
+   - Set sprint goals.
+
+2. **Daily Standup**:
+   - Navigate to Daily Scrum.
+   - View today's issues.
+   - Identify blockages.
+   - Discuss solutions.
+
+3. **Managerial Reporting**:
+   - Access Executive Dashboard.
+   - Analyze KPIs.
+   - Export reports.
+   - Present data.
+
+4. **Problem Identification**:
+   - Go to Quality Metrics.
+   - Look for high defect rates.
+   - Click to view bugs.
+   - Prioritize corrections.
+
+### Advanced Analytics and Data Filtering
+
+The system includes advanced analytics features and data filtering capabilities to enhance data interpretation and decision-making processes.
+
+- **Advanced Analytics**: Access predictive analytics to explore details and follow action plans.
+- **Data Filtering**: Implemented solutions include data validation services and diagnostic components for detailed analysis and recommendations.
+
+## Summary
+
+The Jira Dashboard system is designed to provide a comprehensive and secure platform for managing project data. It offers advanced filtering, real-time updates, and predictive analytics, making it a robust tool for project management and decision-making. The case studies and examples provided in this documentation illustrate the practical applications and benefits of the system, ensuring users can maximize its potential in various scenarios.
+
+For more detailed information on each feature and implementation, refer to the specific documentation files linked within the system.
+
+---
+
+For further assistance, please consult the relevant documentation or contact support.

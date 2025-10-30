@@ -1,0 +1,88 @@
+# Edge Case Testing Guide
+
+## Introduction
+
+This guide provides an overview of testing unusual scenarios and edge cases within the Agile Dashboard and Jira environments. It is designed for beta testers to ensure comprehensive validation of system behavior under atypical conditions.
+
+## Testing Scenarios
+
+### Edge Case Tests
+
+1. **0 Issues Concluded**
+   - Select a project with 0 concluded issues.
+   - Verify that the dashboard displays "Concluídas: 0" without errors.
+
+2. **No Overdue Issues**
+   - Select a project with 0 overdue issues.
+   - Ensure no alert appears and the health bar remains green.
+
+3. **Many Issues (100+)**
+   - Conduct a Daily Scrum with over 100 items.
+   - Check that scrolling works and performance remains acceptable.
+
+### Metrics Validation
+
+- Ensure that metrics such as "Concluídas," "Em Progresso," and "Bloqueadas" are correctly calculated and displayed.
+- Verify that the percentage of completed tasks is accurate.
+- Debug logs should be visible for further analysis.
+
+### Daily Scrum Features
+
+- Confirm that the Daily Scrum tab contains three expandable sections.
+- Ensure all items are displayed without limits, and scrolling functions correctly.
+- Visual icons and text truncation should be checked for clarity.
+
+### Alerts and Modals
+
+- Alerts should be clickable, opening a detailed modal with related issues.
+- Ensure that the modal displays up to 20 related issues with scrolling enabled.
+
+## Investigation and Troubleshooting
+
+### Data Discrepancy Tests
+
+1. **Counting Real Users**
+   - Use JQL to verify the number of unique users with issues in Jira.
+   - Expected result: 11 users.
+
+2. **Counting Real Issues**
+   - Verify the total number of issues per project using JQL.
+   - Compare results with Jira Web to ensure accuracy.
+
+3. **Deduplication Validation**
+   - Check if deduplication is removing valid issues.
+   - Count issues before and after deduplication; the difference should be approximately zero.
+
+### Critical Discoveries
+
+- A test without page limits revealed a potential bug where the API returns issues infinitely due to a malfunctioning `isLast` parameter.
+- Possible causes include a Jira API V3 bug, data cycling, or defective JQL.
+
+## Next Steps
+
+1. **Detailed Logging**
+   - Add logs to trace where users/issues are lost.
+
+2. **Script Development**
+   - Create a test script to count real data from Jira.
+
+3. **Comparison**
+   - Compare numbers with the Jira Web interface to identify discrepancies.
+
+4. **Function Identification**
+   - Identify and correct any function that is removing data incorrectly.
+
+## Summary
+
+This guide outlines the necessary steps for testing edge cases within the Agile Dashboard and Jira environments. By following these procedures, testers can ensure that the system behaves correctly under unusual conditions and that any discrepancies are thoroughly investigated and resolved.
+
+For more detailed instructions, refer to the relevant sections of the source documentation.
+
+---
+
+**Good luck with your testing! 🚀**
+
+For further information, please refer to the original documentation sources:
+- [TESTE_RAPIDO.md](https://superlogica.atlassian.net/)
+- [TESTE_AGILE_DASHBOARD.md](https://superlogica.atlassian.net/)
+- [INVESTIGACAO_DISCREPANCIA_DADOS.md](https://superlogica.atlassian.net/)

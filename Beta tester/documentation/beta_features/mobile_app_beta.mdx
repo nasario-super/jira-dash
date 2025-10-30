@@ -1,0 +1,93 @@
+# Mobile App Beta Testing Guide
+
+## Introduction
+
+Welcome to the Mobile App Beta Testing Guide. This document provides an overview of the new features available in the beta version of our mobile application, along with instructions for testing and reporting issues. This guide is intended for beta testers to ensure a smooth and effective testing process.
+
+## Beta Features
+
+### Interface and Responsiveness
+
+The beta version includes a modern and responsive interface designed to adapt seamlessly across various devices:
+
+- **Desktop (1920px)**: Ensures all elements are visible and accessible.
+- **Tablet (768px)**: Layout adjusts to maintain usability and clarity.
+- **Mobile (375px)**: Optimized layout for smaller screens.
+
+### Advanced Analytics and Real-Time Updates
+
+The application offers advanced analytics and real-time updates to enhance user experience:
+
+- **Multiple API Strategies**: Four different approaches to API integration.
+- **Data Transformation**: Automatic conversion of data formats.
+- **Advanced Analytics**: Predictive analyses, performance metrics, and automatic insights.
+- **Real-Time Updates**: Simulated WebSocket connections and intelligent auto-refresh.
+
+### Performance Optimizations
+
+Several performance optimizations have been implemented to ensure a smooth user experience:
+
+- **Lazy Loading**: On-demand loading of content.
+- **Virtual Scrolling**: Efficient handling of large lists.
+- **Memoization**: Prevention of unnecessary re-renders.
+- **Cache Management**: Intelligent data caching with TTL.
+
+### Modern Interface
+
+The application features a modern design system with reusable components and smooth animations:
+
+- **Design System**: Consistent and reusable UI components.
+- **Animations**: Smooth transitions for a better user experience.
+- **Dark/Light Theme**: User-selectable themes for different environments.
+
+## Reporting Issues
+
+If you encounter any issues during testing, please follow these steps to report them:
+
+1. **Capture a Screenshot**: Take a screenshot of the issue.
+2. **Gather Logs**: Open DevTools (F12) and navigate to the Console tab.
+3. **Provide Information**:
+   - Browser and version
+   - Selected projects
+   - Active tab (Overview/Daily/Velocity/Alerts)
+   - Description of actions leading to the issue
+
+4. **Submit Report**:
+   ```
+[Include screenshot + logs + information]
+
+Title: [BUG] Brief description
+Description: Steps to reproduce + Expected vs actual outcome
+   ```
+
+## Testing Procedures
+
+### Successful Tests
+
+If all tests pass, proceed with the following:
+
+1. **Commit Changes**:
+   ```bash
+git add src/pages/AgileDashboard.tsx
+git add src/components/dashboard/DailyScrumDashboard.tsx
+git add src/components/dashboard/AlertSystem.tsx
+git commit -m "✨ Critical fixes for Agile Dashboard: metrics, Daily list, interactive alerts"
+git push origin main
+   ```
+
+2. **Next Steps**:
+   - Implement the `useFilteredProjectData` hook.
+   - Apply global filters to other dashboards.
+   - Conduct integration tests.
+
+## Summary
+
+This guide provides a comprehensive overview of the features and testing procedures for the beta version of our mobile application. By following the outlined steps, beta testers can effectively contribute to the development and refinement of the application, ensuring a robust and user-friendly final product.
+
+For more detailed information, please refer to the following resources:
+
+- [Agile Dashboard Testing Documentation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/TESTE_AGILE_DASHBOARD.md)
+- [Project Summary and Features](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/RESUMO_PROJETO.md)
+- [Corrections and Implementations](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/CORRECOES_AGILE_IMPLEMENTADAS.md)
+
+Thank you for your participation in the beta testing process!

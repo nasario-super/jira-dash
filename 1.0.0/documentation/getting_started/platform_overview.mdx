@@ -1,0 +1,98 @@
+# Platform Overview: Jira Dashboard
+
+## Introduction
+
+Welcome to the Jira Dashboard documentation. This platform provides a centralized web-based tool for accessing and analyzing Jira data. It offers advanced analytics, executive reports, and productivity metrics, all presented in an intuitive and user-friendly interface.
+
+## Key Features
+
+### Centralized Data Visualization
+
+- **Unified Interface**: Consolidates data from multiple Jira projects and boards into a single view.
+- **Advanced Analytics**: Provides insights into productivity and project performance.
+- **Executive Reports**: Generates comprehensive reports for strategic decision-making.
+
+### Real-Time Insights
+
+- **AI-Driven Insights**: Offers predictions and anomaly detection to enhance decision-making.
+- **Real-Time Metrics**: Automatically updates with the latest data from Jira.
+
+### Customizable and Responsive
+
+- **Advanced Filters**: Allows for specific analyses by project, team, period, or work type.
+- **Responsive Design**: Adapts to desktop, tablet, and mobile devices.
+
+## Getting Started
+
+### Accessing the Application
+
+To access the Jira Dashboard, navigate to the following URL:
+
+```
+http://3.83.28.223:3000
+```
+
+### Login Requirements
+
+To log in, you will need:
+
+- **Email**: Your registered email address.
+- **API Token**: Generate this token at [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens).
+
+### Project Selection
+
+After logging in, you can select projects to view:
+
+1. Load projects.
+2. Search by name.
+3. Select multiple projects.
+4. Confirm your selection.
+
+## Main Dashboard Overview
+
+### Key Performance Indicators (KPIs)
+
+- **Total Issues**: All issues in the selected projects.
+- **Active Projects**: Number of projects currently in use.
+- **Active Users**: Users with assigned issues.
+- **Applied Filters**: Active filters on the dashboard.
+
+### Graphical Visualizations
+
+- **Issues by Status**: Visual representation of issues categorized by their current status.
+
+## Technical Architecture
+
+### Technology Stack
+
+- **Frontend**: Built with React 18+ and TypeScript.
+- **Styling**: Tailwind CSS.
+- **Graphing**: Utilizes Recharts for data visualization.
+- **API Integration**: Connects to Jira via Axios and REST API.
+- **State Management**: Managed using React Context API and custom hooks.
+
+## Deployment and Configuration
+
+### AWS Deployment
+
+The Jira Dashboard is optimized for deployment on AWS EC2. Key steps include:
+
+1. Clone the repository on your EC2 instance.
+2. Run the deployment script.
+3. Access the application via your EC2 IP address.
+
+### Environment Configuration
+
+Set up your `.env` file with the following variables:
+
+```env
+VITE_JIRA_DOMAIN=sua-empresa.atlassian.net
+VITE_JIRA_EMAIL=seu-email@empresa.com
+VITE_JIRA_API_TOKEN=seu-token-aqui
+```
+
+## Summary
+
+The Jira Dashboard is a powerful tool for centralizing and analyzing Jira data, offering real-time insights and customizable views to support strategic decision-making. With its responsive design and advanced analytics capabilities, it serves as an essential platform for project managers and executives seeking to optimize their project oversight and performance metrics.
+
+For further details, please refer to the complete documentation available in the [Jira Dashboard Guide](https://developer.atlassian.com/cloud/jira/platform/rest/v3/).

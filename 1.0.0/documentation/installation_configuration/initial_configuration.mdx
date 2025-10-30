@@ -1,0 +1,71 @@
+# Initial Configuration Guide
+
+Version: 1.0.0
+Group: Installation & Configuration
+Priority: High
+
+This guide provides step-by-step instructions for configuring basic settings and preferences for the Jira Dashboard project. The setup includes Docker configuration, network settings, security measures, and troubleshooting common issues.
+
+## Docker Configuration
+
+The Jira Dashboard system is designed to run via Docker, ensuring ease of deployment and management. Below are the steps to get started with Docker:
+
+### Installation and Deployment
+
+1. **Install Docker and Docker Compose** (if not already installed):
+   ```bash
+sudo apt-get install -y docker.io docker-compose
+   ```
+
+2. **Deploy the Application**:
+   ```bash
+cd /home/ssm-user/projetos/jira-dash
+./deploy-docker.sh
+   ```
+
+3. **Access the Application**:
+   - Open your browser and navigate to: `http://3.83.28.223:3000`
+
+### Important Files
+
+- **Dockerfile**: Defines the Docker image.
+- **docker-compose.yml**: Manages multi-container Docker applications.
+- **deploy-docker.sh**: Automates the deployment process.
+
+## Network Configuration
+
+The system is accessible via a public IP and configured for optimal network performance:
+
+- **Public IP**: `3.83.28.223:3000`
+- **Private IP**: `172.16.80.81:3000`
+- **Port**: 3000 is open for access.
+- **SSH Keep-Alive**: Optimized to prevent timeouts.
+
+## Security Measures
+
+To ensure a secure environment, the following configurations are applied:
+
+- **Credentials Management**: Credentials should be provided via the UI, not through environment variables in production.
+- **Security Group**: Configured to protect the application from unauthorized access.
+
+## Troubleshooting
+
+### Common Issues
+
+- **Docker Installation Issues**:
+  - Refer to `INSTALACAO_DOCKER_AWS.md` for installation troubleshooting.
+
+- **SSH Timeout**:
+  - Use tools like Screen or Tmux to maintain active SSH sessions. For detailed instructions, see `MANTER_SSH_ATIVA.md`.
+
+- **Container Startup Issues**:
+  - Check logs for errors:
+    ```bash
+docker-compose logs -f
+    ```
+
+## Summary
+
+This guide provides a comprehensive overview of the initial configuration required for the Jira Dashboard project. It covers Docker setup, network and security configurations, and offers solutions for common issues. By following these steps, you can ensure a smooth and secure deployment of the application.
+
+For further assistance, consult the detailed documentation files mentioned in each section.

@@ -1,0 +1,69 @@
+# Current Known Issues
+
+This document provides a comprehensive list of known bugs and issues identified during the beta testing phase of our project management dashboard. The issues outlined here are critical for understanding the current limitations and challenges faced by users. This reference is intended for beta testers and developers to aid in troubleshooting and improving the system.
+
+## Table of Contents
+
+- [Modal Issues](#modal-issues)
+- [Jira API v3 Bug](#jira-api-v3-bug)
+- [Agile Dashboard Problems](#agile-dashboard-problems)
+- [Summary](#summary)
+
+## Modal Issues
+
+### Issue Details and Usability
+
+- **Status and Priority Colors**: Issues have contextual color codes for status and priority. Status colors include green for completed, blue for in-progress, yellow for pending, and red for canceled. Priority colors are red for critical, orange for high, yellow for medium, and blue for low.
+- **Modal Functionality**: Users can view issue details such as status, priority, project, assignee, and formatted dates. Issues can be expanded and collapsed within the modal, and multiple projects can be viewed simultaneously.
+- **Closing Modals**: Users can close issue modals by clicking the 'X' in the header or clicking outside the modal. This returns the user to the previous modal view.
+
+### Known Bugs
+
+- **Multiple Projects**: When a user has issues across multiple projects, the modal correctly displays issues from both projects, allowing users to expand and view details for each project.
+
+## Jira API v3 Bug
+
+### Critical Issue with JQL Queries
+
+- **Problem**: The Jira API v3 has a critical bug when using JQL queries with multiple projects. It returns issues from only one project, ignoring others.
+- **Solution**: Implement separate fetches for each project and merge results to ensure all issues are retrieved.
+
+```typescript
+const selectedProjects = projectAccessService.getUserProjects();
+const hasMultipleProjects = selectedProjects.length > 1;
+
+if (hasMultipleProjects) {
+for (const projectKey of selectedProjects) {
+const projectJql = `project = "${projectKey}"`;
+// Fetch individual for each project
+}
+}
+```
+
+## Agile Dashboard Problems
+
+### Display and Functionality Issues
+
+- **Completed Issues Not Reflecting**: The dashboard may show "Completed: 0" despite having completed issues. This is due to incorrect usage of the `statusCategory` field.
+- **Status Display Errors**: Some custom statuses may not have `statusCategory`, leading to incorrect issue counts.
+- **Layout Problems**: Cards do not display all data, with text being cut off and a lack of responsive design.
+
+### Proposed Solutions
+
+- **Correct Status Filtering**: Update the filtering logic to include all relevant status names.
+
+```typescript
+const completed = issues.filter(
+i =>
+i.fields.status.statusCategory?.name === 'Done' | |
+i.fields.status.name === 'Concluído' | |
+i.fields.status.name === 'Done' | |
+i.fields.status.name === 'Resolvido'
+).length;
+```
+
+- **Layout Improvements**: Convert cards to a list with expandable rows to ensure all information is visible.
+
+## Summary
+
+The current beta version of the dashboard has several known issues that affect usability and data accuracy. Key problems include modal usability issues, a critical bug in the Jira API v3 affecting multi-project queries, and display issues in the Agile Dashboard. Solutions have been proposed for each issue, focusing on improving data retrieval, user interface, and display accuracy. These insights are crucial for developers and testers to address as we work towards a more robust and user-friendly system.

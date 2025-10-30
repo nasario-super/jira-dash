@@ -1,0 +1,114 @@
+# Diagnosing and Fixing Performance Issues
+
+This guide provides a comprehensive overview of diagnosing and fixing performance issues in the Jira Dashboard application. It includes methods to test performance, analyze data filtering, and handle API limitations. Follow these steps to ensure optimal performance and troubleshoot common problems.
+
+## Performance Optimization
+
+### Parallel Data Fetching
+
+Recent updates have significantly improved the performance of data fetching by processing multiple projects in parallel. This optimization has reduced the processing time from over 100 seconds to just 5-10 seconds, enhancing performance by 10-20 times.
+
+- **Before Optimization:** 100+ seconds
+- **After Optimization:** 5-10 seconds
+- **Improvement:** 10-20x faster
+
+### Testing Performance
+
+To verify the performance improvements, follow these steps:
+
+1. Open DevTools (F12) and navigate to the Console.
+2. Log in to the application.
+3. Select projects INFOSECC and SEGP.
+4. Observe the time taken for completion:
+   - Should complete in 5-15 seconds.
+   - Console should display "SUCCESS".
+   - If it takes more than 30 seconds, investigate further.
+
+### Log Verification
+
+Ensure the console logs show the following during the data fetching process:
+
+```
+⏳ fetchFilteredData START
+📋 Projects: INFOSECC, SEGP
+🟡 Multiple projects - using parallel fetch
+🔍 Fetching 2 projects IN PARALLEL
+⏳ Starting: INFOSECC
+⏳ Starting: SEGP
+📡 Starting pagination: project = "INFOSECC"...
+📄 Page 1: 100 issues total
+📄 Page 5: 500 issues total
+✅ Pagination complete: 1000 issues
+📡 Starting pagination: project = "SEGP"...
+📄 Page 1: 100 issues total
+📄 Page 5: 500 issues total
+✅ Pagination complete: 1000 issues
+⏳ Waiting for all projects...
+✅ INFOSECC: 1000 issues
+✅ SEGP: 1000 issues
+🔄 Merged: 2000 issues from 2 projects
+🔍 Validation: expected: INFOSECC, SEGP
+📊 INFOSECC: 1000 issues
+📊 SEGP: 1000 issues
+✅ SUCCESS: 2000
+```
+
+## Data Filtering and Diagnostics
+
+### Expanding Diagnostic Tools
+
+The diagnostic system now allows for identifying and correcting data filtering issues by providing detailed status updates and specific recommendations.
+
+1. **Expand the Diagnostic Card:**
+   - Click on "Diagnóstico de Filtragem de Dados" to view the current status (Valid/Inconsistent).
+
+2. **Analyze Data:**
+   - Check the total number of issues being loaded.
+   - Identify accessible and inaccessible projects.
+
+3. **Check Recommendations:**
+   - Remove inaccessible projects.
+   - Correct incorrect filtering.
+   - Ensure configurations are correct for the user.
+
+### Status of Corrections
+
+- Validation service implemented.
+- Diagnostic component created.
+- Integration with the dashboard completed.
+- Detailed analysis by project and user.
+- Specific recommendations for correction.
+- Functional debug interface.
+
+## Handling API Limitations
+
+### Investigating API Limits
+
+The team is currently investigating API limits and issue pagination. The goal is to validate, test, and adjust the frontend to handle large datasets effectively.
+
+- **Priority 1:** Investigate critical issues related to the 100k issue limit.
+- **Priority 2:** Validate the implemented solution if API limits are confirmed.
+
+### Next Steps
+
+1. **Verify Logs:**
+   - Open DevTools and check validation logs.
+   - Identify inaccessible projects.
+
+2. **Apply Filters:**
+   - Use diagnostic recommendations to correct data filtering.
+   - Validate results.
+
+3. **Monitor Results:**
+   - Ensure only the intended projects appear.
+   - Confirm consistent numbers.
+   - Validate correct user access.
+
+## Summary
+
+The Jira Dashboard has undergone significant performance improvements through parallel data fetching and enhanced diagnostic tools. While these updates have optimized processing times, ongoing investigations into API limitations and pagination issues are crucial for maintaining data integrity and performance. Follow the outlined steps to diagnose and resolve performance issues effectively.
+
+For further details, refer to the following documentation:
+- [Performance Optimizations](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/OTIMIZACOES_PERFORMANCE.md)
+- [Data Filtering Analysis](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/DATA_FILTERING_ANALYSIS.md)
+- [Current Session Summary](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/SESSAO_ATUAL_RESUMO.md)

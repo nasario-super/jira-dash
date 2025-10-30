@@ -1,0 +1,123 @@
+# Task Analytics
+
+Version: 1.0.0
+Tab: Documentation - Complete product documentation and user guides
+Group: Core Features - Comprehensive guide to all platform features
+Page Type: Guide
+Page Description: Analyze task performance and patterns
+Priority: High
+
+## Introduction
+
+Task Analytics is a powerful feature designed to help users analyze task performance and identify patterns within their projects. This guide provides an overview of how to utilize the analytics dashboards, interpret the data, and apply insights to improve project outcomes.
+
+## Testing Task Analytics
+
+### Test Cases
+
+1. **Verify Analytics with a Single Project**
+   - **Steps:**
+     1. Login to the system.
+     2. Select only the `INFOSECC` project.
+     3. Navigate to `/analytics`.
+     4. Check the console for "selectedProjects: ['INFOSECC']".
+     5. Ensure metrics are specific to `INFOSECC`.
+
+2. **Verify Analytics with Multiple Projects**
+   - **Steps:**
+     1. Select `INFOSECC` and `SEGP` projects.
+     2. Navigate to `/analytics`.
+     3. Check the console for "selectedProjects: ['INFOSECC', 'SEGP']".
+     4. Metrics should aggregate data from both projects.
+     5. Total issues should approximate 2000 (1000 each).
+
+3. **Verify Advanced Analytics**
+   - **Steps:**
+     1. Select any project.
+     2. Navigate to `/advanced-analytics`.
+     3. Ensure analyses are based on real data.
+     4. Confirm no "Nenhuma correlação encontrada" message.
+     5. Verify "Análise de XX issues" is displayed.
+
+4. **Change Project Selection**
+   - **Steps:**
+     1. In `/analytics`, select `INFOSECC`.
+     2. Return to the Dashboard.
+     3. Change selection to `SEGP` only.
+     4. Return to `/analytics`.
+     5. Metrics should update automatically.
+
+### Validation Checklist
+
+- [ ] Analytics displays different data for each project.
+- [ ] AI analytics shows results (no "Sem resultados").
+- [ ] Metrics change when project selections change.
+- [ ] Console logs "Analytics: Processando dados dos projetos selecionados".
+- [ ] Insights are based on real data (not hardcoded).
+- [ ] Performance metrics are logical.
+- [ ] Predictions vary based on data.
+
+## Expected Results
+
+### Before (Incorrect)
+- Velocity: 25 pts (always the same)
+- Throughput: 8.5 issues (always the same)
+- Efficiency: 78.5% (always the same)
+- Insights: "Velocity em crescimento" (always the same)
+
+### After (Correct)
+- **INFOSECC:**
+  - Velocity: 45 pts
+  - Throughput: 12.3 issues
+  - Efficiency: 65.2%
+  - Insights: "Velocidade baixa"
+- **SEGP:**
+  - Velocity: 38 pts
+  - Throughput: 10.1 issues
+  - Efficiency: 71.8%
+  - Insights: "Eficiência em crescimento"
+
+## Advanced Analytics Features
+
+### Bug Fixes and Enhancements
+
+- **ReferenceError: Info is not defined**: Fixed by adding `Info` to imports in `BenchmarkingAnalysis.tsx`.
+- **calculatePredictions is not a function**: Implemented complete method for predictions.
+
+### Detailed Features
+
+1. **Correlation Analysis**
+   - Detailed insights and recommendations based on correlation strength.
+   - Technical visualization with coefficients and significance.
+
+2. **Advanced Metrics**
+   - Performance analysis compared with benchmarks.
+   - Automatic insights and specific recommendations.
+
+3. **Predictive Analytics**
+   - Confidence analysis of predictions.
+   - Specific actions and realistic timelines for implementation.
+
+## How to Use Improvements
+
+1. **Access Advanced Analytics**
+   - Navigate to `http://localhost:3000/advanced-analytics`.
+
+2. **Navigate to Predictions**
+   - Click "Analytics IA" in the sidebar.
+   - Go to "Analytics Preditivos" section.
+
+3. **Explore Details**
+   - Click "Ver Detalhes" on any prediction.
+   - Improvement guide appears if confidence &lt; 80%.
+
+4. **Follow Action Plan**
+   - Quick Wins: Implement in 1-2 weeks.
+   - Detailed Improvements: Execute in 1-2 months.
+   - Advanced Strategies: Consider in 3-6 months.
+
+## Summary
+
+Task Analytics provides a comprehensive view of project performance through dynamic dashboards and advanced analytics. By following the outlined test cases and utilizing the advanced features, users can gain valuable insights and make informed decisions to enhance project outcomes. The system's ability to adapt to real data ensures that predictions and metrics remain relevant and actionable.
+
+For more detailed information, refer to the [source documentation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/CORRECAO_ANALYTICS_FILTRO.md).

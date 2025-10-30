@@ -1,0 +1,135 @@
+# Creating Custom Dashboards
+
+Version: 1.0.0
+Tab: Documentation - Complete product documentation and user guides
+Group: User Guides - Step-by-step guides for common tasks and workflows
+Page Type: Tutorial
+Page Description: Build personalized dashboards for your needs
+Priority: High
+
+## Introduction
+
+This guide provides a comprehensive overview of creating custom dashboards using the Jira Dashboard project. The Jira Dashboard is a modern, responsive web application designed to consolidate and visualize data from multiple Jira projects. It connects directly to the Jira API, offering real-time insights and customizable visualizations to facilitate strategic decision-making.
+
+## Project Overview
+
+### Objective
+
+The primary goal is to develop a standalone web application that serves as an intelligent Executive Dashboard for project management. It integrates with the Jira API to consolidate scattered information across multiple boards, projects, and sprints, transforming raw data into actionable insights.
+
+### Target Audience
+
+- **Primary**: Executives, project managers, and team leaders who require a consolidated and strategic view.
+- **Secondary**: Product Owners, Scrum Masters, and analysts who need to track performance metrics.
+
+### Value Proposition
+
+The dashboard offers:
+- **Unified View**: Consolidation of data from multiple projects and boards into a single interface.
+- **Real-Time Insights**: Automatically updated metrics with the latest data from Jira.
+- **Intelligent Visualization**: Graphs and indicators that help identify patterns, trends, and anomalies.
+- **Agile Decision Making**: Clear and objective presentation of relevant information.
+- **Customization**: Advanced filters for specific analyses by project, team, period, or work type.
+
+## Technical Context
+
+The Jira Dashboard is built using modern web technologies, ensuring a responsive and interactive user experience. Key features include:
+
+- **Dark Mode**: For enhanced visual comfort.
+- **Customizable Widgets**: Tailor the dashboard to specific needs.
+- **Advanced Historical Comparisons**: Analyze trends over time.
+- **LocalStorage Configurations**: Save user settings for convenience.
+
+## Features
+
+### Key Performance Indicators (KPIs)
+
+- Total open issues
+- Completed issues
+- Completion rate
+- Average resolution time
+- Velocity
+- Overdue issues
+
+### Graphical Visualizations
+
+- Burndown charts
+- Issues by status/type
+- Team velocity
+- Priority distribution
+
+### Advanced Filters
+
+- Filter by project, sprint, issue type, status, assignee, priority, and period.
+
+### Recent Activity
+
+- List of recently updated issues with direct links to Jira.
+
+### Responsive Layout
+
+- Adaptable interface for desktop, tablet, and mobile.
+
+### Complete Integration
+
+- Direct connection to the Jira Cloud API.
+
+## Installation and Setup
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+- Jira Cloud account with API permissions
+- Jira API token
+
+### Installation Steps
+
+1. **Clone the repository**
+   ```bash
+git clone <repository-url>
+cd jira-dashboard
+   ```
+
+2. **Install dependencies**
+   ```bash
+npm install
+```
+
+# or
+yarn install
+   ```
+
+3. **Configure environment variables**
+   ```
+cp env.example .env
+   ```
+   Edit the `.env` file with your Jira credentials:
+   ```
+VITE_JIRA_DOMAIN=your-company.atlassian.net
+VITE_JIRA_EMAIL=your-email@example.com
+
+## Usage Guide
+
+### Accessing the Application
+
+Visit the application at `http://3.83.28.223:3000` to see the login screen.
+
+### Logging In
+
+- **Email**: your-email@example.com
+- **API Token**: Generate at https://id.atlassian.com/manage-profile/security/api-tokens
+
+### Project Selection
+
+After logging in, select projects to load data. Options include searching by name and selecting multiple projects for analysis.
+
+### Main Dashboard Page
+
+The dashboard provides a comprehensive view with cards displaying total issues, active projects, active users, and applied filters.
+
+## Summary
+
+The Jira Dashboard is a powerful tool for visualizing and analyzing Jira data. It offers a unified view of multiple projects, real-time insights, and customizable visualizations to support strategic decision-making. With its responsive design and advanced filtering capabilities, it is an essential tool for executives, project managers, and team leaders.
+
+For more detailed setup and troubleshooting instructions, refer to the complete documentation available in the project repository.

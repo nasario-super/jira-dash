@@ -1,0 +1,102 @@
+# Managing Team Permissions
+
+This guide provides a comprehensive overview of managing team permissions within the Jira Dashboard, focusing on controlling access and permissions for team members. The document outlines the implementation of user access filtering, security practices, and configuration for flexible and secure project management.
+
+## Introduction
+
+Managing team permissions is crucial for maintaining security and efficiency in project management. This guide covers the implementation of user access filtering in Jira, ensuring that users have access only to the projects they are authorized to view. The system provides transparency, security, and flexibility, allowing for a streamlined user experience.
+
+## User Access Filtering Implementation
+
+### Problem Identification
+
+The initial challenge was that users, such as `anderson.nasario@superlogica.com`, had access to all projects, including those they were not authorized to view. This posed a security risk and required a solution to restrict access appropriately.
+
+### Solutions Implemented
+
+1. **Project Access Service (`projectAccessService.ts`)**:
+   - Configures known users with specific project access.
+   - Automatically filters issues based on user access.
+   - Provides detailed access statistics and debug logs.
+
+   ```typescript
+// Configuração para anderson.nasario@superlogica.com
+if (email === 'anderson.nasario@superlogica.com') {
+this.initializeUserProjects(email, ['INFOSECC', 'SEGP']);
+}
+   ```
+
+2. **Integration with Jira API (`jiraApi.ts`)**:
+   - Filters issues based on user project access.
+   - Logs detailed project access information.
+
+   ```typescript
+const filteredIssues = projectAccessService.filterIssuesByUserAccess(issues);
+console.log('🔐 JiraApiService - Issues filtered by user access:', {
+originalCount: issues.length,
+filteredCount: filteredIssues.length,
+userProjects: projectAccessService.getUserProjects(),
+});
+   ```
+
+### Benefits
+
+- **Data Security**: Automatic protection of sensitive information with transparent filtering.
+- **Total Transparency**: Users know exactly which data they are accessing.
+- **Flexible Configuration**: Easy expansion for new users with centralized configuration.
+
+## Dynamic User Access
+
+### Problem Resolved
+
+The previous static configuration for a specific user needed to be dynamic to accommodate multiple users with different project access levels.
+
+### Solution Implemented
+
+1. **Automatic Discovery Service (`userProjectDiscovery.ts`)**:
+   - Utilizes four discovery methods in order of precision.
+   - Implements intelligent caching and detailed logging.
+
+   ```typescript
+// Método de Descoberta via JQL
+const jql = `assignee = "${userEmail}" OR reporter = "${userEmail}"`;
+const issues = await jiraApi.getIssues(jql, 0, 1);
+   ```
+
+2. **Updated Access Service (`projectAccessService.ts`)**:
+   - Supports dynamic user access management.
+   - Provides a visual component for displaying user access details.
+
+### Monitoring and Optimization
+
+- **Logs**: Detailed logs for monitoring access discovery processes.
+- **Integration with Authentication**: Plans to replace hardcoded emails with authentication context.
+- **Performance Enhancements**: Intelligent cache updates and incremental discovery.
+
+## Security Practices
+
+### Best Practices
+
+- **Secure HTTP Headers**: Implemented in Vite for protection against common web vulnerabilities.
+- **Session Management**: Configured session timeouts and secure token handling.
+
+   ```typescript
+export default defineConfig({
+server: {
+headers: {
+'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+'X-Frame-Options': 'SAMEORIGIN',
+'X-XSS-Protection': '1; mode=block',
+'X-Content-Type-Options': 'nosniff',
+'Access-Control-Allow-Origin': 'https://seu-dominio.com',
+'Access-Control-Allow-Credentials': 'true',
+}
+}
+});
+   ```
+
+## Summary
+
+This guide outlines the implementation of a robust system for managing team permissions within the Jira Dashboard. By leveraging automatic user access filtering, dynamic configuration, and best security practices, the system ensures secure, transparent, and flexible project management. The integration of detailed logging and monitoring further enhances the system's reliability and user experience.
+
+For more detailed technical documentation, refer to the [Jira Dashboard Documentation Index](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/INDICE_DOCUMENTACAO.md).

@@ -1,0 +1,69 @@
+# Environment Variables
+
+This documentation provides a comprehensive reference for configuring environment variables for the Jira Dashboard application. It covers the setup of environment variables in both production and Docker environments, ensuring secure and efficient configuration.
+
+## Production Environment Variables
+
+In a production environment, it is crucial to handle environment variables securely to prevent exposure of sensitive information. The `.env` file should be used cautiously, and sensitive credentials should not be included.
+
+### Creating a .env File
+
+To create a `.env` file for production, follow these steps:
+
+# Create .env file
+cat &gt; .env &lt;< 'EOFENV'
+
+# Note: In production, credentials should be provided via login,
+
+# not through environment variables!
+
+# Do not add JIRA_DOMAIN, EMAIL, or API_TOKEN here!
+
+# Optional: URLs for logging, analytics, etc.
+VITE_API_URL=https://your-domain.com
+VITE_ENABLE_LOGS=true
+EOFENV
+
+### Security Considerations
+
+- **Do Not Expose Credentials**: Avoid placing sensitive credentials such as `JIRA_DOMAIN`, `EMAIL`, or `API_TOKEN` in the `.env` file.
+- **User Login for Credentials**: Ensure that credentials are provided through user login rather than environment variables in production.
+
+## Docker Environment Variables
+
+When deploying the Jira Dashboard application using Docker, environment variables can be configured directly in the `docker-compose.yml` file or through a `.env` file.
+
+### Configuring Environment Variables in Docker
+
+#### docker-compose.yml Example
+
+```yaml
+services:
+jira-dashboard:
+build: .
+ports:
+- "3000:3000"
+environment:
+- NODE_ENV=production
+- VITE_API_URL=https://your-api.com
+- LOG_LEVEL=info
+restart: always
+```
+
+#### Using a .env File with Docker Compose
+
+# .env
+NODE_ENV=production
+VITE_API_URL=https://your-api.com
+```
+
+To use the `.env` file with Docker Compose, execute:
+
+```
+docker-compose --env-file .env up -d
+
+## Summary
+
+This documentation outlines the secure and efficient configuration of environment variables for the Jira Dashboard application. In production, ensure that sensitive credentials are not exposed in the `.env` file and are instead provided through user login. For Docker deployments, environment variables can be set in the `docker-compose.yml` file or a separate `.env` file, ensuring a flexible and secure setup.
+
+For more detailed instructions on deploying and managing the Jira Dashboard application, refer to the complete product documentation and user guides.

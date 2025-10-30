@@ -1,0 +1,139 @@
+# Installation FAQ
+
+Welcome to the Installation FAQ for deploying the Jira Dashboard application on AWS. This document provides answers to common questions and guides related to the installation and setup of the application using various methods, including Node.js and Docker.
+
+## Prerequisites
+
+Before beginning the installation, ensure that your AWS EC2 instance has the following prerequisites installed:
+
+- **Node.js**: Version 18 or higher
+- **npm**: Version 9 or higher
+- **Git**
+
+## Deployment on AWS EC2
+
+### Step-by-Step Deployment Guide
+
+1. **Clone the Repository**
+   ```bash
+cd /home/ssm-user/projetos
+git clone https://github.com/seu-usuario/jira-dash.git
+cd jira-dash
+   ```
+
+2. **Install Dependencies**
+   ```bash
+npm install
+   ```
+
+3. **Build for Production**
+   ```bash
+npm run build
+   ```
+
+4. **Serve the Application**
+   - **Option 1: Simple Server**
+     ```bash
+npm install -g serve
+serve -s dist -l 3000
+     ```
+   - **Option 2: PM2 (Recommended for Production)**
+     ```bash
+npm install -g pm2
+pm2 start pm2.config.js
+     ```
+
+### Post-Deployment Steps
+
+- **Test Login**: Ensure that you can log in to the application.
+- **Select Projects**: Verify that project selection works.
+- **Check Dashboard**: Confirm that the dashboard displays correctly.
+- **Configure Nginx (Optional)**: For domain setup, configure Nginx.
+
+### Troubleshooting
+
+- **Permission Errors**
+  ```bash
+sudo chown -R ssm-user:ssm-user /home/ssm-user/projetos/jira-dash
+  ```
+
+- **PM2 Startup Issues**
+  ```bash
+pm2 startup
+pm2 save
+  ```
+
+- **Build Failures**
+  ```bash
+rm -rf node_modules package-lock.json
+npm install
+npm run build
+  ```
+
+## Docker Installation and Deployment
+
+### Quick Installation
+
+1. **SSH into the Instance**
+   ```bash
+ssh -i seu-key.pem ec2-user@3.83.28.223
+   ```
+
+2. **Install Docker**
+   ```bash
+sudo apt-get update
+sudo apt-get install -y docker.io docker-compose
+sudo usermod -aG docker $USER
+exit
+ssh -i seu-key.pem ec2-user@3.83.28.223
+   ```
+
+3. **Verify Installation**
+   ```bash
+docker --version
+docker-compose --version
+   ```
+
+### Deploy with Docker
+
+1. **Navigate to Project Directory**
+   ```bash
+cd /home/ssm-user/projetos/jira-dash
+   ```
+
+2. **Update Code**
+   ```bash
+git pull origin master
+   ```
+
+3. **Run Deployment Script**
+   ```bash
+chmod +x deploy-docker.sh
+./deploy-docker.sh
+   ```
+
+4. **Check Status**
+   ```bash
+docker-compose ps
+   ```
+
+5. **View Logs**
+   ```bash
+docker-compose logs -f
+   ```
+
+## Summary
+
+This document provided a comprehensive guide to deploying the Jira Dashboard application on AWS EC2, using both Node.js and Docker. It covered prerequisites, step-by-step deployment instructions, post-deployment checks, and troubleshooting tips. For further details, refer to the complete documentation available in the project repository.
+
+For additional support, check the logs using:
+```bash
+pm2 logs jira-dashboard
+```
+
+For more detailed guides and scripts, please refer to the following documents in the project repository:
+- `DEPLOY_AWS.md`
+- `SETUP_AWS_RESUMIDO.md`
+- `INSTALACAO_DOCKER_AWS.md`
+- `RESUMO_COMPLETO_FINAL.md`
+This documentation page is designed to assist users in successfully deploying the Jira Dashboard application on AWS, ensuring a smooth setup and operation. For any issues not covered here, please consult the full documentation or seek support from the community.

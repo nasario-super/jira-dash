@@ -1,0 +1,122 @@
+# Performance Optimization Guide
+
+**Version:** 1.0.0
+**Group:** Best Practices
+**Page Type:** Guide
+**Description:** Optimize system performance and response times.
+
+---
+
+## Introduction
+
+This guide provides insights into optimizing system performance by reducing processing times and improving efficiency. The techniques discussed include parallel data fetching, concise logging, and optimized error handling. These strategies aim to enhance the speed and reliability of data processing in complex systems.
+
+---
+
+## Key Performance Optimizations
+
+### 1. Parallel Data Fetching
+
+Implementing parallel data fetching significantly reduces the time required to process data from multiple projects. By using `Promise.all`, the system can fetch data from different projects simultaneously, reducing total processing time from over 100 seconds to just 5-10 seconds.
+
+```typescript
+// Parallel fetching example
+const promises = projects.map(p => fetch(p));
+const results = await Promise.all(promises);
+```
+
+**Impact:**
+- **Before:** Sequential fetching took 40+ seconds.
+- **After:** Parallel fetching reduced it to 5-10 seconds.
+- **Improvement:** 4-8x faster processing.
+
+### 2. Reduced API Calls
+
+The number of API calls per project was reduced from 500 to 10 by limiting the pages fetched. This change drastically decreases the load on the system and speeds up data retrieval.
+
+```typescript
+maxPages: number = 10; // Reduced from 500
+```
+
+**Impact:**
+- **Before:** 500 requests per project.
+- **After:** 10 requests per project.
+- **Improvement:** 50x faster.
+
+### 3. Concise Logging
+
+Logging was optimized to reduce verbosity, which decreases overhead and improves console performance. Logs are now generated only at significant milestones, such as every 5 pages.
+
+```typescript
+// Concise logging example
+if (pageCount % 5 === 0 | | pageCount === 1) {
+console.log(`Page ${pageCount}: ${totalIssues} issues`);
+}
+```
+
+**Impact:**
+- **Before:** 1000+ lines of log.
+- **After:** ~50 lines of log.
+- **Improvement:** Console is faster with less overhead.
+
+### 4. Optimized Error Handling
+
+Error handling was improved to enhance system resilience. Instead of halting operations on encountering an error, the system now logs the error and continues processing other data.
+
+```typescript
+catch (error) {
+console.error(`Error: ${error.message}`);
+return []; // Continue with next project
+}
+```
+
+**Impact:**
+- **Before:** 1 error caused complete failure.
+- **After:** System continues with other data.
+- **Improvement:** Increased resilience.
+
+### 5. Post-Merge Processing
+
+Operations such as deduplication and validation are now performed after data merging, reducing intermediate overhead and improving efficiency.
+
+**Impact:**
+- Reduces overhead during data fetching.
+- Batch operations are more efficient.
+
+---
+
+## Testing and Validation
+
+### Test 1: Performance with Two Projects
+
+1. Open DevTools (F12) and navigate to the Console.
+2. Log in and select projects INFOSECC and SEGP.
+3. Observe the processing time:
+   - Expected completion: 5-15 seconds.
+   - Console should display "SUCCESS".
+   - If time exceeds 30 seconds, investigate for issues.
+
+### Test 2: Log Verification
+
+Ensure the console logs the following during data fetching:
+
+```
+⏳ fetchFilteredData START
+📋 Projects: INFOSECC, SEGP
+🟡 Multiple projects - using parallel fetch
+🔍 Fetching 2 projects IN PARALLEL
+⏳ Starting: INFOSECC
+⏳ Starting: SEGP
+🔄 Merged: 2000 issues from 2 projects
+✅ SUCCESS: 2000
+```
+
+---
+
+## Summary
+
+The performance optimizations implemented have drastically reduced processing times and improved system efficiency. By leveraging parallel data fetching, reducing API calls, and optimizing logging and error handling, the system now performs significantly faster and more reliably. These improvements are crucial for handling large datasets and ensuring responsive user interactions.
+
+For further details, refer to the [OTIMIZACOES_PERFORMANCE.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/OTIMIZACOES_PERFORMANCE.md).
+
+---

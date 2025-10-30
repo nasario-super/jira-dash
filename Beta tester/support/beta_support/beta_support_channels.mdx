@@ -1,0 +1,69 @@
+# Beta Support Channels
+
+This page provides dedicated support channels for beta testers of the Jira Dashboard application. As a beta tester, you have access to specific resources and procedures to report issues, seek assistance, and contribute to the development process.
+
+## Reporting Issues
+
+If you encounter any errors while using the Jira Dashboard, follow these steps to report them:
+
+1. **Capture a Screenshot**: Take a screenshot of the issue.
+2. **Collect Logs**: Open DevTools (F12) and navigate to the Console tab to gather logs.
+3. **Gather Information**:
+   - Browser and version
+   - Selected projects
+   - Active tab (Overview/Daily/Velocity/Alerts)
+   - Description of actions being performed when the issue occurred
+
+4. **Submit the Report**:
+   ```
+[Include screenshot + logs + information]
+
+Title: [BUG] Brief description
+Description: Steps to reproduce + Expected vs Actual behavior
+   ```
+
+## Support Procedures
+
+For general support and troubleshooting, consider the following resources:
+
+- **GitHub Issues**: Open an issue on GitHub for any questions or support needs.
+- **Documentation**: Refer to the Jira API documentation, and consult React and TypeScript documentation for additional guidance.
+
+## Troubleshooting Common Errors
+
+### Error 401 Unauthorized
+
+To resolve a 401 Unauthorized error after deployment, verify the following:
+
+- Ensure the token is correct in the login form.
+- Check if the proxy is forwarding the Authorization header.
+- Confirm that credentials are stored in the authStore.
+- Ensure `reinitializeJiraApi()` is called after login.
+
+### Error CORS
+
+For CORS errors, check:
+
+- Proxy settings in `vite.config.ts`.
+- Correctness of the target URL.
+- `changeOrigin` is set to true.
+- Rewrite rules are functioning correctly.
+
+### Dashboard Issues
+
+If the dashboard appears empty or issues are missing:
+
+- Verify that `useJiraFilters` is receiving credentials.
+- Ensure `loadFilterOptions()` and `fetchFilteredData()` are called with credentials.
+- Confirm that projects are selected correctly.
+
+## Summary
+
+Beta testers play a crucial role in identifying and resolving issues within the Jira Dashboard. By following the outlined procedures for reporting and troubleshooting, you contribute to the enhancement and stability of the application. For any further assistance, utilize the support channels provided, including GitHub and relevant documentation.
+
+For more detailed instructions, refer to the following resources:
+
+- [TESTE_AGILE_DASHBOARD.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/TESTE_AGILE_DASHBOARD.md)
+- [README.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/README.md)
+- [ATUALIZAR_AWS.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/ATUALIZAR_AWS.md)
+- [PROXIMOS_PASSOS.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/PROXIMOS_PASSOS.md)

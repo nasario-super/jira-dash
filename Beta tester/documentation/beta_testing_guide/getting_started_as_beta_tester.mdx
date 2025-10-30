@@ -1,0 +1,85 @@
+# Getting Started as a Beta Tester
+
+Welcome to the Beta Testing Guide for the Jira Dashboard project. This guide provides essential information and instructions to help you get started as a beta tester, ensuring you can effectively contribute to the testing and improvement of the project.
+
+## Introduction to Beta Testing
+
+Beta testing is a critical phase in software development where real users test the application in a real-world environment. As a beta tester, you will help identify bugs, provide feedback on usability, and suggest improvements. This guide will walk you through the steps needed to set up, test, and report your findings.
+
+## Setting Up Your Environment
+
+### Compiling and Launching the Server
+
+To begin testing, you need to compile and launch the server. Follow these steps:
+
+```bash
+cd /home/anderson.nasario/Documentos/Nasario/jira-dash
+
+```
+
+# Compile the project
+npm run build
+
+# Or run in development mode
+npm run dev
+```
+
+Access the application at `http://localhost:3000`.
+
+```
+
+## Testing Procedures
+
+### Project Selection Flow
+
+The project selection and discovery flow ensures a controlled and user-friendly process:
+
+1. **Login**: Upon logging in, you will be prompted to select projects.
+2. **Project Discovery**: The system will display "Carregando Projetos" during discovery.
+3. **Project Selection**: Once discovery is complete, select the projects you wish to test.
+4. **Dashboard Access**: Access to the dashboard is granted only after project selection.
+
+### Agile Dashboard Testing
+
+#### Test 1: Correct Metrics
+
+1. **Preparation**: Login and select projects such as **INFOSECC** and **SEGP**.
+2. **Navigate**: Go to **Agile Dashboard** → **Visão Geral**.
+3. **Expected Metrics**:
+   - Total Issues: ~200
+   - Completed: ~45
+   - In Progress: ~30
+   - Blocked: ~8
+   - Delayed: ~11
+   - Completion Percentage: ~22%
+
+#### Test 2: Daily Scrum with Expandable List
+
+1. **Navigate**: Agile Dashboard → Tab **Daily Scrum**.
+2. **Expected**: Expandable lists showing tasks completed yesterday and planned for today.
+
+## Reporting Issues
+
+If you encounter any issues, follow these steps:
+
+1. **Capture a Screenshot**.
+2. **Open DevTools**: Press F12 and navigate to the Console.
+3. **Gather Information**:
+   - Browser and version
+   - Selected projects
+   - Active tab
+   - Actions performed
+
+4. **Submit Report**:
+   ```
+[Include screenshot, logs, and information]
+
+Title: [BUG] Brief description
+Description: Steps to reproduce + Expected vs Actual outcome
+   ```
+
+## Summary
+
+This guide provides the necessary steps to start as a beta tester for the Jira Dashboard project. By following the setup instructions, conducting tests, and reporting issues, you contribute to the project's development and improvement. For further assistance, refer to the documentation or contact the project administrator.
+
+For more detailed documentation, visit the [Jira Dashboard Documentation Index](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/INDICE_DOCUMENTACAO.md).

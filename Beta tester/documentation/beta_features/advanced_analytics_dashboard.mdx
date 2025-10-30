@@ -1,0 +1,89 @@
+# Advanced Analytics Dashboard - Beta Testing Guide
+
+Welcome to the Advanced Analytics Dashboard beta testing guide. This document provides an overview of the new analytics and visualization capabilities available in the beta version. The Advanced Analytics Dashboard is designed to offer detailed insights, recommendations, and an intuitive interface for users, developers, and business stakeholders.
+
+## Overview
+
+The Advanced Analytics Dashboard provides dynamic, project-specific metrics and analyses based on real data. It updates automatically as project selections change, ensuring that users always have access to the most relevant information.
+
+## Key Features
+
+### Real-Time Data and Metrics
+
+- **Dynamic Metrics**: The dashboard displays real metrics from selected projects, updating as project selections change.
+- **Project-Specific Insights**: Metrics are tailored to the projects selected by the user, providing relevant and actionable insights.
+
+### Advanced Analytics Capabilities
+
+- **Detailed Analysis**: Offers comprehensive analysis, including correlation and predictive analytics.
+- **Automatic Insights**: Generates insights automatically based on data correlations and industry benchmarks.
+- **Predictive Analytics**: Provides forecasts with confidence levels and actionable recommendations.
+
+### User Interface and Experience
+
+- **Intuitive Design**: Features a modern, responsive design with clear navigation and semantic color coding.
+- **Interactive Elements**: Includes buttons for detailed views and anomaly investigations, enhancing user engagement.
+
+## Testing Instructions
+
+### Test Cases
+
+#### Test 1: Single Project Analytics
+1. Log in to the dashboard.
+2. Select the project "INFOSECC".
+3. Navigate to `/analytics`.
+4. Verify that metrics displayed are specific to "INFOSECC".
+
+#### Test 2: Multiple Projects Analytics
+1. Select projects "INFOSECC" and "SEGP".
+2. Navigate to `/analytics`.
+3. Confirm that metrics are aggregated from both projects.
+
+#### Test 3: Advanced Analytics Functionality
+1. Select any project.
+2. Navigate to `/advanced-analytics`.
+3. Ensure that analyses are based on real data and display relevant insights.
+
+#### Test 4: Project Selection Update
+1. In `/analytics`, select "INFOSECC".
+2. Switch to "SEGP" only.
+3. Verify that metrics update automatically.
+
+## Validation Checklist
+
+- [ ] Analytics display different data for each project.
+- [ ] Metrics change when project selections are updated.
+- [ ] Insights are based on real data, not hardcoded values.
+- [ ] Console logs show "Analytics: Processing data from selected projects".
+
+## Implementation Details
+
+### Technical Improvements
+
+- **Use of `useJiraFilters`**: Replaced `useJiraData` with `useJiraFilters` to ensure accurate data filtering and real-time updates.
+- **Modular Codebase**: The dashboard is built with a modular and reusable code structure, facilitating maintenance and extension.
+
+### Benefits
+
+- **For Users**: Provides deep data understanding and actionable insights.
+- **For Developers**: Offers a clean, well-structured codebase with automated testing.
+- **For Business**: Enables comprehensive performance analysis and reliable forecasts.
+
+## Next Steps
+
+1. **Test Features**: Access `/advanced-analytics` and explore the detailed insights and recommendations.
+2. **Monitor Metrics**: Regularly check the dashboard for updated metrics and insights.
+3. **Deploy Updates**: Follow the deployment instructions to ensure the latest features are available in production.
+
+## Conclusion
+
+The Advanced Analytics Dashboard is now fully functional, offering detailed insights, recommendations, and an intuitive interface. This beta testing phase is crucial for refining the features and ensuring they meet user needs effectively.
+
+For more detailed technical documentation, please refer to the specific sections in the source files provided.
+
+---
+
+For further information, visit the following resources:
+- [CORRECAO_ANALYTICS_FILTRO.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/CORRECAO_ANALYTICS_FILTRO.md)
+- [ADVANCED_ANALYTICS_FEATURES.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/ADVANCED_ANALYTICS_FEATURES.md)
+- [PREDICTION_CONFIDENCE_IMPROVEMENTS.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/PREDICTION_CONFIDENCE_IMPROVEMENTS.md)

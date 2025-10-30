@@ -1,0 +1,157 @@
+# Maintenance Guidelines
+
+Version: 1.0.0
+Group: Best Practices
+Page Type: Guide
+Description: Keep your system running smoothly
+
+---
+
+## Introduction
+
+This guide provides essential maintenance guidelines to ensure your system operates efficiently and securely. It includes best practices for handling credentials, monitoring system status, updating production code, troubleshooting common issues, and optimizing performance.
+
+---
+
+## Security Best Practices
+
+### Credential Handling
+
+To maintain security, avoid exposing credentials in environment files or variables. Instead, follow these steps:
+
+1. User logs in through the UI.
+2. Credentials are provided on the login screen.
+3. The system stores credentials in `authStore` (localStorage).
+4. Requests use the credentials of the logged-in user.
+
+---
+
+## System Monitoring and Verification
+
+### Checking Application Status
+
+Use the following commands to verify if your application is running correctly:
+
+# List PM2 processes
+pm2 list
+
+# View real-time logs
+pm2 logs jira-dashboard
+
+# Check status
+pm2 status
+
+# Verify if port 3000 is open
+lsof -i :3000
+
+# Test access
+curl http://localhost:3000
+
+# Check for 404 error in Nginx
+curl -v http://localhost:80
+
+### Monitoring in Production
+
+Monitor CPU and memory usage with PM2:
+
+# Monitor CPU and memory usage
+pm2 monit
+
+# Save logs to a file
+pm2 logs jira-dashboard &gt; /tmp/jira-logs.txt
+
+# Analyze errors
+pm2 logs jira-dashboard --err
+```
+
+---
+
+```
+
+## Updating Production Code
+
+To update your production code, follow these steps:
+
+# Navigate to the project directory
+cd /home/ssm-user/projetos/jira-dash
+
+# Pull updates from the main branch
+git pull origin main
+
+# Reinstall dependencies if package.json changed
+npm install
+
+# Build the project
+npm run build
+
+# Restart the application
+pm2 restart jira-dashboard
+
+# Check logs
+pm2 logs jira-dashboard
+```
+
+---
+
+```
+
+## Troubleshooting Common Issues
+
+### Package Errors
+
+If you encounter package errors, use the following commands:
+
+- For missing package '@tanstack/react-query':
+  ```bash
+npm install @tanstack/react-query --save
+  ```
+
+- For missing package 'vite-plugin-pwa':
+  ```bash
+npm install vite-plugin-pwa --save-dev
+  ```
+
+### Build Failures
+
+If the build fails, clear the cache and rebuild:
+
+# Clear cache
+rm -rf node_modules package-lock.json
+npm install
+npm run build
+
+### Application Performance
+
+For slow or unresponsive applications, increase Node memory:
+
+# Increase Node memory
+NODE_OPTIONS="--max-old-space-size=2048" npm run build
+
+# Or via PM2
+pm2 start pm2.config.js --node-args="--max-old-space-size=2048"
+
+### Nginx 502 Bad Gateway
+
+If Nginx returns a 502 error, ensure the application is running:
+
+# Check if application is running
+pm2 list
+
+# Check logs
+pm2 logs jira-dashboard
+
+# Restart application
+pm2 restart jira-dashboard
+```
+
+---
+
+```
+
+## Summary
+
+This guide provides a comprehensive overview of maintaining your system effectively. By following the security best practices, regularly monitoring your system, updating production code, and troubleshooting common issues, you can ensure your system remains secure and efficient.
+
+For further assistance, consult the technical documentation or contact your system administrator.
+
+---

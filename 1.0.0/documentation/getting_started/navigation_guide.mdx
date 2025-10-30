@@ -1,0 +1,61 @@
+# Navigation Guide for Jira-Dashboard
+
+## Introduction
+
+Welcome to the Jira-Dashboard Navigation Guide. This guide is designed to help you effectively navigate and utilize the Jira-Dashboard interface. The Jira-Dashboard is a web-based tool that centralizes Jira data, providing advanced analytics, executive reports, and productivity metrics in an intuitive manner.
+
+## Accessing the Application
+
+To start using the Jira-Dashboard, follow these steps:
+
+1. **Access the Application:**
+   - Open your web browser and navigate to `http://3.83.28.223:3000`.
+   - You will be directed to the login screen.
+
+2. **Login:**
+   - Use your email and API token to log in.
+   - To generate an API token, visit [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens), click on "Create API token," name it (e.g., "Jira Dashboard"), and copy the generated token to use during login.
+
+## Project Selection
+
+After logging in, you will encounter the project selection screen. Here are your options:
+
+- **Load Projects:** Access available projects.
+- **Search by Name:** Find specific projects quickly.
+- **Select Multiple Projects:** Choose more than one project for analysis.
+- **Confirm Selection:** Finalize your project choices.
+
+**Tip:** For optimal performance, select 1-3 projects initially. You can select additional projects later if needed.
+
+## Main Dashboard Overview
+
+Once projects are selected, you will be directed to the main dashboard. Here's what you can expect:
+
+### Key Metrics (Top Cards)
+
+| Card | Description |
+| ------------------- | -------------------------------------------------- |
+| **Total de Issues** | Displays all issues in the selected projects. |
+| **Projetos Ativos** | Shows the number of active projects. |
+| **Usuários Ativos** | Lists users with assigned issues. |
+| **Filtros Aplicados** | Indicates which filters are currently active. |
+
+### Issues by Status Graph
+
+The dashboard includes a graphical representation of issues categorized by their status, providing a visual overview of project progress.
+
+## Advanced Features
+
+### Dynamic Filters
+
+The Jira-Dashboard supports dynamic filters, allowing real-time data filtering. Adjusting filters triggers new API requests, updating all graphs and metrics automatically.
+
+### Security Considerations
+
+For security, ensure that your credentials are not transmitted in plain text. Implement HTTPS/SSL to encrypt all network traffic and protect your data from potential threats.
+
+## Summary
+
+The Jira-Dashboard is a powerful tool for managing and analyzing Jira data. By following this guide, you can effectively navigate the interface, select projects, and utilize the dashboard's features to gain valuable insights into your projects. Remember to maintain security best practices by using HTTPS/SSL for data protection.
+
+For more detailed information, refer to the complete documentation available in the respective sections of the Jira-Dashboard repository.

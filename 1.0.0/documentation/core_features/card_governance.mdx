@@ -1,0 +1,113 @@
+# Card Governance in Jira Dashboard
+
+## Introduction
+
+Card Governance is a crucial aspect of managing and overseeing Jira cards effectively. This guide provides comprehensive insights into using the Jira Dashboard to centralize data, perform advanced analyses, and generate executive reports. The dashboard is designed to enhance productivity metrics, provide AI-driven insights, and streamline the monitoring of projects and issues.
+
+## Overview of Jira Dashboard
+
+### What is Jira Dashboard?
+
+The **Jira Dashboard** is a modern web tool that offers:
+
+- Centralized data visualization from Jira
+- Advanced productivity analyses
+- Executive reports and quality metrics
+- AI insights and anomaly detection
+
+### Key Features
+
+- **Métricas Principais (KPIs)**: Includes total issues opened, completed, completion rate, average resolution time, velocity, and overdue issues.
+- **Visualizações Gráficas**: Features burndown charts, issues by status/type, team velocity, and distribution by priority.
+- **Filtros Avançados**: Allows filtering by project, sprint, issue type, status, assignee, priority, and period.
+- **Atividade Recente**: Lists the latest updated issues with direct links to Jira.
+- **Layout Responsivo**: Adaptable interface for desktop, tablet, and mobile.
+- **Integração Completa**: Direct connection to the Jira Cloud API.
+
+## Getting Started
+
+### Accessing the Application
+
+To access the Jira Dashboard, visit the following URL:
+
+```
+http://3.83.28.223:3000
+```
+
+### Login Requirements
+
+- **Email**: Use your Jira account email.
+- **API Token**: Generate it from [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens).
+
+#### How to Generate an API Token
+
+1. Open [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens).
+2. Click on "Create API token".
+3. Name the token (e.g., "Jira Dashboard").
+4. Copy the generated token and paste it on the login screen of the Dashboard.
+
+### Project Selection
+
+After logging in, you will see the project selection screen where you can:
+
+- Load projects
+- Search by name
+- Select multiple projects
+- Confirm your selection
+
+**Tip**: Select 1-3 projects for optimal performance.
+
+## Main Dashboard Page
+
+### Overview (Top Cards)
+
+| Card | Meaning |
+| -------------------- | ---------------------------------------------- |
+| **Total de Issues** | All issues in the selected projects |
+| **Projetos Ativos** | Number of active projects |
+| **Usuários Ativos** | People with assigned issues |
+| **Filtros Aplicados** | Active filters |
+
+### Issues by Status Chart
+
+Displays the distribution of issues by their current status.
+
+## Functional Scope
+
+### Included Features
+
+- Executive KPIs dashboard
+- Graphical visualizations of project and sprint metrics
+- Velocity and burndown tracking
+- Incident management and monitoring
+- Advanced filtering system
+- Full integration with Jira via REST API
+- Responsive interface for various devices
+- Automatic data updates
+- Report exportation
+
+### Excluded Features
+
+- Editing or creating issues in Jira (read-only)
+- Multi-user authentication system
+- Integration with tools other than Jira
+- Push or email notifications
+- User-customizable dashboards (initially a single standard)
+
+## Technical Architecture
+
+- **Application Type**: Single Page Application (SPA)
+- **Deployment**: Standalone frontend application connecting directly to Jira Cloud via API
+- **Authentication**: Jira API Token configured via environment variables
+- **Data Update**: Periodic polling and manual refresh
+- **Persistence**: Local cache in the browser (no backend database)
+
+## Summary
+
+The Jira Dashboard provides a robust platform for managing and governing Jira cards, offering a centralized view of data, advanced analytics, and executive reporting capabilities. By integrating directly with Jira, it facilitates real-time monitoring and strategic decision-making through customizable metrics and visualizations.
+
+For further details and deployment instructions, refer to the complete documentation available in the repository.
+
+---
+
+For more information, visit the [Jira Dashboard Documentation](https://id.atlassian.com/manage-profile/security/api-tokens).

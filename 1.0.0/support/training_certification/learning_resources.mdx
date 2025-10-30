@@ -1,0 +1,93 @@
+# Learning Resources
+
+## Introduction
+
+Welcome to the Learning Resources documentation page. This page serves as a reference for self-paced learning materials and guides related to the Jira Dashboard project. It includes information on authentication, architecture, performance, configuration, and deployment processes.
+
+## Documentation Index
+
+### Authentication and Solutions
+
+1. **[Final Authentication Solution](./SOLUCAO_FINAL_AUTENTICACAO.md)**
+   - Comprehensive technical explanation of the authentication solution.
+   - Covers the authentication flow and implemented security measures.
+
+2. **[Session Summary](./RESUMO_SESSAO_FINAL.md)**
+   - Provides a complete journey of the session, including errors encountered and solutions.
+
+3. **[Next Steps](./PROXIMOS_PASSOS.md)**
+   - Recommended future improvements and a checklist for production deployment.
+
+### Architecture and Implementation
+
+4. **[Critical Bug Fix](./CORRECAO_CRITICA_IMPLEMENTADA.md)**
+   - Details the correction of a bug in the Jira API v3 and secure pagination for multiple projects.
+
+5. **[Performance Optimizations](./OTIMIZACOES_PERFORMANCE.md)**
+   - Describes applied performance optimizations and how to test performance improvements.
+
+### Configuration and Setup
+
+6. **[GitHub Setup Guide](./GUIA_GITHUB_SETUP.md)**
+   - Instructions for setting up a Git repository, including commit and push processes.
+
+7. **[Project README](./README.md)**
+   - General project instructions, including installation and execution guidelines.
+
+## HTTPS with Self-Signed Certificate
+
+### Solution for Corporate Environments
+
+- Use a self-signed certificate for secure internal environments without a domain.
+- Provides encryption similar to Let's Encrypt and is cost-free.
+
+### Generating a Self-Signed Certificate
+
+1. **SSH into the Instance**
+   ```bash
+ssh -i your-key.pem ec2-user@3.83.28.223
+   ```
+
+2. **Generate Certificate**
+   ```bash
+sudo su -
+mkdir -p /etc/ssl/private /etc/ssl/certs
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+- keyout /etc/ssl/private/jira-dashboard.key \
+- out /etc/ssl/certs/jira-dashboard.crt \
+- subj "/C=BR/ST=SP/L=Sao Paulo/O=YourCompany/CN=3.83.28.223"
+   ```
+
+3. **Configure Nginx**
+   ```bash
+cat > /etc/nginx/sites-available/jira-dashboard << 'EOFNGINX'
+server {
+listen 443 ssl http2;
+server_name _;
+```
+
+# SSL certificates
+}
+EOFNGINX
+
+### Security Checklist
+
+- Ensure HTTPS is active and credentials are encrypted.
+- Regularly renew the certificate annually.
+
+## Deployment Checklist
+
+### Before Production Deployment
+
+- Ensure all tests pass and the build is error-free.
+- Configure `.env.production` with the correct credentials.
+- Enable HTTPS in the proxy configuration.
+
+### After Deployment
+
+- Test login with real credentials.
+- Verify all APIs return 200 OK status.
+
+## Summary
+
+This documentation provides a comprehensive guide to the Jira Dashboard project, covering essential aspects such as authentication, architecture, performance, and deployment. It also includes detailed instructions for setting up HTTPS using a self-signed certificate, ensuring secure communication in corporate environments. For further details, refer to the specific documentation files linked throughout this page.

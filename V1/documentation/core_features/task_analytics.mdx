@@ -1,0 +1,125 @@
+# Task Analytics Guide
+
+## Introduction
+
+This guide provides an overview of the task analytics features available in the platform, focusing on analyzing task performance and patterns. The analytics tools are designed to offer real-time insights and predictions based on actual project data, enhancing decision-making and project management efficiency.
+
+## Testing Task Analytics
+
+### Test Cases
+
+1. **Single Project Analytics**
+   - **Steps**:
+     1. Login to the platform.
+     2. Select only the "INFOSECC" project.
+     3. Navigate to `/analytics`.
+     4. Verify that the console displays: `selectedProjects: ['INFOSECC']`.
+     5. Ensure metrics are specific to the "INFOSECC" project.
+
+2. **Multiple Projects Analytics**
+   - **Steps**:
+     1. Select both "INFOSECC" and "SEGP" projects.
+     2. Navigate to `/analytics`.
+     3. Verify that the console displays: `selectedProjects: ['INFOSECC', 'SEGP']`.
+     4. Metrics should aggregate data from both projects.
+     5. Total issues should be approximately 2000 (1000 from each).
+
+3. **Advanced Analytics**
+   - **Steps**:
+     1. Select any project.
+     2. Navigate to `/advanced-analytics`.
+     3. Ensure analyses are based on actual data.
+     4. Confirm no message like "Nenhuma correlação encontrada" is displayed.
+     5. Verify it shows "Análise de XX issues".
+
+4. **Project Selection Change**
+   - **Steps**:
+     1. In `/analytics`, select "INFOSECC".
+     2. Return to the Dashboard.
+     3. Change selection to "SEGP" only.
+     4. Return to `/analytics`.
+     5. Metrics should update automatically.
+
+## Validation Checklist
+
+- Analytics display different data for each project.
+- AI analytics provide results (no "Sem resultados").
+- Metrics change with project selection.
+- Console logs: "Analytics: Processando dados dos projetos selecionados".
+- Insights are based on real data.
+- Performance metrics are sensible.
+- Predictions vary based on data.
+
+## Expected Results
+
+### Before Corrections
+
+- **Analytics Page**:
+  - Velocity: 25 pts (always the same)
+  - Throughput: 8.5 issues (always the same)
+  - Efficiency: 78.5% (always the same)
+  - Insights: "Velocity em crescimento" (always the same)
+
+- **Advanced Analytics**:
+  - No correlations found
+  - Insights Generated: 0
+
+### After Corrections
+
+- **Analytics Page (INFOSECC)**:
+  - Velocity: 45 pts (based on INFOSECC data)
+  - Throughput: 12.3 issues (based on completed tasks)
+  - Efficiency: 65.2% (based on ratio)
+  - Insights: "Velocidade baixa" (based on efficiency)
+
+- **Analytics Page (SEGP)**:
+  - Velocity: 38 pts (based on SEGP data)
+  - Throughput: 10.1 issues
+  - Efficiency: 71.8%
+  - Insights: "Eficiência em crescimento"
+
+- **Advanced Analytics**:
+  - Analysis of 2000 issues (from both projects)
+  - Correlations found: 3
+  - Insights Generated: 5
+
+## Technical Improvements
+
+### Key Modifications
+
+- **Files Modified**:
+  - `src/hooks/useAnalytics.ts`: Critical changes to use `useJiraFilters`.
+  - `src/pages/AdvancedAnalytics.tsx`: Critical changes to use `useJiraFilters`.
+
+### Technical Notes
+
+- **Why useAnalytics Returned Mock Data**:
+  - Issues array was empty.
+  - `useMemo` lacked dependencies on issues.
+  - Data was hardcoded.
+
+- **AdvancedAnalytics Functionality**:
+  - Incorrect credentials handling.
+  - Lack of `projectAccessService` usage.
+
+## Advanced Analytics Features
+
+### Implemented Features
+
+- **Correlation Analysis**:
+  - Detailed insights and recommendations based on correlation strength.
+  - Technical visualization with coefficients and significance.
+
+- **Advanced Metrics**:
+  - Performance analysis compared to benchmarks.
+  - Automatic insights and specific recommendations.
+
+- **Predictive Analytics**:
+  - Confidence analysis of predictions.
+  - Specific actions and realistic timelines for implementation.
+
+## Conclusion
+
+The task analytics features provide comprehensive insights into project performance, leveraging real-time data to enhance predictive capabilities and decision-making. The platform's analytics tools are continuously improved to ensure accuracy and relevance, offering valuable insights and actionable recommendations.
+
+For more detailed information, refer to the [source documentation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/CORRECAO_ANALYTICS_FILTRO.md).

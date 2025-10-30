@@ -1,0 +1,106 @@
+# Custom Analytics Guide
+
+## Introduction
+
+Welcome to the Custom Analytics Guide for version 1.0.0. This document is part of the Analytics & Insights group, focusing on advanced analytics and business intelligence features. It provides a comprehensive overview of how to create custom analytics and visualizations, ensuring that you can effectively leverage predictive analytics and anomaly detection within your projects.
+
+## Predictive Analytics
+
+Predictive analytics is a crucial component of our analytics module, allowing users to forecast future metrics based on current data. The system converts prediction data from the analytics service into an array format suitable for advanced analytics.
+
+### Code Example
+
+The following code snippet demonstrates how predictions are converted for use in the predictive analytics component:
+
+```typescript
+const convertedPredictions = predictions && predictions.forecast
+? [
+{
+metric: 'Próximo Sprint',
+currentValue: performance?.velocity | | 0,
+predictedValue: predictions.forecast.nextSprint,
+confidence: predictions.confidence,
+timeframe: '1 sprint',
+factors: predictions.factors,
+},
+{
+metric: 'Próximo Mês',
+currentValue: performance?.velocity | | 0,
+predictedValue: predictions.forecast.nextMonth,
+confidence: predictions.confidence,
+timeframe: '1 mês',
+factors: predictions.factors,
+},
+{
+metric: 'Próximo Trimestre',
+currentValue: performance?.velocity | | 0,
+predictedValue: predictions.forecast.nextQuarter,
+confidence: predictions.confidence,
+timeframe: '3 meses',
+factors: predictions.factors,
+},
+]
+: [];
+```
+
+## Anomaly Detection
+
+Anomaly detection is integrated into the analytics module to identify and investigate unusual patterns in data. Users can interact with the system to view detailed information about detected anomalies.
+
+### Code Example
+
+Here's how the anomaly detection feature is implemented:
+
+```typescript
+<Button
+variant="ghost"
+size="sm"
+onClick={() => {
+console.log('🔍 Detalhes da anomalia:', anomaly);
+alert(`Anomalia: ${anomaly.type}\n\nMétrica: ${anomaly.metric}\n\nSeveridade: ${anomaly.severity}\n\nDescrição: ${anomaly.description}\n\nValor Detectado: ${anomaly.value}\n\nValor Esperado: ${anomaly.expectedValue}\n\nDesvio: ${anomaly.deviation.toFixed(2)}%`);
+}}
+>
+<Eye className="w-4 h-4 mr-1" />
+Investigar
+</Button>
+```
+
+## Insights and Metrics
+
+The analytics module provides insights based on real project data, dynamically updating metrics as project selections change. This ensures that the analytics dashboards display accurate and relevant information.
+
+### Testing and Validation
+
+The following test cases ensure the accuracy and functionality of the analytics dashboards:
+
+- **Test 1: Verify Analytics with One Project**
+  - Select the project INFOSECC and ensure metrics are specific to this project.
+
+- **Test 2: Verify Analytics with Two Projects**
+  - Select projects INFOSECC and SEGP, and verify that metrics are aggregated from both.
+
+- **Test 3: Verify Advanced Analytics**
+  - Select any project and ensure that analyses are based on real data.
+
+- **Test 4: Change Project Selection**
+  - Change the selected project and verify that metrics update automatically.
+
+## Technical Improvements
+
+Recent updates have addressed issues with data handling and event management, ensuring that all components and buttons function correctly. This includes the correction of hardcoded data to dynamically fetched project-specific data.
+
+### Code Improvements
+
+- **useAnalytics.ts**: Now uses `useJiraFilters` to fetch data based on selected projects.
+- **AdvancedAnalytics.tsx**: Updated to use `useJiraFilters` for accurate data representation.
+
+## Summary
+
+This guide has provided an overview of the custom analytics capabilities within the analytics module, including predictive analytics, anomaly detection, and insights generation. By leveraging real project data, the system offers dynamic and accurate analytics, enhancing decision-making and project management.
+
+For further details and code examples, please refer to the source documentation at the following URLs:
+
+- [CORRECAO_FINAL_ANALYTICS.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/CORRECAO_FINAL_ANALYTICS.md)
+- [CORRECAO_ANALYTICS_FILTRO.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/CORRECAO_ANALYTICS_FILTRO.md)
+
+These resources provide additional context and technical details for implementing and testing custom analytics solutions.

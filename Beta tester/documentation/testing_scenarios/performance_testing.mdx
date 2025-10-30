@@ -1,0 +1,90 @@
+# Performance Testing Guide
+
+This guide provides an overview of performance and load testing scenarios for the Jira Dashboard. The focus is on optimizing processing times and ensuring efficient data handling across multiple projects.
+
+## Introduction
+
+Performance testing is crucial for ensuring that applications can handle expected loads efficiently. This guide outlines the steps and improvements made to optimize the Jira Dashboard, reducing processing times and enhancing data handling capabilities.
+
+## Performance Optimization
+
+### Data Fetching and Processing
+
+The new process for fetching and merging data from multiple projects has been significantly optimized. Previously, processing times exceeded 100 seconds, but through parallel data fetching, this has been reduced to just 5-10 seconds, representing a 10-20x performance improvement.
+
+- **Before Optimization**: 100+ seconds
+- **After Optimization**: 5-10 seconds
+- **Improvement**: 10-20x faster
+
+### Testing Scenarios
+
+#### Test 1: Performance with Two Projects
+
+To test the performance improvements, follow these steps:
+
+1. Open DevTools (F12) and navigate to the Console.
+2. Log in to the application.
+3. Select the projects INFOSECC and SEGP.
+4. Observe the processing time:
+   - The process should complete in 5-15 seconds.
+   - The console should display "SUCCESS".
+   - If the process takes more than 30 seconds, further investigation is needed.
+
+#### Test 2: Log Verification
+
+Ensure the console logs display the following:
+
+```
+⏳ fetchFilteredData START
+📋 Projects: INFOSECC, SEGP
+🟡 Multiple projects - using parallel fetch
+🔍 Fetching 2 projects IN PARALLEL
+⏳ Starting: INFOSECC
+⏳ Starting: SEGP
+📡 Starting pagination: project = "INFOSECC"...
+📄 Page 1: 100 issues total
+📄 Page 5: 500 issues total
+✅ Pagination complete: 1000 issues
+📡 Starting pagination: project = "SEGP"...
+📄 Page 1: 100 issues total
+📄 Page 5: 500 issues total
+✅ Pagination complete: 1000 issues
+⏳ Waiting for all projects...
+✅ INFOSECC: 1000 issues
+✅ SEGP: 1000 issues
+🔄 Merged: 2000 issues from 2 projects
+🔍 Validation: expected: INFOSECC, SEGP
+📊 INFOSECC: 1000 issues
+📊 SEGP: 1000 issues
+✅ SUCCESS: 2000
+```
+
+## Next Steps
+
+### Testing and Validation
+
+- Conduct tests for different scenarios:
+  - Test A (INFOSECC)
+  - Test B (SEGP)
+  - Test C (Multiple Projects)
+- Fill out the validation table and report results as either success or error.
+
+### Further Optimizations
+
+- Implement service workers for offline caching.
+- Optimize bundle size using tree shaking.
+- Implement lazy loading for analytics.
+
+## Summary
+
+The Jira Dashboard has undergone significant performance enhancements, reducing data processing times and improving efficiency. By leveraging parallel data fetching and optimizing processes, the system now handles multiple projects swiftly and effectively. Future steps include further testing and validation to ensure continued performance improvements.
+
+For more detailed information, refer to the specific documentation sections provided in the source URLs.
+
+---
+
+For detailed technical documentation and further reading, please refer to the following sources:
+
+- [OTIMIZACOES_PERFORMANCE.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/OTIMIZACOES_PERFORMANCE.md)
+- [TESTE_RAPIDO.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/TESTE_RAPIDO.md)
+- [PREDICTION_CARD_FIXES.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/PREDICTION_CARD_FIXES.md)

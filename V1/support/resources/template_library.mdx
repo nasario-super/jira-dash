@@ -1,0 +1,90 @@
+# Template Library
+
+## Introduction
+
+This documentation provides an overview of the pre-built templates and examples available for the Jira Dashboard project. These templates facilitate the integration of project selection and data filtering functionalities, ensuring that users can efficiently manage and visualize their project data.
+
+## Project Selection and Data Filtering
+
+### Project Selection Implementation
+
+The new project selection flow ensures that users must select at least one project after logging in. This approach guarantees that only the dashboards for configured projects are displayed, giving users full control over their accessible data.
+
+**Navigation Flow:**
+
+1. **Login**: User authentication is verified.
+2. **Project Selection**: Prompted if necessary.
+3. **Dashboard Display**: Shows data for configured projects.
+
+**Implementation Example:**
+
+```typescript
+const AppContent = () => {
+const { isSelectionRequired, setSelectedProjects, skipProjectSelection } = useProjectSelection();
+
+if (isSelectionRequired) {
+return (
+<ProjectSelection
+onProjectsSelected={setSelectedProjects}
+onSkip={skipProjectSelection}
+/>
+);
+}
+
+return <Router>...</Router>;
+};
+```
+
+### Data Filtering with Hooks
+
+The use of the `useFilteredProjectData` hook ensures that data is only loaded and displayed after the user selects projects. This hook is integrated across various dashboard pages to maintain consistency in data presentation.
+
+**Example Usage:**
+
+```typescript
+import { useFilteredProjectData } from '../hooks/useFilteredProjectData';
+const { issues, loading, error, selectedProjects, isReady } = useFilteredProjectData();
+
+if (!isReady) {
+return <div>Selecione projetos para continuar</div>;
+}
+
+const processedData = { issues };
+```
+
+### Debugging and Access Control
+
+Advanced filtering issues were addressed by ensuring only accessible projects and their issues are loaded. This was achieved through improved initialization and validation in access hooks.
+
+**Key Features:**
+
+- Initialization of project access service before data retrieval.
+- Validation of service readiness to control data fetching.
+- Detailed logging for debugging purposes.
+
+**Access Hook Example:**
+
+```typescript
+export const useProjectAccess = (): UseProjectAccessReturn => {
+const [isReady, setIsReady] = useState(false);
+
+useEffect(() => {
+projectAccessService.configureKnownUserProjects('user@example.com');
+const initialized = projectAccessService.isInitialized();
+const projects = projectAccessService.getUserProjects();
+
+setIsReady(initialized && projects.length > 0);
+}, []);
+
+return { isReady, userEmail, userProjects, isInitialized };
+};
+```
+
+## Summary
+
+The Template Library documentation provides insights into the implementation of project selection and data filtering within the Jira Dashboard. By utilizing hooks like `useFilteredProjectData` and ensuring project selection post-login, the system offers a robust framework for managing project data visibility and access. These templates are essential for maintaining consistent data presentation across various dashboard pages.
+
+For more detailed information and code examples, refer to the following resources:
+
+- [Project Selection Implementation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/PROJECT_SELECTION_IMPLEMENTATION.md)
+- [Filtering Debug Implementation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/FILTERING_DEBUG_IMPLEMENTATION.md)

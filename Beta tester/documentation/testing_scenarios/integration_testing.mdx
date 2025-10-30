@@ -1,0 +1,71 @@
+# Integration Testing Guide
+
+This guide provides a comprehensive overview of test scenarios for third-party integrations, focusing on testing methodologies, validation processes, and troubleshooting steps. It is designed for beta testers involved in testing specific integration scenarios within the Jira Dashboard application.
+
+## Introduction
+
+Integration testing is crucial for ensuring that different components of a system work together as expected. This guide outlines the steps for testing integrations, handling errors, and validating results within the context of the Jira Dashboard application. The focus is on testing third-party integrations, particularly those related to API interactions and data handling.
+
+## Testing Scenarios
+
+### Test Execution Steps
+
+1. **Test A (INFOSECC)**
+2. **Test B (SEGP)**
+3. **Test C (Multiple Integrations)**
+4. **Fill Validation Table**
+5. **Report Results**: Determine if the result is a success (✅) or an error (❌).
+
+### Error Handling and Authentication Tests
+
+- **Improved API Error Handling**: Implement custom user messages for different API error statuses.
+- **Authentication Tests**: Ensure that login with correct credentials works, proxy forwards auth headers, and expired tokens trigger automatic logout.
+
+### Checklist for Deployment
+
+Before deploying to production, ensure the following:
+
+- All tests are passing.
+- Build is error-free (`npm run build`).
+- No linting warnings (`npm run lint`).
+- `.env.production` is correctly configured.
+- HTTPS is enabled in the proxy.
+- API tokens are securely stored.
+- Backup is created.
+
+## Validation and Troubleshooting
+
+### Data Validation Tests
+
+- **Count Real Users**: Verify the number of unique users with issues in Jira.
+- **Count Real Issues**: Check the total number of issues per project.
+- **Validate Deduplication**: Ensure deduplication does not remove valid issues.
+
+### Post-Deployment Verification
+
+- Test login with real credentials.
+- Verify all APIs return 200 OK.
+- Monitor logs for 401 errors.
+- Test dashboard functionalities and performance.
+
+### Troubleshooting Common Errors
+
+- **401 Unauthorized**: Check token validity and proxy configuration.
+- **CORS Errors**: Ensure proxy settings are correct and requests are routed properly.
+- **Empty Dashboards**: Verify that filters and data fetching functions are correctly implemented.
+
+## Edge Case Testing
+
+- **Zero Completed Issues**: Ensure the system handles projects with no completed issues without errors.
+- **No Overdue Issues**: Confirm that alerts do not appear when there are no overdue issues.
+- **High Volume of Issues**: Test performance and UI behavior with a large number of issues.
+
+## Summary
+
+This guide provides a structured approach to integration testing within the Jira Dashboard application. It covers test execution, error handling, validation, and troubleshooting to ensure a robust and reliable integration process. By following these guidelines, testers can effectively identify and resolve integration issues, contributing to a secure and functional production release.
+
+For more detailed instructions and code examples, please refer to the specific sections outlined in this guide.
+
+---
+
+For further details, please consult the relevant documentation files within the Jira Dashboard repository.

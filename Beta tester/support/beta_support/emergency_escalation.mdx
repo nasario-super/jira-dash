@@ -1,0 +1,109 @@
+# Emergency Escalation Guide
+
+This guide provides a structured process for handling critical issues during the beta phase of the Jira Dashboard project. It is intended to support beta testers in managing and escalating emergencies effectively.
+
+## Introduction
+
+In the beta testing phase, encountering critical issues is inevitable. This guide outlines the steps and priorities for addressing such issues, ensuring that they are resolved efficiently and effectively. The focus is on validating solutions, testing performance, and ensuring data integrity.
+
+## Validating Implemented Solutions
+
+When a problem is identified as an API limit issue, the following steps should be taken:
+
+- Implement a limit of 1000-5000 issues on the frontend.
+- Display a user notification: "Showing X of Y issues."
+- Consider mandatory filters such as date and status to refine data display.
+
+## Testing the Dashboard
+
+After completing the investigation:
+
+- Log in to the system.
+- Select the projects INFOSECC and SEGP.
+- Verify the visibility of both projects.
+- Test performance with real data.
+- Validate user aggregation.
+
+## Final Checklist for Diagnostics
+
+Before proceeding with any changes, ensure the following diagnostics are executed:
+
+- Execute pagination diagnostics.
+- Determine the actual number of issues.
+- Identify whether the issue is an API limit or a bug.
+- Adjust the frontend limit if necessary.
+- Test the solution with real data.
+- Commit the final changes.
+
+## Dynamic Filters and Optimized Graphics
+
+The Jira Dashboard integrates a dynamic filter system with the Jira API, allowing real-time data filtering. Each filter change triggers a new API search, updating all dashboard graphics and metrics automatically.
+
+### Filter State Architecture
+
+The filter state is defined as follows:
+
+```typescript
+interface FilterState {
+projects: string[];
+dateRange: {
+start: string | null;
+end: string | null;
+};
+sprints: number[];
+issueTypes: string[];
+statuses: string[];
+assignees: string[];
+priorities: string[];
+}
+```
+
+### Implementation Flow
+
+1. Load filter options during component mounting.
+2. Ensure filters are applied dynamically to update the dashboard in real-time.
+
+## Issue Management in Modals
+
+The system supports viewing, detailing, and closing issues within modals, accommodating multiple projects and ensuring usability.
+
+### Issue Details Verification
+
+- Ensure the issue status and priority are displayed with color coding.
+- Verify project name and key, assignee, creator, formatted dates, description, and labels.
+
+### Closing Issue Details
+
+- Close the issue modal by clicking [X] or outside the modal.
+- Ensure the system returns to the user modal view.
+
+## Security and Data Integrity
+
+The system now filters and validates dashboard data to ensure only accessible information is displayed, with detailed logging for security and debugging purposes.
+
+### Security Filtering Logs
+
+```plaintext
+🔐 useSecureJiraData - Applying security filter...
+🔐 useSecureJiraData - Security filter applied: {
+originalIssues: 100,
+accessibleIssues: 0,
+removedIssues: 100,
+userProjects: ['INFOSECC', 'SEGP']
+}
+```
+
+## Summary
+
+This guide provides a structured approach to managing critical issues during the beta phase of the Jira Dashboard project. By following the outlined steps for validating solutions, testing performance, and ensuring data integrity, beta testers can effectively address and escalate emergencies. The integration of dynamic filters and security measures further enhances the system's robustness and reliability.
+
+For further assistance, refer to the support documentation or contact the support team.
+
+---
+
+For more detailed information, please refer to the original documentation sources:
+
+- [SESSAO_ATUAL_RESUMO.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/SESSAO_ATUAL_RESUMO.md)
+- [filtros_e_Graficos.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/filtros_e_Graficos.md)
+- [MELHORIAS_MODAIS_USUARIO.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/MELHORIAS_MODAIS_USUARIO.md)
+- [SECURITY_FILTERING_FIXES.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/SECURITY_FILTERING_FIXES.md)

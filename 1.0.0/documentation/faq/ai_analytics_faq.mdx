@@ -1,0 +1,94 @@
+# AI & Analytics FAQ
+
+Version: 1.0.0
+Tab: Documentation - Complete product documentation and user guides
+Group: FAQ - Frequently asked questions and answers
+Page Type: Reference
+Page Description: Questions about AI and analytics features
+Priority: Medium
+
+---
+
+## Introduction
+
+This document provides answers to frequently asked questions about the AI and analytics features within the Jira Dash system. The analytics module is fully functional, with all components and buttons tested and operational. This FAQ aims to clarify common queries and provide guidance on using the analytics features effectively.
+
+---
+
+## General Functionality
+
+### What is the current status of the analytics project?
+
+The analytics project is complete and functional. All features and buttons have been tested, and related files are correctly implemented. The system is ready for use with all components working as expected.
+
+### How do I start the analytics module?
+
+To start the analytics module, follow these steps:
+1. Press `Ctrl+C` to stop any running processes.
+2. Run `npm run dev` to start the development server.
+3. Refresh the page with `F5`.
+4. Navigate to `/analytics`.
+5. Test all buttons to ensure functionality.
+
+---
+
+## Features and Components
+
+### What are the key features of the analytics module?
+
+The analytics module includes several key features:
+- **AI Insights**: Provides detailed insights with alerts.
+- **Anomaly Detection**: Allows investigation of anomalies with alerts.
+- **Automatic Insights**: Displays detailed insights with alerts.
+- **Predictive Analytics**: Shows predictions across three cards (Sprint, Month, Quarter).
+
+### How are predictions displayed in the analytics module?
+
+Predictions in the analytics module are shown through three cards representing different time frames: the next sprint, the next month, and the next quarter. These cards display realistic values and confidence levels between 45-95%.
+
+---
+
+## Testing and Validation
+
+### How can I test the analytics functionality?
+
+Testing the analytics functionality involves several steps:
+1. **Single Project Test**: Select only one project (e.g., INFOSECC) and verify that metrics are specific to that project.
+2. **Multiple Projects Test**: Select multiple projects (e.g., INFOSECC and SEGP) and ensure metrics aggregate data from both.
+3. **Advanced Analytics Test**: Select any project and navigate to `/advanced-analytics` to verify data-based analyses.
+4. **Project Selection Change Test**: Change project selections and ensure metrics update automatically.
+
+### What should I do if predictions do not vary based on data?
+
+Ensure that the predictions are based on real data rather than hardcoded values. The system should dynamically update predictions based on the selected project's data.
+
+---
+
+## Technical Details
+
+### What files are involved in the analytics module?
+
+Key files in the analytics module include:
+- `src/hooks/useAnalytics.ts`: Returns correct data.
+- `src/services/analyticsService.ts`: Defines data types.
+- `src/services/advancedAnalyticsService.ts`: Defines `PredictionData`.
+- `src/components/analytics/AIInsightsPanel.tsx`: Handles AI insights with onClick events.
+- `src/components/analytics/AnomalyDetection.tsx`: Manages anomaly detection with onClick events.
+- `src/components/analytics/PredictiveAnalytics.tsx`: Displays predictions.
+- `src/pages/Analytics.tsx`: Orchestrates the entire analytics module.
+
+### How are insights and anomalies handled in the system?
+
+Insights and anomalies are managed through specific components with onClick handlers that trigger alerts displaying detailed information. For example, the AI Insights Panel and Anomaly Detection components provide alerts with insights and anomaly details, respectively.
+
+---
+
+## Summary
+
+The AI and analytics features in the Jira Dash system are fully operational and provide comprehensive insights, anomaly detection, and predictive analytics. The system is designed to be intuitive and user-friendly, with all components tested and validated for accuracy. Users can rely on the analytics module for detailed data analysis and actionable insights.
+
+For further assistance, refer to the detailed documentation and support resources provided within the system.
+
+---
+
+For more information, please refer to the [complete documentation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/CORRECAO_FINAL_ANALYTICS.md).

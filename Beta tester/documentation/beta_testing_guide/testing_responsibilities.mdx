@@ -1,0 +1,73 @@
+# Testing Responsibilities for Beta Testers
+
+This document outlines the responsibilities and expectations for beta testers involved in the testing phase of our software project. As a beta tester, your role is crucial in identifying issues, ensuring quality, and providing valuable feedback to improve the product before its official release.
+
+## Testing Process
+
+### Test Execution
+
+Beta testers are expected to perform the following tests:
+
+- **Test A (INFOSECC)**
+- **Test B (SEGP)**
+- **Test C (Múltiplos)**
+
+After executing these tests, fill out the validation table and report the results as either a success or an error.
+
+### Interface and Responsiveness Checks
+
+Ensure that the application interface and responsiveness are functioning correctly:
+
+- Check visual icons and clickable cards.
+- Verify that modals open upon clicking and can be closed with the 'X' button or by clicking outside.
+- Ensure related issues are listed and internal scrolling works.
+- Test responsiveness across different devices:
+  - Desktop (1920px)
+  - Tablet (768px)
+  - Mobile (375px)
+
+## Reporting Errors
+
+If you encounter any errors during testing, follow these steps to report them:
+
+1. **Capture a Screenshot**: Take a screenshot of the issue.
+2. **Collect Logs**: Open DevTools (F12) and navigate to the Console tab.
+3. **Gather Information**:
+   - Browser and version
+   - Selected projects
+   - Active tab (Overview/Daily/Velocity/Alerts)
+   - Actions performed when the error occurred
+
+4. **Submit the Report**:
+   - Include the screenshot, logs, and gathered information.
+   - Use the following format for the report:
+     ```
+Title: [BUG] Brief description
+Description: Steps to reproduce + Expected vs. Actual outcome
+     ```
+
+## Post-Test Actions
+
+If all tests pass successfully, proceed with the following:
+
+1. **Commit Changes**:
+   ```bash
+git add src/pages/AgileDashboard.tsx
+git add src/components/dashboard/DailyScrumDashboard.tsx
+git add src/components/dashboard/AlertSystem.tsx
+git commit -m "✨ Correções críticas do Agile Dashboard: métricas, Daily list, alertas interativos"
+git push origin main
+   ```
+
+2. **Next Steps**:
+   - Implement the `useFilteredProjectData` hook.
+   - Apply global filters to other dashboards.
+   - Conduct integration tests.
+
+## Summary
+
+Beta testers play a vital role in ensuring the quality and functionality of the software. By following the outlined testing procedures, reporting errors accurately, and committing changes after successful tests, testers help in refining the product for a secure and efficient release. Your feedback and diligence are invaluable to the success of this project.
+
+For more detailed instructions and information, please refer to the following resources:
+- [Testing Guide - Agile Dashboard](/gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/TESTE_AGILE_DASHBOARD.md)
+- [Next Steps for Development](/gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/PROXIMOS_PASSOS.md)

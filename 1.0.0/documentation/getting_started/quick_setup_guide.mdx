@@ -1,0 +1,144 @@
+# Quick Setup Guide for Jira Dashboard on AWS
+
+Welcome to the Quick Setup Guide for deploying the Jira Dashboard application on AWS. This guide will help you get up and running in just 15 minutes by following a series of straightforward steps. Whether you're deploying with HTTPS or using Docker, this guide covers the essentials for a successful setup.
+
+## Prerequisites
+
+Before you begin, ensure you have the following prerequisites:
+
+- Compiled code (build done locally)
+- Git synchronized
+- SSH access to your AWS instance
+
+## Step-by-Step Deployment (15 Minutes)
+
+### 1. Clone or Update Code (2 Minutes)
+
+For first-time setup:
+
+```bash
+cd /home/ssm-user
+git clone https://github.com/nasario-super/jira-dash.git
+cd jira-dash
+```
+
+If the repository already exists:
+
+```bash
+cd /home/ssm-user/jira-dash
+git pull origin master
+```
+
+### 2. Install Dependencies (3 Minutes)
+
+Install necessary npm packages:
+
+```bash
+npm install
+```
+
+### 3. Build the Project (2 Minutes)
+
+Compile the project for production:
+
+```bash
+npm run build
+```
+
+Expected output:
+
+```
+✓ built in 17.12s
+```
+
+### 4. Stop Previous Application (1 Minute)
+
+Depending on your setup, use one of the following commands:
+
+- Using PM2:
+  ```bash
+pm2 stop all
+  ```
+
+- Using systemd:
+  ```bash
+sudo systemctl stop jira-dashboard
+  ```
+
+- Using nohup:
+  ```bash
+pkill -f "serve -s dist"
+  ```
+
+### 5. Start the Application (1 Minute)
+
+Choose one of the following methods to start the application:
+
+- **PM2 (Recommended):**
+  ```bash
+pm2 start "npm run serve" --name jira-dashboard
+  ```
+
+- **Systemd (More Robust):**
+  ```bash
+sudo systemctl restart jira-dashboard
+  ```
+
+- **Nohup (Simple):**
+  ```bash
+nohup npm run serve &
+  ```
+
+### 6. Configure HTTPS with Nginx (6 Minutes)
+
+Copy the Nginx configuration file and set up SSL:
+
+```bash
+sudo cp /tmp/nginx-jira-dashboard.conf /etc/nginx/sites-available/jira-dashboard
+
+```
+
+# Copy certificate if it does not exist
+sudo mkdir -p /etc/ssl/certs /etc/ssl/private
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+- keyout /etc/ssl/private/jira-dashboard.key \
+- out /etc/ssl/certs/jira-dashboard.crt
+
+## Docker Deployment
+
+For those preferring Docker, follow these steps:
+
+### Install Docker and Docker Compose
+
+```bash
+sudo apt-get update
+sudo apt-get install -y docker.io docker-compose
+sudo usermod -aG docker $USER
+exit
+ssh -i your-key.pem ec2-user@3.83.28.223
+```
+
+### Deploy with Docker
+
+Navigate to the project directory and execute the deployment script:
+
+```bash
+cd /home/ssm-user/projetos/jira-dash
+./deploy-docker.sh
+```
+
+Access the application at:
+
+```
+http://3.83.28.223:3000
+```
+
+## Summary
+
+This guide provided a quick setup process for deploying the Jira Dashboard application on AWS. By following the outlined steps, you can efficiently deploy your application with HTTPS or Docker, ensuring a secure and scalable environment. For further details, refer to the complete documentation linked in the source URLs.
+
+For more information, please consult the following resources:
+- [Guia Rápido - Deploy + HTTPS na AWS](https://github.com/nasario-super/jira-dash/blob/main/GUIA_RAPIDO_AWS.md)
+- [Instalação Docker na AWS](https://github.com/nasario-super/jira-dash/blob/main/INSTALACAO_DOCKER_AWS.md)
+
+Ensure all configurations and commands are executed as specified to avoid common deployment issues.

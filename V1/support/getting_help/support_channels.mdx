@@ -1,0 +1,60 @@
+# Support Channels
+
+This documentation provides an overview of the available support options for the Jira Dashboard project. It outlines various ways to get assistance and support, including troubleshooting common issues and accessing relevant documentation.
+
+## Getting Help
+
+For support and questions related to the Jira Dashboard, consider the following options:
+
+- **Open a GitHub Issue**: If you encounter any issues or have questions, you can open an issue on the project's GitHub repository.
+- **Consult Documentation**: Review the Jira API documentation, as well as the React and TypeScript documentation, for additional insights and guidance.
+
+## Troubleshooting Common Issues
+
+### Error 401 Unauthorized
+
+If you encounter a 401 Unauthorized error after deployment, verify the following:
+
+1. Ensure the token is correct in the login form.
+2. Check if the proxy is passing the Authorization header.
+3. Confirm that credentials are stored in the `authStore`.
+4. Verify that `reinitializeJiraApi()` is called after login.
+
+### CORS Error
+
+To resolve CORS errors, check:
+
+1. If the proxy is enabled in `vite.config.ts`.
+2. The target URL is correct (e.g., `https://superlogica.atlassian.net`).
+3. `changeOrigin` is set to true.
+4. The rewrite function is working correctly.
+
+### Empty Dashboard
+
+If the dashboard appears empty, ensure:
+
+1. `useJiraFilters` is receiving credentials.
+2. `loadFilterOptions()` is called with credentials.
+3. `fetchFilteredData()` is executed with credentials.
+4. Projects are selected correctly.
+
+## Additional Support Steps
+
+For further assistance during implementation:
+
+1. Refer to `SOLUCAO_FINAL_AUTENTICACAO.md` for understanding the authentication flow.
+2. Check the browser console (F12) for error logs.
+3. Review the Network tab for HTTP request statuses.
+4. Verify the proxy configuration in `vite.config.ts`.
+5. Check `authStore.ts` for stored credentials.
+
+## Summary
+
+To effectively utilize the support channels for the Jira Dashboard project, users can open GitHub issues, consult relevant documentation, and follow troubleshooting steps for common errors. By leveraging these resources, users can enhance their understanding and resolve issues efficiently.
+
+For more detailed guidance, please refer to the specific documentation files mentioned in the support steps.
+
+---
+
+**Version**: 1.0
+**Status**: Ready for Use

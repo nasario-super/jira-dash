@@ -1,0 +1,79 @@
+# Weekly Beta Calls
+
+## Introduction
+
+Weekly Beta Calls are regular video meetings conducted with beta testers to provide support, gather feedback, and discuss ongoing development efforts. These calls are a crucial part of the beta testing phase, ensuring that testers are well-informed and can contribute effectively to the project's progress.
+
+## Call Focus and Agenda
+
+### Main Focus Areas
+
+The weekly calls typically focus on several key areas to ensure the project's success:
+
+1. **TypeScript Warnings**: Addressing and resolving any TypeScript warnings to maintain code quality.
+2. **Jira Endpoints Exploration**: Investigating alternative Jira endpoints to enhance data integration.
+3. **Progressive Web App (PWA) Implementation**: Developing a fully functional PWA that is installable and works offline.
+4. **Integration Testing**: Conducting integration tests to ensure all components work seamlessly together.
+
+### Goals for the Next Session
+
+- Achieve a 100% functional application without any warnings.
+- Ensure real data is consistently working within the application.
+- Complete the PWA implementation to be installable and functional offline.
+- Implement basic tests to validate the application's functionality.
+
+## Reporting and Communication
+
+### How to Report Issues
+
+If any issues are encountered during testing, follow these steps to report them:
+
+1. **Capture a Screenshot**: Take a screenshot of the issue.
+2. **Collect Logs**: Open DevTools (F12) and capture console logs.
+3. **Provide Information**:
+   - Browser and version
+   - Selected projects
+   - Active tab (Overview/Daily/Velocity/Alerts)
+   - Actions being performed
+
+4. **Submit the Report**:
+   ```
+[Include screenshot + logs + information]
+
+Title: [BUG] Brief description
+Description: Steps to reproduce + Expected vs. Actual outcome
+   ```
+
+### Commit and Push Changes
+
+After successful testing, commit the changes using the following commands:
+
+```bash
+git add src/pages/AgileDashboard.tsx
+git add src/components/dashboard/DailyScrumDashboard.tsx
+git add src/components/dashboard/AlertSystem.tsx
+git commit -m "✨ Critical fixes for Agile Dashboard: metrics, Daily list, interactive alerts"
+git push origin main
+```
+
+## Tools and Resources
+
+### Documentation
+
+- [Jira REST API](https://developer.atlassian.com/cloud/jira/platform/rest/v3/)
+- [React Query](https://tanstack.com/query/latest)
+- [Zustand](https://github.com/pmndrs/zustand)
+- [Recharts](https://recharts.org/)
+
+### Development Tools
+
+- **IDE**: Visual Studio Code with React/TypeScript extensions
+- **Debugging**: Chrome DevTools and React DevTools
+- **API Testing**: Postman for testing Jira endpoints
+- **Deployment**: Vercel/Netlify for production environments
+
+## Summary
+
+Weekly Beta Calls are essential for maintaining the momentum of the beta testing phase. They focus on resolving technical issues, exploring new development avenues, and ensuring that the application meets its functional and performance goals. By following structured reporting and communication protocols, beta testers can effectively contribute to the project's success.
+
+For more detailed information, refer to the provided documentation links and utilize the specified tools for development and testing.

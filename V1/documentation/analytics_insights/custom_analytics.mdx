@@ -1,0 +1,154 @@
+# Custom Analytics and Visualizations
+
+## Introduction
+
+Welcome to the comprehensive guide on creating custom analytics and visualizations. This guide is part of the Analytics & Insights group, focusing on advanced analytics and business intelligence features. Here, we will explore how to handle user interactions, display detailed information about anomalies and insights, and convert prediction data for predictive analytics components.
+
+## Handling User Interactions
+
+In the analytics module, user interactions are crucial for exploring detailed information about anomalies and insights. The following code snippet demonstrates how to handle button clicks to display alerts with detailed anomaly information:
+
+```javascript
+<Button
+variant="ghost"
+size="sm"
+onClick={() => {
+console.log('🔍 Detalhes da anomalia:', anomaly);
+alert(`Anomalia: ${anomaly.type}\n\nMétrica: ${anomaly.metric}\n\nSeveridade: ${anomaly.severity}\n\nDescrição: ${anomaly.description}\n\nValor Detectado: ${anomaly.value}\n\nValor Esperado: ${anomaly.expectedValue}\n\nDesvio: ${anomaly.deviation.toFixed(2)}%`);
+}}
+>
+<Eye className="w-4 h-4 mr-1" />
+Investigar
+</Button>
+```
+
+## Predictive Analytics
+
+The predictive analytics component utilizes converted prediction data to display forecasts. The following example shows how to convert predictions from the `analyticsService` to an array suitable for the `advancedAnalyticsService`:
+
+```typescript
+const convertedPredictions = predictions && predictions.forecast
+? [
+{
+metric: 'Próximo Sprint',
+currentValue: performance?.velocity | | 0,
+predictedValue: predictions.forecast.nextSprint,
+confidence: predictions.confidence,
+timeframe: '1 sprint',
+factors: predictions.factors,
+},
+{
+metric: 'Próximo Mês',
+currentValue: performance?.velocity | | 0,
+predictedValue: predictions.forecast.nextMonth,
+confidence: predictions.confidence,
+timeframe: '1 mês',
+factors: predictions.factors,
+},
+{
+metric: 'Próximo Trimestre',
+currentValue: performance?.velocity | | 0,
+predictedValue: predictions.forecast.nextQuarter,
+confidence: predictions.confidence,
+timeframe: '3 meses',
+factors: predictions.factors,
+},
+]
+: [];
+```
+
+These predictions are then used in the `PredictiveAnalytics` component:
+
+```typescript
+<PredictiveAnalytics
+predictions={convertedPredictions}
+loading={isLoading}
+issues={issues}
+/>
+```
+
+## Testing and Validation
+
+To ensure the accuracy and functionality of the analytics dashboards, several test cases and validation steps are outlined:
+
+### Test Case 1: Single Project Analytics
+1. Login and select only the INFOSECC project.
+2. Navigate to `/analytics`.
+3. Verify that metrics displayed are specific to INFOSECC.
+
+### Test Case 2: Multiple Projects Analytics
+1. Select INFOSECC and SEGP projects.
+2. Navigate to `/analytics`.
+3. Ensure metrics are aggregated from both projects.
+
+### Test Case 3: Advanced Analytics
+1. Select any project and navigate to `/advanced-analytics`.
+2. Ensure analyses are based on real data and show meaningful insights.
+
+### Test Case 4: Dynamic Project Selection
+1. In `/analytics`, select INFOSECC.
+2. Change selection to SEGP and verify metrics update automatically.
+
+## Technical Corrections
+
+Recent updates have addressed issues with hardcoded data, ensuring that analytics now display real project metrics. The use of `useJiraFilters` allows fetching of actual data from selected projects, replacing previous mock data.
+
+### Example Code Correction
+```typescript
+import { useJiraFilters } from './useJiraFilters';
+
+export const useAnalytics = (): UseAnalyticsReturn => {
+const { data: filterData, loading: dataLoading, error: dataError } = useJiraFilters();
+const issues: JiraIssue[] = filterData?.issues | | [];
+const isLoading = dataLoading;
+const error = dataError;
+
+const analytics = useMemo(() => {
+if (issues.length === 0) {
+return {
+trends: [],
+performance: {velocity: 0, throughput: 0, cycleTime: 0, ...},
+insights: [{title: 'Dados insuficientes', description: 'Selecione projetos'}],
+};
+}
+
+const completedIssues = issues.filter((i: any) =>
+i.fields.status?.statusCategory?.name === 'Done' | |
+i.fields.status?.name === 'Concluído'
+).length;
+
+const velocity = Math.round((completedIssues / issues.length) * 100);
+const efficiency = Math.round((completedIssues / issues.length) * 100);
+
+return {
+trends: [
+{period: 'Última semana', value: velocity, ...},
+{period: 'Último mês', value: velocity * 3, ...},
+{period: 'Último trimestre', value: velocity * 9, ...},
+],
+performance: {
+velocity,
+throughput: completedIssues,
+cycleTime: 30 / issues.length,
+efficiency,
+},
+insights: [
+{
+title: efficiency > 70 ? 'Eficiência em crescimento' : 'Velocidade baixa',
+description: `Eficiência: ${efficiency}% (${completedIssues}/${issues.length} completas)`,
+},
+],
+};
+}, [issues]);
+
+return { trends, performance, predictions, insights, isLoading, error, issues };
+};
+```
+
+## Summary
+
+This guide has provided an overview of creating custom analytics and visualizations, focusing on handling user interactions, predictive analytics, and ensuring real-time data accuracy through dynamic project selection. The corrections and enhancements ensure that the analytics module is both functional and reliable, providing meaningful insights based on real data.
+
+For further details, refer to the full documentation available at the following URLs:
+- [CORRECAO_FINAL_ANALYTICS.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/CORRECAO_FINAL_ANALYTICS.md)
+- [CORRECAO_ANALYTICS_FILTRO.md](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/CORRECAO_ANALYTICS_FILTRO.md)

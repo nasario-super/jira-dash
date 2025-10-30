@@ -1,0 +1,61 @@
+# Creating Support Tickets
+
+## Introduction
+
+This guide provides instructions on how to submit effective support requests for the Jira Dashboard. It outlines various methods for getting help and resolving common issues, ensuring that users can efficiently address their concerns and improve their experience with the platform.
+
+## How to Submit a Support Request
+
+### Opening a GitHub Issue
+
+For support and questions regarding the Jira Dashboard, users are encouraged to open an issue on GitHub. This allows the development team to track and address problems systematically.
+
+### Consulting Documentation
+
+Before submitting a support request, users should consult the following resources:
+
+- **Jira API Documentation**: Provides detailed information on API usage and troubleshooting.
+- **React and TypeScript Documentation**: Useful for understanding the underlying technologies used in the Jira Dashboard.
+
+## Troubleshooting Common Issues
+
+### Common Problems and Solutions
+
+1. **No Issues Found**
+   - **Possible Causes**: Project without issues, overly restrictive filters, or lack of Jira access.
+   - **Solutions**: Clear all filters, select a different project, and verify Jira access.
+
+2. **Different Numbers from Jira**
+   - **Possible Causes**: Synchronization delay, different filters, or sub-item issues.
+   - **Solutions**: Click update, wait 5-10 minutes, and check filters.
+
+3. **User Not Appearing**
+   - **Possible Causes**: No assigned issues, user left the project, or user deactivated.
+   - **Solutions**: Reassign issues and invite the user back to the project.
+
+### Performance and Analysis Tips
+
+- Use 1-3 projects at a time for optimal performance.
+- Clean unnecessary filters and reload the page if it becomes slow.
+- Compare data over different periods (e.g., week vs. month) to analyze trends effectively.
+
+## Support Commands and Procedures
+
+### Useful Commands
+
+For troubleshooting and maintenance, the following commands can be used:
+
+- **View Logs**: `pm2 logs jira-dashboard`
+- **Restart Application**: `pm2 restart jira-dashboard`
+- **Clear Cache**: `npm cache clean --force`
+- **Reinstall Dependencies**: `rm -rf node_modules && npm install`
+
+### Security Best Practices
+
+- Never store credentials in the `.env` file. Always use the UI for login credentials to ensure security.
+
+## Summary
+
+This guide provides essential steps for submitting support requests and resolving common issues with the Jira Dashboard. By following the outlined procedures and consulting the recommended documentation, users can effectively manage and troubleshoot their projects. For further assistance, opening a GitHub issue remains a reliable method to seek help from the development team.
+
+For more detailed information, please refer to the specific documentation sections provided in the [Jira Dashboard Documentation Index](https://example.com/path-to-docs).

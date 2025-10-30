@@ -1,0 +1,108 @@
+# Beta Testing Tools
+
+Welcome to the Beta Testing Tools documentation page. This reference guide provides an overview of the tools and utilities available for beta testing, specifically focusing on the Agile Dashboard and related components. This document is intended for beta testers to assist in the testing process and ensure a smooth and efficient testing experience.
+
+## Agile Dashboard Testing Guide
+
+### How to Test
+
+#### Step 1: Compile and Launch the Server
+
+To begin testing, compile the application and start the server using the following commands:
+
+```bash
+cd /home/anderson.nasario/Documentos/Nasario/jira-dash
+
+```
+
+# Compile
+npm run build
+
+# Or use dev mode
+npm run dev
+```
+
+Access the application at `http://localhost:3000`.
+
+```
+
+#### Step 2: Validate Key Metrics
+
+- **Login**: Use credentials from the `.env` file.
+- **Select Projects**: Choose **INFOSECC** and **SEGP**.
+- **Navigate**: Go to **Agile Dashboard** → **Overview**.
+
+**Expected Metrics**:
+- Total Issues: ~200
+- Completed: ~45
+- In Progress: ~30
+- Blocked: ~8
+- Overdue: ~11
+- Completion Percentage: ~22%
+
+#### Step 3: Daily Scrum with Expandable List
+
+- **Navigate**: Agile Dashboard → Tab **Daily Scrum**.
+- **Expected**: Lists should be expandable with items for yesterday and today.
+
+### Reporting Errors
+
+If you encounter any errors during testing:
+
+1. **Screenshot**: Capture the screen.
+2. **Logs**: Open DevTools (F12) → Console.
+3. **Information**:
+   - Browser and Version
+   - Selected Projects
+   - Active Tab (Overview/Daily/Velocity/Alerts)
+   - Actions being performed
+
+4. **Submit Report**:
+   ```
+[Include screenshot + logs + information]
+
+Title: [BUG] Brief Description
+Description: Steps to reproduce + Expected vs Actual Outcome
+   ```
+
+### Commit Changes After Successful Tests
+
+If all tests pass, commit the changes with the following commands:
+
+```bash
+git add src/pages/AgileDashboard.tsx
+git add src/components/dashboard/DailyScrumDashboard.tsx
+git add src/components/dashboard/AlertSystem.tsx
+git commit -m "✨ Correções críticas do Agile Dashboard: métricas, Daily list, alertas interativos"
+git push origin main
+```
+
+## Additional Testing Areas
+
+### Analytics Page Testing
+
+Ensure all components and buttons on the `/analytics` page function correctly:
+
+- **AI Insights Panel**: Click "Details" to view insights.
+- **Anomaly Detection**: Click "Investigate" for anomaly details.
+- **Automatic Insights**: Click to expand or view details.
+- **Predictive Analytics**: Ensure it displays three prediction cards.
+
+### Dynamic Filters and Optimized Graphs
+
+The system allows real-time filtering of Jira data, updating all graphs and metrics dynamically. This ensures efficient use of visual space and legibility across different screen sizes.
+
+### Error Handling and Security
+
+- **Improved API Error Handling**: Custom user messages for different error statuses.
+- **Authentication Tests**: Ensure login functionality and secure token handling.
+
+## Summary
+
+This documentation provides a comprehensive guide for beta testers working with the Agile Dashboard and related components. It includes instructions for compiling and launching the application, validating key metrics, reporting errors, and committing changes after successful tests. Additionally, it covers testing procedures for the analytics page and highlights improvements in error handling and security.
+
+For more detailed instructions and updates, please refer to the specific sections outlined above.
+
+---
+
+For further information, please visit the relevant documentation pages linked in the source content.

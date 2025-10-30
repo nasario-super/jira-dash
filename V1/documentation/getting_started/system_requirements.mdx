@@ -1,0 +1,72 @@
+# System Requirements
+
+This document provides the necessary hardware, software, and Jira version requirements for setting up and running the Jira Dashboard application. This guide is intended for users preparing to deploy the Jira Dashboard on their systems.
+
+## Hardware and Software Requirements
+
+### Node.js and npm
+
+Ensure that your system has the following versions installed:
+
+- **Node.js**: Version 18 or higher
+- **npm**: Version 9 or higher
+
+You can verify the installed versions using the following commands:
+
+```bash
+node --version
+npm --version
+```
+
+### Additional Software
+
+- **Git**: Required for cloning the repository and version control.
+  ```bash
+git --version
+  ```
+
+- **Docker and Docker Compose**: If deploying using Docker, ensure these are installed and running.
+  ```bash
+docker --version
+docker-compose --version
+  ```
+
+## Jira Requirements
+
+To integrate with Jira, ensure you have:
+
+- **Jira Cloud Account**: Necessary for accessing Jira projects and data.
+- **API Token**: Required for authentication with Jira's API. Create a token at [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens).
+
+## Environment Configuration
+
+### Environment Variables
+
+Configure the `.env` file with your Jira credentials. Do not store sensitive information directly in the `.env` file; instead, use the UI for login credentials.
+
+Example configuration in `.env`:
+
+```env
+VITE_JIRA_DOMAIN=your-domain.atlassian.net
+VITE_JIRA_EMAIL=your-email@company.com
+VITE_JIRA_API_TOKEN=your-api-token
+```
+
+## Security Guidelines
+
+- **Do not store Jira credentials in the `.env` file**. Always use the UI for entering credentials.
+
+# ❌ Incorrect
+VITE_JIRA_DOMAIN=...
+VITE_JIRA_EMAIL=...
+VITE_JIRA_API_TOKEN=...
+
+# ✅ Correct
+
+# Use UI for login
+
+## Summary
+
+This document outlines the system requirements for deploying the Jira Dashboard. Ensure that Node.js, npm, Git, Docker, and Docker Compose are installed and properly configured. Jira integration requires a Jira Cloud account and an API token. Follow security best practices by avoiding storing sensitive information in the `.env` file.
+
+For further assistance, refer to the [Jira Dashboard documentation](https://id.atlassian.com/manage-profile/security/api-tokens) or contact support through the appropriate channels.

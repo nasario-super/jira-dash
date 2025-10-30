@@ -1,0 +1,51 @@
+# Communication Channels for Beta Testers
+
+This document provides an overview of the available communication channels for beta testers, focusing on how to provide feedback and report issues effectively. This guide is part of the beta testing documentation and aims to facilitate smooth communication between testers and developers.
+
+## How to Report Issues
+
+When encountering an error during testing, follow these steps to report it effectively:
+
+1. **Capture a Screenshot**: Take a screenshot of the issue.
+2. **Gather Logs**: Open DevTools (F12) and navigate to the Console tab to gather logs.
+3. **Collect Information**:
+   - Browser and Version
+   - Selected Projects
+   - Active Tab (e.g., Overview, Daily, Velocity, Alerts)
+   - Description of what you were doing when the issue occurred
+
+4. **Submit the Report**:
+   - Include the screenshot, logs, and collected information.
+   - Use the following format for the report:
+     ```
+Title: [BUG] Brief Description
+Description: Steps to reproduce + Expected vs Actual Outcome
+     ```
+
+## Next Steps After Successful Testing
+
+If all tests pass, proceed with the following steps:
+
+1. **Commit Changes**:
+   ```bash
+git add src/pages/AgileDashboard.tsx
+git add src/components/dashboard/DailyScrumDashboard.tsx
+git add src/components/dashboard/AlertSystem.tsx
+git commit -m "✨ Critical fixes for Agile Dashboard: metrics, Daily list, interactive alerts"
+git push origin main
+   ```
+
+2. **Development Continuation**:
+   - Implement the `useFilteredProjectData` hook.
+   - Apply global filters to other dashboards.
+   - Conduct integration tests.
+
+## Summary
+
+This documentation outlines the essential steps for beta testers to report issues and continue development after successful testing. By following the structured process of capturing screenshots, gathering logs, and submitting detailed reports, testers can ensure effective communication with developers. Additionally, the guide provides instructions for committing changes and planning subsequent development steps.
+
+For further details, please refer to the complete guides available in the documentation repository.
+
+---
+
+For more information, visit the full documentation at [Jira Dash Documentation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/TESTE_AGILE_DASHBOARD.md).

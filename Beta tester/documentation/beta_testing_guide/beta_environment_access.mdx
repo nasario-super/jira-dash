@@ -1,0 +1,79 @@
+# Beta Environment Access
+
+Welcome to the Beta Environment Access guide. This document provides essential information for beta testers on how to access and set up the beta environment. This guide is crucial for ensuring a smooth and controlled testing process.
+
+## Introduction
+
+The beta environment allows testers to manually select projects they wish to access, providing control, simplicity, and reliability. This approach eliminates dependencies on unstable APIs and ensures that only the selected projects' data is displayed.
+
+## How to Access the Beta Environment
+
+### Initial Access
+
+1. **Login**: Begin by logging into the system.
+2. **Project Selection Screen**: Upon login, you will be presented with a project selection screen.
+3. **Test Access**: Use the "Testar Acesso" feature to verify permissions for the projects.
+4. **Select Projects**: Choose the projects you wish to access.
+5. **Confirm Selection**: Click "Confirmar Seleção" to finalize your choices.
+
+### Subsequent Access
+
+1. **Login**: Log into the system.
+2. **Automatic Detection**: The system will detect already configured projects and direct you to the dashboard.
+3. **Manage Projects**: Use the "Configuração de Projetos" option to manage your project settings.
+
+### Project Management
+
+- **Update**: Refresh the configuration status.
+- **Clear Selection**: Remove current configurations and return to the selection screen.
+- **Test Access**: Re-verify project permissions.
+
+## Expected Outcomes
+
+### Before Implementation
+
+- **Discovery Failures**: No projects accessible.
+- **Data Not Displayed**: Empty dashboard.
+- **Complex System**: Multiple discovery attempts.
+- **Unreliable**: Depended on unstable APIs.
+
+### After Implementation
+
+- **Manual Selection**: Users choose projects.
+- **Access Testing**: Permissions are verified.
+- **Data Displayed**: Dashboard shows data for selected projects.
+- **Simple System**: Direct and reliable process.
+
+## Testing the Beta Environment
+
+### Full Flow Test
+
+1. **Login**: Access the system.
+2. **Project Selection**: The selection screen should appear.
+3. **Loading Projects**: "Carregando Projetos" should display during discovery.
+4. **Project Display**: After loading, available projects should be shown.
+5. **Select and Confirm**: Choose and confirm projects to access the dashboard.
+
+### Discovery Test
+
+1. **Selection Screen**: Check logs in the console.
+2. **Discovery Logs**: Ensure logs show "Starting automatic project discovery..." and "Discovery completed, found projects: [...]".
+3. **Completion Status**: Confirm "Descoberta de Projetos Concluída" status.
+
+### Dashboard Test
+
+1. **Access Dashboard**: After selection, access the dashboard.
+2. **Data Verification**: Ensure only data from selected projects is displayed.
+
+## Summary
+
+This guide outlines the process for accessing and setting up the beta environment, emphasizing manual project selection for enhanced control and reliability. The implementation ensures a user-friendly experience by eliminating unnecessary background processes and providing clear feedback during project discovery. By following this guide, beta testers can efficiently manage project access and ensure that only relevant data is displayed on their dashboards.
+
+For more detailed technical information, please refer to the source documents linked within this guide.
+
+---
+
+For further details, please consult the following resources:
+- [Project Selection Implementation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/PROJECT_SELECTION_IMPLEMENTATION.md)
+- [Project Selection Flow Fix](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/PROJECT_SELECTION_FLOW_FIX.md)
+- [Manual Selection Override Fix](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/MANUAL_SELECTION_OVERRIDE_FIX.md)

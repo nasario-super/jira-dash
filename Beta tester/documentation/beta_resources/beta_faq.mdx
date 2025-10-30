@@ -1,0 +1,95 @@
+# Beta FAQ
+
+Welcome to the Beta FAQ page for our beta testing program. This document provides answers to frequently asked questions and offers guidance for beta testers participating in the Jira Dashboard project. This page is part of the Beta Resources group and is intended to support testers with documentation and guides.
+
+## Frequently Asked Questions
+
+### 1. How do I report errors during beta testing?
+
+If you encounter any errors during beta testing, please follow these steps:
+
+1. **Capture a Screenshot**: Take a screenshot of the error.
+2. **Collect Logs**: Open DevTools (F12) and navigate to the Console tab to gather logs.
+3. **Provide Information**:
+   - Include your browser and version.
+   - List the selected projects.
+   - Mention the active tab (Overview, Daily, Velocity, Alerts).
+   - Describe what you were doing when the error occurred.
+
+4. **Submit the Report**:
+   - Attach the screenshot, logs, and information.
+   - Use the following format:
+     ```
+Title: [BUG] Brief Description
+Description: Steps to reproduce + Expected vs Actual outcome
+     ```
+
+### 2. What should I do if all tests pass?
+
+If all tests pass successfully, proceed with the following steps:
+
+1. **Commit the Changes**:
+   ```bash
+git add src/pages/AgileDashboard.tsx
+git add src/components/dashboard/DailyScrumDashboard.tsx
+git add src/components/dashboard/AlertSystem.tsx
+git commit -m "✨ Correções críticas do Agile Dashboard: métricas, Daily list, alertas interativos"
+git push origin main
+   ```
+
+2. **Next Steps**:
+   - Implement the `useFilteredProjectData` hook.
+   - Apply global filters to other dashboards.
+   - Conduct integration tests.
+
+### 3. How is the project selection flow improved?
+
+The project selection and discovery flow has been enhanced to ensure a controlled and user-friendly process:
+
+- **Mandatory Project Selection**: Users must select projects after logging in.
+- **Clear Feedback**: Users receive clear status updates during project discovery.
+- **Controlled Access**: Dashboard access is granted only after projects are selected.
+
+### 4. How can I test the prediction card features?
+
+To test the prediction card features, follow these steps:
+
+1. **Access Advanced Analytics**:
+   ```
+http://localhost:3000/advanced-analytics
+   ```
+
+2. **Navigate to Predictions**:
+   - Click on "Analytics IA" in the sidebar.
+   - Go to "Analytics Preditivos".
+
+3. **Verify the Cards**:
+   - Ensure confidence levels are between 45-95%.
+   - Check for realistic values.
+   - Confirm the display of eight factors.
+   - Click "Ver Detalhes" for improvement guidance.
+
+### 5. What are the common issues and solutions?
+
+Here are some common issues and their solutions:
+
+- **No Issues Found**:
+  - Possible causes: Project without issues, restrictive filters, or lack of access.
+  - Solution: Clear filters, select a different project, and verify Jira access.
+
+- **Different Numbers from Jira**:
+  - Possible causes: Synchronization delay, different filters, or sub-items.
+  - Solution: Refresh, wait for 5 minutes, and check filters.
+
+- **User Not Appearing**:
+  - Possible causes: No assigned issues, left the project, or deactivated.
+  - Solution: Reassign issues and invite the user back to the project.
+
+## Summary
+
+This FAQ page addresses common questions and provides guidance for beta testers involved in the Jira Dashboard project. It covers error reporting, test completion procedures, improvements in project selection flow, testing prediction card features, and solutions to common issues. For more detailed technical documentation, refer to the provided links and resources.
+
+For further assistance, please contact the project administrator or refer to the technical documentation.
+
+**Version**: Beta Tester
+**Status**: Medium Priority

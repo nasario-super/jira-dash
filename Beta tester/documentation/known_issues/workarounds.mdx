@@ -1,0 +1,82 @@
+# Workarounds for Known Issues
+
+This guide provides temporary solutions for known issues encountered during the beta testing phase of the Jira Dashboard project. These workarounds address API limitations, pagination issues, and performance optimizations to ensure smoother operation and data handling.
+
+## API and Pagination Issues
+
+### Problem Overview
+
+The Jira API v3 has been identified to have a critical bug when using JQL queries with multiple projects. It returns issues from only one project, ignoring others. Additionally, tests have shown that the API pagination may not be functioning correctly, as it stops at 1000 pages without reaching the end of the data.
+
+### Temporary Solutions
+
+1. **Separate Fetch for Each Project**:
+   - Modify the service to detect multiple projects and perform individual fetches for each project.
+   - Merge the results to ensure all data is captured.
+
+   ```typescript
+const selectedProjects = projectAccessService.getUserProjects();
+const hasMultipleProjects = selectedProjects.length > 1;
+
+if (hasMultipleProjects) {
+for (const projectKey of selectedProjects) {
+const projectJql = `project = "${projectKey}"`;
+// Fetch individual for each project
+}
+}
+   ```
+
+2. **Frontend Adjustments**:
+   - Implement a limit of 1000-5000 issues on the frontend.
+   - Add a user notification: "Showing X of Y issues".
+   - Consider mandatory filters (by date, status, etc.) to manage data volume.
+
+## Performance Optimizations
+
+### Problem Overview
+
+The initial process for fetching and merging data from multiple projects was slow, taking over 100 seconds. This was due to sequential processing and excessive API calls.
+
+### Temporary Solutions
+
+1. **Parallel Fetching**:
+   - Utilize `Promise.all` to fetch data from multiple projects simultaneously, reducing processing time significantly.
+
+   ```typescript
+const promises = projects.map(p => fetch(p));
+const results = await Promise.all(promises);
+   ```
+
+2. **Reduced API Calls**:
+   - Limit the number of API calls per project from 500 to 10 by adjusting the pagination settings.
+
+   ```typescript
+maxPages: number = 10 // Reduced from 500
+   ```
+
+3. **Concise Logging**:
+   - Simplify logging to reduce console clutter and improve readability.
+
+   ```typescript
+if (pageCount % 5 === 0 | | pageCount === 1) {
+console.log(`Page ${pageCount}: ${totalIssues} issues`);
+}
+   ```
+
+## Known Issues and Limitations
+
+### API Limitations
+
+- **Endpoint `/search`**: Returns 410 (not available).
+- **Endpoint `/project/{id}/issues`**: Returns 404 (not found).
+- **Endpoint `/issue`**: Returns 405 (method not allowed).
+
+### TypeScript Warnings
+
+- Unused variables and missing properties in analytics components need addressing.
+
+## Summary
+
+The workarounds provided aim to mitigate current issues with the Jira API and enhance the performance of data processing in the Jira Dashboard project. By implementing separate fetches for each project and optimizing data handling processes, these solutions offer temporary relief while awaiting permanent fixes.
+
+For further details and updates, please refer to the [project documentation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/SESSAO_ATUAL_RESUMO.md).

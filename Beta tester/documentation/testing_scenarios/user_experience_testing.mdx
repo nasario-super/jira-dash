@@ -1,0 +1,79 @@
+# User Experience Testing Guide
+
+This guide provides comprehensive instructions for conducting user experience (UX) and usability testing within the Jira Dashboard environment. It is designed for beta testers and focuses on testing scenarios and use cases related to modal interactions, issue details, and project management.
+
+## Introduction
+
+User experience testing is crucial for ensuring that the interface and functionalities of the Jira Dashboard meet user expectations and usability standards. This document outlines the procedures for testing modal interactions, issue details, and project management features, ensuring a seamless user experience across different projects and devices.
+
+## Testing Scenarios
+
+### Modal Interactions
+
+#### User Modal
+
+- **Clickable Issues**: Each issue in the user modal acts as a button, allowing users to click and view detailed information.
+  ```typescript
+<button onClick={() => setSelectedIssue(issue)}>
+{issue.key} {issue.fields.summary}
+</button>
+  ```
+
+- **Modal Layering**: Ensure that the user modal has a z-index of 50, and the issue modal overlays it with a z-index of 60.
+
+- **Closing Modals**: Verify that modals close when clicking outside or on the [X] button.
+
+### Issue Details
+
+#### Issue Information
+
+- **Displayed Information**: Check that the issue modal displays the following information:
+  - Issue Key
+  - Type (Bug, Task, Story, Epic)
+  - Summary (Full Title)
+  - Status and Priority (with color coding)
+  - Project Name and Key
+  - Assignee and Creator
+  - Dates (Creation, Update, Due)
+  - Description with line breaks
+  - Labels (Tags)
+
+#### Multiple Projects
+
+- **Project Expansion**: Test the functionality of expanding and collapsing projects within the modal. Ensure that all issues are visible without artificial limits.
+
+- **Issue Details**: When an issue is clicked, its details should appear in a new modal overlay.
+
+## Usability and Responsiveness
+
+### Interface and Responsiveness
+
+- **Device Compatibility**: Ensure the dashboard adjusts its layout appropriately for desktop (1920px), tablet (768px), and mobile (375px) devices.
+
+- **Interactive Elements**: Verify that all interactive elements, such as clickable cards and scrollable lists, function correctly across devices.
+
+### Error Reporting
+
+If any errors are encountered during testing, follow these steps to report them:
+
+1. **Capture a Screenshot**: Take a screenshot of the issue.
+2. **Collect Logs**: Open DevTools (F12) and navigate to the Console to gather logs.
+3. **Provide Information**:
+   - Browser and Version
+   - Selected Projects
+   - Active Tab (Overview/Daily/Velocity/Alerts)
+   - Actions being performed
+
+4. **Submit the Report**:
+   ```
+[Include screenshot, logs, and information]
+
+Title: [BUG] Brief Description
+Description: Steps to reproduce + Expected vs Actual Outcome
+   ```
+
+## Summary
+
+This guide has outlined the key testing scenarios for user experience and usability within the Jira Dashboard. By following these procedures, testers can ensure that the dashboard provides a seamless and intuitive experience across various projects and devices. The focus on modal interactions, issue details, and project management features ensures that the interface meets user expectations and usability standards.
+
+For further details, refer to the specific sections on modal interactions and issue details to ensure comprehensive coverage during testing.

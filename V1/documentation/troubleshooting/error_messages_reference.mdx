@@ -1,0 +1,46 @@
+# Error Messages Reference
+
+## Introduction
+
+This document serves as a comprehensive reference for error messages encountered in the Jira Dashboard application. It includes descriptions of common issues, their causes, and suggested solutions. This guide is intended to assist users in troubleshooting and resolving errors effectively.
+
+## Common Error Messages and Solutions
+
+### Authentication Errors
+
+**Error:** Missing or Invalid Credentials
+**Solution:** Ensure that user-specific credentials are correctly passed through API requests. After login, reinitialize the Jira API with the new credentials to maintain session accuracy. Use hooks to load data with the current user's credentials, improving security and session accuracy.
+**Reference:** [SOLUCAO_FINAL_AUTENTICACAO.md](./SOLUCAO_FINAL_AUTENTICACAO.md)
+
+### Data Fetching Errors
+
+**Error:** Projects Missing in Data
+**Solution:** Verify console logs for specific errors. Check connectivity with Jira and ensure credentials are correct. Implement secure fetching methods with proper pagination and deduplication to ensure data integrity.
+**Reference:** [CORRECAO_CRITICA_IMPLEMENTADA.md](./CORRECAO_CRITICA_IMPLEMENTADA.md)
+
+### Data Filtering Errors
+
+**Error:** Inconsistent Data Display
+**Solution:** Use a service to validate project access and ensure only accessible projects are displayed. Implement filtering to remove inaccessible project data and correct inconsistencies in issue counts.
+**Reference:** [DATA_FILTERING_ANALYSIS.md](./DATA_FILTERING_ANALYSIS.md)
+
+### Prediction Card Errors
+
+**Error:** Invalid Confidence Values
+**Solution:** Implement robust validation for confidence values to prevent NaN errors. Simulate historical data for insufficient data scenarios and expand the factors considered in predictions.
+**Reference:** [PREDICTION_CARD_FIXES.md](./PREDICTION_CARD_FIXES.md)
+
+## Troubleshooting Quick Guide
+
+- **Single Project Display:** Check console for "Projeto único detectado" and ensure two projects are selected.
+- **Console Errors:** Look for "❌" or "🚨" in the console and report the error message.
+- **Data Mismatch:** Verify that "✅ fetchFilteredData - SUCESSO" appears in the console. If not, there was an error during data fetching.
+- **Duplicate Issues:** If duplicates are reported, it indicates an anomaly. Report if "X duplicatas removidas" appears where X &gt; 0.
+
+## Summary
+
+This reference document provides solutions to common error messages encountered in the Jira Dashboard. By following the outlined troubleshooting steps and solutions, users can effectively address issues related to authentication, data fetching, filtering, and prediction calculations. For detailed implementation and further technical guidance, refer to the specific documentation files mentioned in each section.
+
+---
+
+For more detailed information, please refer to the complete documentation available in the [Jira Dashboard Documentation Index](https://your-documentation-link).

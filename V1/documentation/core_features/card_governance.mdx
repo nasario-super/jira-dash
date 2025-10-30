@@ -1,0 +1,95 @@
+# Card Governance in Jira Dashboard
+
+## Introduction
+
+This guide provides a comprehensive overview of managing and governing Jira cards using the Jira Dashboard. The Jira Dashboard is a modern web tool designed to centralize Jira data, offering advanced analytics and executive reports. It enables users to access, select projects, and visualize productivity metrics in a practical and intuitive manner.
+
+## Accessing the Jira Dashboard
+
+### Application Access
+
+To begin using the Jira Dashboard, navigate to the following URL to access the login screen:
+
+```
+http://3.83.28.223:3000
+```
+
+### Login Credentials
+
+To log in, you will need:
+
+- **Email**: your-email@example.com
+- **API Token**: Generate this token at [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens).
+
+#### Steps to Generate an API Token
+
+1. Visit [Atlassian API Tokens](https://id.atlassian.com/manage-profile/security/api-tokens).
+2. Click on "Create API token".
+3. Enter a name for the token (e.g., "Jira Dashboard").
+4. Copy the generated token.
+5. Paste it on the login screen of the Dashboard.
+
+## Project Selection
+
+After logging in, you will be directed to the project selection screen where you can:
+
+1. Load Projects
+2. Search by name
+3. Select multiple projects
+4. Confirm your selection
+
+**Tip**: For optimal performance, select 1-3 projects initially. You can select more later if needed.
+
+## Dashboard Overview
+
+### Key Metrics and Cards
+
+The main dashboard provides a high-level overview through various cards:
+
+| Card | Description |
+| ------------------ | -------------------------------------------------- |
+| **Total de Issues** | All issues in the selected projects |
+| **Projetos Ativos** | Number of active projects |
+| **Usuários Ativos** | Users with assigned issues |
+| **Filtros Aplicados** | Active filters in use |
+
+### Graphical Insights
+
+The dashboard includes graphical representations such as:
+
+- **Issues by Status**: Visualizes the distribution of issues across different statuses.
+
+## Functional Scope
+
+### Included Features
+
+- **Dashboard with Executive KPIs**: Displays key performance indicators for projects and sprints.
+- **Graphical Visualizations**: Includes burndown charts, issue status/type distributions, and team velocity.
+- **Advanced Filters**: Allows filtering by project, sprint, issue type, status, assignee, priority, and time period.
+- **Incident Management**: Monitors and manages critical incidents in real-time.
+- **Responsive Interface**: Accessible on desktop, tablet, and mobile devices.
+
+### Excluded Features
+
+- Editing or creating issues in Jira (read-only access).
+- Multi-user authentication systems.
+- Integration with tools other than Jira.
+- Push or email notifications.
+- User-customizable dashboards (initially a standard setup).
+
+## Technical Architecture
+
+- **Application Type**: Single Page Application (SPA)
+- **Deployment**: Standalone frontend application connecting directly to Jira Cloud via API.
+- **Data Updates**: Periodic polling and manual refresh.
+- **Persistence**: Local cache in the browser (no backend database).
+
+## Summary
+
+The Jira Dashboard provides a centralized, real-time view of Jira data, enhancing productivity analysis and executive reporting. It is designed for executives, project managers, and team leaders who require a consolidated strategic view of multiple projects and teams. The tool supports advanced filtering, graphical insights, and responsive design, making it a powerful solution for card governance in Jira.
+
+For further details, refer to the complete documentation available in the Jira Dashboard repository.
+
+---
+
+For more information, visit the [Jira Dashboard Documentation](https://gitdocai-data/organization/org-3b5b9a00-5655-4c1f-96df-503f2619fb1c/repositories/jira-dash/GUIA_USO_COMPLETO.md).
