@@ -1,0 +1,18 @@
+{
+    "name": "Jira-Dashboard",
+    "description": "Documentação da ferramenta criada para gestão de cads no Jira, IA Preditiva, Analises com IA e muto mais funcionalidades criadas para facilitar e trazer uma visão precisa, facilitando a governança dos cards, tarefas Sprints. Uma ferramenta completa que apoia na gestão e tomada de decisão, além de bem estar do profissional",
+    "theme": "",
+    "colors": {
+        "dark": "#655DC6",
+        "light": "#3A8DDE"
+    },
+    "defaultThemeMode": "light",
+    "background": {
+        "colors": {
+            "dark": "#0D0F11",
+            "light": "#f0f0f0"
+        },
+        "image": null
+    },
+    "navigation": {}
+}
